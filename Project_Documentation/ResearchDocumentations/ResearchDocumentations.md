@@ -6,10 +6,11 @@
 
 <li> Understanding the states and lifecycles of React https://reactjs.org/docs/state-and-lifecycle.html, https://medium.com/how-to-react/react-life-cycle-methods-with-examples-2bdb7465332b
 
-<li> https://reactjs.org/docs/hello-world.html 
+<li> https://reactjs.org/docs/hello-world.html
 
 <li> Setting up NodeJS (https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#:~:text=Node.js%20tutorial%20in%20Visual%20Studio%20Code%201%20Hello,application%20%23.%20...%206%20Next%20steps%20%23.%20)
 
+#### Swetha - First version database design
 
-
-
+![](Screen Shot 2021-10-17 at 11.42.14 PM.png)
+![](Screen Shot 2021-10-17 at 11.47.58 PM.png)
