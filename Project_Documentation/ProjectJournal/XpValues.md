@@ -8,25 +8,38 @@
 <li> Discussed on our next deliverables </li>
 
 #### Bharath - Communication
+
 <li>Discussed on team members experience in IT industry if any and just spoke about technologies they worked on to select the technologies needed to implement for the project</li>
 
 #### Varun - Communication
+
 <li>We discussed on team members experience in IT industry and the languages in which they are proficient and worked previously.</li>
 <li>Discussed on the rough roadmap of the project</li>
 
 ## Week 2:
 
 #### Swetha - Communication, Feedback
+
 <li> Feedback was provided to team members on the deliverables like UI wireframes and API's. Other team members provided feedback to me on additional details in the databases required for the application </li>
 <li> Detailed discussions about the architecture diagram was done through our planning meetings </li>
 <li> Every team member is aware of the tasks in the backlog and the tasks to be done next </li>
 
 #### Bharath - Communication, Feedback
+
 <li> Feedback was provided to team members on the deliverables like UI wireframes and database design. Other team members provided feedback to me on Rest APIs document.Some Json Request parameters not needed for some of the APIs which I removed after the discussion for the application </li>
 <li> Detailed discussions about the architecture diagram was done through our planning meetings. Finalised technologies to implement for the application </li>
 <li> Every team member is aware of the tasks in the backlog and the tasks to be done next </li>
 
 #### Varun - Communication, Feedback
+
 <li> We discussed on the UI wireframes and database design deliverables and gave feedback on it. Other team members provided feedback to me on maintaining seperate branches for each team member in the github. </li>
 <li> Detailed discussions about the architecture diagram was done through our planning meetings. Finalised technologies to implement for the application </li>
 <li> We as a team are constantly keeping track of the tasks in the backlog and the tasks that need to be done next </li>
+
+## Week 3:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity
+
+<li> Each team member took up tasks and estimates required to finish the application and user stories were updated accordingly. </li>
+<li> As a team we listen carefully to each other and provide feedback was given to the team members on the final DB design, architecture deiagn, UI wireframes </li>
+<li> Each member is treated with respect and we are taking small measurable steps to complete the project in the given time.</li>
