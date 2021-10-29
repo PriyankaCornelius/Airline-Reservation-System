@@ -3,6 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cors = require('cors');
+const route = require('./routes/index');
+var config = require('./store/config.js');
+const mysql = require('mysql');
+// const { dbconnection } = require('./store/config');
 const multer = require('multer');
 app.set('view engine', 'ejs');
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
@@ -34,34 +38,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-const dbconnection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  ssl: true,
-  database: '',
-  multipleStatements: true,
+require('./routes')(app);
+
+// app.listen(3001);
+// console.log('Server Listening on port 3001');
+
+// const dbconnection = mysql.createConnection(config.databaseOptions);
+
+app.listen(3001, () => {
+  console.log('Server Listening on port 3001');
 });
 
-app.get('/getuserdetails/:id', function (req, res) {
-  console.log('Inside  getuserprofile');
-  //console.log(req.body);
-  const userid = req.params.id;
-  console.log(userid);
-  dbconnection.query(
-    'SELECT * FROM users where userid = ? ',
-    [userid],
-    async (err, output, fields) => {
-      if (err) {
-        //console.log(err);
-        res.status(400).send('Error!');
-      } else {
-        //console.log(output)
-        res.status(200).send(output);
-      }
-    }
-  );
-});
-
-app.listen(3001);
-console.log('Server Listening on port 3001');
+// module.exports = { app: app, dbconnection: dbconnection };
+module.exports = app;
