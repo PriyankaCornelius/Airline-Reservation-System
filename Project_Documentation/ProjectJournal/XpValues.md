@@ -43,8 +43,8 @@
 
 #### Priyanka - Communication, Feedback
 
-<li> We discussed the propject scope in terms of database design and UI. We gave and received feedback on the database design and UI wireframe deliverables. </li>
-<li> Discussed the prohect architecture in detail and finalised the technology stack.</li>
+<li> We discussed the project scope in terms of database design and UI. We gave and received feedback on the database design and UI wireframe deliverables. </li>
+<li> Discussed the project architecture in detail and finalised the technology stack.</li>
 <li> We are keeping track of the tasks in the backlog and the tasks that need to be done next </li>
 
 ## Week 3:
