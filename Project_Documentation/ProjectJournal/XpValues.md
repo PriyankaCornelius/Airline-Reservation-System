@@ -16,6 +16,11 @@
 <li>We discussed on team members experience in IT industry and the languages in which they are proficient and worked previously.</li>
 <li>Discussed on the rough roadmap of the project</li>
 
+#### Priyanka - Communication
+
+<li>We discussed the work experience of team members to find strengths of each member and come to a common conclusion on the technology stack.</li>
+<li>Discussed the project requirements</li>
+
 ## Week 2:
 
 #### Swetha - Communication, Feedback
@@ -36,6 +41,12 @@
 <li> Detailed discussions about the architecture diagram was done through our planning meetings. Finalised technologies to implement for the application </li>
 <li> We as a team are constantly keeping track of the tasks in the backlog and the tasks that need to be done next </li>
 
+#### Priyanka - Communication, Feedback
+
+<li> We discussed the propject scope in terms of database design and UI. We gave and received feedback on the database design and UI wireframe deliverables. </li>
+<li> Discussed the prohect architecture in detail and finalised the technology stack.</li>
+<li> We are keeping track of the tasks in the backlog and the tasks that need to be done next </li>
+
 ## Week 3:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity
@@ -43,3 +54,10 @@
 <li> Each team member took up tasks and estimates required to finish the application and user stories were updated accordingly. </li>
 <li> As a team we listen carefully to each other and provide feedback was given to the team members on the final DB design, architecture deiagn, UI wireframes </li>
 <li> Each member is treated with respect and we are taking small measurable steps to complete the project in the given time.</li>
+
+#### Priyanka - Communication, Feedback, Respect, Simplicity
+
+<li> Each team member set to a task for the week and updates were made on the Jira board accordingly. </li>
+<li> We gave and received feedback on the final DB design, architecture deiagn and UI wireframes. </li>
+<li> Each review/suggestion from a team member is taken seriously and effectively.</li>
+<li> We are taking small measurable steps to complete the project in the given time.</li>
