@@ -61,3 +61,11 @@
 <li> We gave and received feedback on the final DB design, architecture deiagn and UI wireframes. </li>
 <li> Each review/suggestion from a team member is taken seriously and effectively.</li>
 <li> We are taking small measurable steps to complete the project in the given time.</li>
+
+## Week 4:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity
+<li> The completed tasks were showed to the team and reviewed by the team. </li>
+<li> Feedback recieved and provided </li>
+<li> The project progressed with the individual tasks performed  </li>
+
