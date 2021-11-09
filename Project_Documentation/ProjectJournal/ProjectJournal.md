@@ -61,3 +61,10 @@
 <li> What tasks did I work on / complete? - Created the backend API for getting the user mileage account details to display them and backend API for updating user profile details.  </li>
 <li> What am I planning to work on next? - I will be creating the frontend for updating the user profile and viewing the rewards account this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Varun
+
+<li>What tasks did I work on / complete? - Created the backend APIs for getting all the employees details and updating the information of a specific employee based on the id.</li>
+<li>What am I planning to work on next? - I will be working on the frontend part of the employee profile</li>
+<li>What tasks are blocked waiting on another team member? - No blockers</li>
+
