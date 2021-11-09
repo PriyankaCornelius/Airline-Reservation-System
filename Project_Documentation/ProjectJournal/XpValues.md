@@ -69,3 +69,15 @@
 <li> Feedback recieved and provided </li>
 <li> The project progressed with the individual tasks performed  </li>
 
+#### Varun - Communication, Feedback, Respect, Simplicity
+<li> Discussion and review of the completed backend api tasks with the team.</li>
+<li> Feedback recieved and provided.</li>
+<li> The project progressed with the individual tasks performed.</li>
+
+## Week 5:
+
+#### Varun - Communication, Feedback, Respect, Simplicity
+<li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
+<li> Feedback recieved and provided.</li>
+<li> The project progressed with the individual tasks performed.</li>
+
