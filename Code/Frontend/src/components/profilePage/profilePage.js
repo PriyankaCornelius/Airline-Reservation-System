@@ -5,25 +5,26 @@ import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
 import { Form, Image } from 'react-bootstrap';
 import { uploadFile } from 'react-s3';
-// import Navheader from '../navbar/navbar';
+import Navheader from '../navbar/navbar';
 
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 
-// import '../navbar/navbar.css';
+import '../navbar/navbar.css';
 import './profilePage.css';
 
 class Profilepage extends Component {
   constructor(props) {
     super(props);
-    this.profileform = React.createRef();
     this.state = {
       personid: '',
-      profilephoto: null,
+      profilePicture: null,
       firstname: '',
       middlename: '',
       lastname: '',
       dob: '',
       email: '',
+      customer_flyer_num: '',
+      mileage_reward: '',
       contact_country_code: '',
       contact: '',
       address: '',
@@ -33,6 +34,7 @@ class Profilepage extends Component {
       firstnameerrors: '',
       emailerrors: '',
       contacterrors: '',
+      doberrors: '',
     };
 
     // Bind the handlers to this class
@@ -73,15 +75,25 @@ class Profilepage extends Component {
           middlename: response.data[0].m_name,
           lastname: response.data[0].l_name,
           email: response.data[0].email,
-          profilephoto: response.data[0].profilePicture,
+          profilePicture: response.data[0].profilePicture,
           address: response.data[0].address,
           contact: response.data[0].contact,
           contact_country_code: response.data[0].contact_country_code,
           dob: response.data[0].dob,
+          customer_flyer_num: response.data[0].customer_flyer_num,
+          mileage_reward: response.data[0].mileage_reward,
         });
         sessionStorage.setItem('username', response.data[0].f_name);
         sessionStorage.setItem('useremail', response.data[0].email);
         sessionStorage.setItem('profilepic', response.data[0].profilePicture);
+        sessionStorage.setItem(
+          'customer_flyernum',
+          response.data[0].customer_flyer_num
+        );
+        sessionStorage.setItem(
+          'mileage_reward',
+          response.data[0].mileage_reward
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -147,13 +159,13 @@ class Profilepage extends Component {
       updatedpic: true,
     });
     const { setSelectedfile } = this.state;
-    console.log(setSelectedfile);
+    // console.log(setSelectedfile);
     uploadFile(e.target.files[0], config)
       .then((data) => {
         const loc = data.location;
-        console.log(loc);
+        // console.log(loc);
         this.setState({
-          profilephoto: loc,
+          profilePicture: loc,
         });
       })
       .catch((err) => console.error(err));
@@ -164,18 +176,20 @@ class Profilepage extends Component {
     const formerrors = {
       firstnameerrors: '',
       emailerrors: '',
+      doberrors: '',
       contacterrors: '',
     };
 
     const emailpattern =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,4})$/;
     const phnpattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    const dobpattern = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
 
-    const { firstname, email, contact } = this.state;
+    const { firstname, email, contact, dob } = this.state;
 
     if (firstname.length === 0) {
       formisvalid = false;
-      formerrors.firstnameerrors = 'Username cannot be blank!';
+      formerrors.firstnameerrors = 'FirstName cannot be blank!';
       console.log(formerrors.firstnameerrors);
     }
 
@@ -188,6 +202,13 @@ class Profilepage extends Component {
       }
       console.log(formerrors.emailerrors);
     }
+
+    if (!dobpattern.test(dob)) {
+      formisvalid = false;
+      formerrors.doberrors = 'Date of birth not of format "YYYY-MM-DD"!';
+      console.log(formerrors.doberrors);
+    }
+
     if (!phnpattern.test(contact) && contact.length > 0) {
       formisvalid = false;
       formerrors.contacterrors = 'Phone Number is not valid!';
@@ -209,6 +230,7 @@ class Profilepage extends Component {
       lastname,
       middlename,
       dob,
+      email,
       contact_country_code,
       contact,
       address,
@@ -223,18 +245,20 @@ class Profilepage extends Component {
         lastname,
         middlename,
         dob,
+        email,
         address,
         contact_country_code,
         contact,
         profilePicture,
       };
       console.log(data);
+
       axios
         .post('http://localhost:3001/customerUpdateProfile', data)
         .then((response) => {
-          console.log('Status Code : ', response.status);
+          // console.log('Status Code : ', response.status);
           if (response.status === 200) {
-            console.log(response.data);
+            // console.log(response.data);
             sessionStorage.setItem('firstname', response.data.f_name);
             sessionStorage.setItem('useremail', response.data.email);
             sessionStorage.setItem('profilepic', response.data.profilePicture);
@@ -279,29 +303,40 @@ class Profilepage extends Component {
       contact_country_code,
       contact,
       address,
+      customer_flyer_num,
     } = this.state;
 
     const { redirecttohome } = this.state;
-    const { firstnameerrors, emailerrors, contacterrors } = this.state;
-    console.log(redirecttohome);
+    const { firstnameerrors, emailerrors, contacterrors, doberrors } =
+      this.state;
+    // console.log(redirecttohome);
     const imagename = sessionStorage.getItem('profilepic');
-    console.log(imagename);
+    // console.log(imagename);
     let profilepic;
     profilepic = imagename;
-    console.log(profilepic);
+    if (imagename === 'null' || imagename === '' || imagename === ' ') {
+      profilepic =
+        'https://cmpe202spartans.s3.us-east-2.amazonaws.com/default_pic.png';
+      console.log(profilepic);
+    } else {
+      profilepic = imagename;
+      console.log(profilepic);
+    }
+    // console.log(profilepic);
     // if (profilephoto) profilepic = DefaultAvatar;
     return (
       <div>
         {/* {redirectVar} */}
-        {/* <Navheader /> */}
+        <Navheader />
         <div className='profilepage-block'>
-          <h2> Your account </h2>
+          <h2 className='h2'> Your account </h2>
+          <h3 className='h3'> Flyer Number : {customer_flyer_num}</h3>
           <section>
             <div className='avatar-div'>
               <Image src={profilepic} className='avatar1' alt='profile pic' />
               <br />
               <label htmlFor='profile_avatar'>
-                Change your avatar <br />
+                <strong> Change your avatar </strong> <br />
                 <input
                   type='file'
                   name='profile_avatar'
@@ -320,9 +355,10 @@ class Profilepage extends Component {
             >
               <section className='center-block'>
                 <div className='basic_div'>
-                  Your name <br />
+                  <strong>Your Name </strong>
+                  <br />
                   <label htmlFor='firstname'>
-                    First Name:
+                    <strong>First Name:</strong>
                     <input
                       type='text'
                       name='firstname'
@@ -338,7 +374,7 @@ class Profilepage extends Component {
                     </span>
                   )}
                   <label htmlFor='middlename'>
-                    Middle Name:
+                    <strong>Middle Name:</strong>
                     <input
                       type='text'
                       name='middlename'
@@ -348,7 +384,7 @@ class Profilepage extends Component {
                     />
                   </label>
                   <label htmlFor='lastname'>
-                    Last Name:
+                    <strong>Last Name:</strong>
                     <input
                       type='text'
                       name='lastname'
@@ -360,7 +396,7 @@ class Profilepage extends Component {
                   <br />
                   <br />
                   <label htmlFor='email'>
-                    Your email address <br />
+                    <strong>Your Email Address</strong> <br />
                     <input
                       type='email'
                       name='email'
@@ -378,22 +414,28 @@ class Profilepage extends Component {
                   <br />
                   <br />
                   <label htmlFor='dob'>
-                    Your date of birth <br />
+                    <strong> Your date of birth </strong> <br />
                     <input
                       type='dob'
                       name='dob'
                       id='dob'
-                      defaultValue={dob}
+                      defaultValue={dob === null ? 'YYYY-MM-DD' : dob}
                       onChange={this.dobChangeHandler}
                     />
                   </label>
+                  {doberrors && (
+                    <span className='errmsg' style={{ color: 'maroon' }}>
+                      {' '}
+                      {doberrors}{' '}
+                    </span>
+                  )}
                 </div>
               </section>
 
               <section className='right-block'>
                 <div className='default_div'>
                   <label htmlFor='address'>
-                    Your Address: <br />
+                    <strong> Your Address:</strong> <br />
                     {/* <textarea rows='2' cols='25'> */}
                     <input
                       type='text'
@@ -407,8 +449,10 @@ class Profilepage extends Component {
                   <br />
                   <br />
                   <label htmlFor='phonenumber'>
-                    Your phone number <br />
-                    Country Code: <br />
+                    <strong> Your phone number </strong>
+                    <br />
+                    <strong> Country Code: </strong>
+                    <br />
                     <input
                       type='text'
                       name='contact_county_code'
@@ -417,7 +461,8 @@ class Profilepage extends Component {
                       onChange={this.contactCountryCodeChangeHandler}
                     />
                     <br />
-                    Contact: <br />
+                    <strong> Contact: </strong>
+                    <br />
                     <input
                       type='text'
                       name='contact'
@@ -437,7 +482,7 @@ class Profilepage extends Component {
                   <br />
                 </div>
                 <div className='savebtn' data-testid='Saveupdates'>
-                  <Button className='Signup-default' onClick={this.submitsave}>
+                  <Button className='Save-default' onClick={this.submitsave}>
                     Save
                   </Button>
                 </div>

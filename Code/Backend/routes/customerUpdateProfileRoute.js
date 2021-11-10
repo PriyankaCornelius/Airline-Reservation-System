@@ -1,6 +1,7 @@
 const express = require('express');
 // const jwt = require('jsonwebtoken');
 // const passport = require('passport');
+var cookieParser = require('cookie-parser');
 var config = require('../store/config');
 var dbconnection = config.dbconnection;
 const router = express.Router();
@@ -18,6 +19,7 @@ router.get('/getuserdetails/:id', function (req, res) {
         res.status(400).send('Error!');
       } else {
         console.log(output);
+
         res.status(200).send(output);
       }
     }
@@ -65,6 +67,7 @@ router.post('/customerUpdateProfile', (req, res) => {
     } else {
       req.session.cookie.email = email;
       res.status(200).send({
+        f_name: f_name,
         email: email,
         profilePicture: profilePicture,
       });

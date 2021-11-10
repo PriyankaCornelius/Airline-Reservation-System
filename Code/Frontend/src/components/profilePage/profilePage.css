@@ -5,6 +5,20 @@
   width: auto;
   height: auto;
 }
+.h2 {
+  color: black;
+  display: block;
+  font-weight: bold;
+}
+
+.h3 {
+  color: black;
+  display: block;
+  font-weight: bold;
+}
+label {
+  font-weight: normal !important;
+}
 
 .profilepage-block {
   flex: auto;
@@ -31,15 +45,15 @@ input[type='email'] {
 }
 
 .center-block {
-  float: left;
+  display: flex;
   padding-left: 30px;
   padding-top: 30px;
 }
 
 .right-block {
-  float: right;
+  float: left;
   width: 350px;
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
 .savebtn {
