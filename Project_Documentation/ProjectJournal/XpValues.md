@@ -65,19 +65,27 @@
 ## Week 4:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity
+
 <li> The completed tasks were showed to the team and reviewed by the team. </li>
 <li> Feedback recieved and provided </li>
 <li> The project progressed with the individual tasks performed  </li>
 
 #### Varun - Communication, Feedback, Respect, Simplicity
+
 <li> Discussion and review of the completed backend api tasks with the team.</li>
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
 
 ## Week 5:
 
+#### Swetha - Communication, Feedback, Respect, Simplicity
+
+<li> Reviewed the front component. </li>
+<li> Feedback recieved and provided </li>
+<li> The project is progressing </li>
+
 #### Varun - Communication, Feedback, Respect, Simplicity
+
 <li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
-

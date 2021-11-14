@@ -52,7 +52,7 @@ class Profilepage extends Component {
   }
 
   componentDidMount() {
-    sessionStorage.setItem('personid', 1);
+    // sessionStorage.setItem('personid', 1);
     const personid1 = sessionStorage.getItem('personid');
     this.setState({
       personid: personid1,
@@ -83,17 +83,17 @@ class Profilepage extends Component {
           customer_flyer_num: response.data[0].customer_flyer_num,
           mileage_reward: response.data[0].mileage_reward,
         });
-        sessionStorage.setItem('username', response.data[0].f_name);
-        sessionStorage.setItem('useremail', response.data[0].email);
-        sessionStorage.setItem('profilepic', response.data[0].profilePicture);
-        sessionStorage.setItem(
-          'customer_flyernum',
-          response.data[0].customer_flyer_num
-        );
-        sessionStorage.setItem(
-          'mileage_reward',
-          response.data[0].mileage_reward
-        );
+        // sessionStorage.setItem('username', response.data[0].f_name);
+        // sessionStorage.setItem('useremail', response.data[0].email);
+        // sessionStorage.setItem('profilepic', response.data[0].profilePicture);
+        // sessionStorage.setItem(
+        //   'customer_flyernum',
+        //   response.data[0].customer_flyer_num
+        // );
+        // sessionStorage.setItem(
+        //   'mileage_reward',
+        //   response.data[0].mileage_reward
+        // );
       })
       .catch((err) => console.log(err));
   };
