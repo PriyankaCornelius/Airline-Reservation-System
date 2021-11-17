@@ -54,10 +54,10 @@
 <li>What am I planning to work on next? - We have discussed all the available components in the scrum call and divided the the components among ourselves. I am planning to start working on my assigned component from next week</li>
 <li>What tasks are blocked waiting on another team member? - No blockers from individual team member but as a team we had a blocker regarding the sprint duration, as we are starting coding from the next week. I discussed it with TA in the officers hours and later we set the sprint duration accordingly. </li>
 
-
 ## Week 4:
 
 #### Swetha
+
 <li> What tasks did I work on / complete? - Created the backend API for getting the user mileage account details to display them and backend API for updating user profile details.  </li>
 <li> What am I planning to work on next? - I will be creating the frontend for updating the user profile and viewing the rewards account this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
@@ -68,3 +68,10 @@
 <li>What am I planning to work on next? - I will be working on the frontend part of the employee profile</li>
 <li>What tasks are blocked waiting on another team member? - No blockers</li>
 
+## Week 5:
+
+#### Swetha
+
+<li> What tasks did I work on / complete? - Created the frontend componnent to update customer profile and display the mileage rewards points.  </li>
+<li> What am I planning to work on next? - I will be creating the backend for searching the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>

@@ -1,6 +1,7 @@
 const express = require('express');
 // const jwt = require('jsonwebtoken');
 // const passport = require('passport');
+var cookieParser = require('cookie-parser');
 var config = require('../store/config');
 var dbconnection = config.dbconnection;
 const router = express.Router();
@@ -17,7 +18,8 @@ router.get('/getuserdetails/:id', function (req, res) {
       if (err) {
         res.status(400).send('Error!');
       } else {
-        //console.log(output)
+        console.log(output);
+
         res.status(200).send(output);
       }
     }
@@ -27,10 +29,10 @@ router.get('/getuserdetails/:id', function (req, res) {
 router.post('/customerUpdateProfile', (req, res) => {
   console.log('Inside  customer updateprofile');
   console.log(req.body);
-  const person_id = req.body.person_id;
-  const f_name = req.body.f_name;
-  const m_name = req.body.m_name;
-  const l_name = req.body.l_name;
+  const person_id = req.body.personid;
+  const f_name = req.body.firstname;
+  const m_name = req.body.middlename;
+  const l_name = req.body.lastname;
   const dob = req.body.dob;
   const email = req.body.email;
   const contact_country_code = req.body.contact_country_code;
@@ -65,6 +67,7 @@ router.post('/customerUpdateProfile', (req, res) => {
     } else {
       req.session.cookie.email = email;
       res.status(200).send({
+        f_name: f_name,
         email: email,
         profilePicture: profilePicture,
       });
