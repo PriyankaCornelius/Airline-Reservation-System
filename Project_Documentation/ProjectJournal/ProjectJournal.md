@@ -54,6 +54,12 @@
 <li>What am I planning to work on next? - We have discussed all the available components in the scrum call and divided the the components among ourselves. I am planning to start working on my assigned component from next week</li>
 <li>What tasks are blocked waiting on another team member? - No blockers from individual team member but as a team we had a blocker regarding the sprint duration, as we are starting coding from the next week. I discussed it with TA in the officers hours and later we set the sprint duration accordingly. </li>
 
+#### Bharath
+
+<li> What tasks did I work on / complete? - Setting up AWS RDS instance and creating tables for the application </li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the backend for login and signup backend APIs </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 ## Week 4:
 
 #### Swetha
@@ -68,6 +74,11 @@
 <li>What am I planning to work on next? - I will be working on the frontend part of the employee profile</li>
 <li>What tasks are blocked waiting on another team member? - No blockers</li>
 
+#### Bharath
+
+<li> What tasks did I work on / complete? - Developed Backend APIs for Login and Signup with error handling edge cases </li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the frotend screens for login, signup and integrate with the backend APIs- No Blockers </li>
+
 ## Week 5:
 
 #### Swetha
@@ -75,3 +86,9 @@
 <li> What tasks did I work on / complete? - Created the frontend componnent to update customer profile and display the mileage rewards points.  </li>
 <li> What am I planning to work on next? - I will be creating the backend for searching the flights this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+
+#### Bharath
+
+<li> What tasks did I work on / complete? - Developed Frontend screens for Login, Signup and integrated backend APIs which was developed. </li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on HomePage frontend navbar screen,cancelling the reservation and listing the reservation- No Blockers </li>
