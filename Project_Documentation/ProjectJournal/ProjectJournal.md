@@ -92,3 +92,9 @@
 
 <li> What tasks did I work on / complete? - Developed Frontend screens for Login, Signup and integrated backend APIs which was developed. </li>
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on HomePage frontend navbar screen,cancelling the reservation and listing the reservation- No Blockers </li>
+
+#### Varun
+
+<li> What tasks did I work on / complete? - Created the frontend componnent to display and update the employee profile.  </li>
+<li> What am I planning to work on next? - I will be creating the backend for employee edit flight the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
