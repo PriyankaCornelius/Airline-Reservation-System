@@ -89,3 +89,11 @@
 <li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
+
+## Week 6:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity
+
+<li> As a team we have progressed towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next stesp along with in corporating the feedback from other team members.  </li>
+<li> the coomunication is clear with meetings and weekly standups  </li>

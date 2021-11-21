@@ -87,8 +87,15 @@
 <li> What am I planning to work on next? - I will be creating the backend for searching the flights this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
-
 #### Bharath
 
 <li> What tasks did I work on / complete? - Developed Frontend screens for Login, Signup and integrated backend APIs which was developed. </li>
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on HomePage frontend navbar screen,cancelling the reservation and listing the reservation- No Blockers </li>
+
+## Week 6:
+
+#### Swetha
+
+<li> What tasks did I work on / complete? - Created backend api for seraching flights.  </li>
+<li> What am I planning to work on next? - I will be creating the frontend for searching the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
