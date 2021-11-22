@@ -94,11 +94,12 @@ class Navheader extends Component {
         <Navbar className='navbar-default'>
           <Navbar.Brand classname='Navbar-Brand' variant='light' href='/'>
             <img src='/Icon_flight.png' className='icon' alt='icon' />
-            <span className='NavItem'>FLIGHTS</span>
+            <span className='NavItem'>Airline Reservation System</span>
           </Navbar.Brand>
-          <Navbar.Collapse class='navbar-nav ms-auto'>
-            <Nav className='islogged'>Login to view Points balance</Nav>
-            <Nav className='navbar-nav ms-auto'>{isloggedin}</Nav>
+          <Navbar.Collapse class='nav navbar-nav navbar-right'>
+            {/* <ul class='nav navbar-nav navbar-right'> */}
+            <Nav>Login to view Balance points {isloggedin}</Nav>
+            {/* </ul> */}
           </Navbar.Collapse>
         </Navbar>
       </div>
