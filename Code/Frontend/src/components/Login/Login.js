@@ -3,6 +3,7 @@ import {url} from "../Constants";
 import React, { Component } from "react";
 import axios from 'axios';
 import LoginHeader from "../Login/Header/LoginHeader";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 import "./Login.css";
 class Login extends Component{
     constructor(props){
@@ -99,6 +100,20 @@ class Login extends Component{
             });
           });
       };
+
+      responseGoogleSuccess = (response) => {
+        console.log(response);
+        let userInfo = {
+          name: response.profileObj.name,
+          emailId: response.profileObj.email,
+        };
+        this.setState({ userInfo, isLoggedIn: true });
+      };
+    
+      // Error Handler
+      responseGoogleError = (response) => {
+        console.log(response);
+      };
     render(){
       if (this.state.loginSuccessful) {
      
@@ -147,7 +162,16 @@ class Login extends Component{
                 <button type="submit">Log in</button>
               </div>
               </div>
+            
         </form>
+        {/* <GoogleLogin
+              clientId="857063878187-8os7dud08rq5prsjvss674o1pnuafcse.apps.googleusercontent.com"
+              buttonText="Sign In with Google"
+              onSuccess={this.responseGoogleSuccess}
+              onFailure={this.responseGoogleError}
+              isSignedIn={true}
+             cookiePolicy={"single_host_origin"}
+            /> */}
             </div>
             
         );
