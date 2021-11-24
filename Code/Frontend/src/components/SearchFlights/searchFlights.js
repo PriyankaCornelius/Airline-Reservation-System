@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { url } from '../Constants';
 import { Redirect } from 'react-router';
+import Select from 'react-select';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
 import { Form, Image } from 'react-bootstrap';
 import { uploadFile } from 'react-s3';
+// import DatePicker from 'sassy-datepicker';
+import DatePicker from 'react-datepicker';
+
 import Navheader from '../navbar/navbar';
-
+import 'react-datepicker/dist/react-datepicker.css';
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
-
+import './searchFlights.css';
 import '../navbar/navbar.css';
 
 class SearchFlight extends Component {
@@ -20,9 +24,15 @@ class SearchFlight extends Component {
       destination: '',
       roundtrip: false,
       middlename: '',
+      startDate: new Date(),
+      endDate: new Date(),
       departureDate: '',
       returnDate: '',
+      selectAirports: [],
+      srcairports: [{ city: '', stateCode: '', airportCode: '' }],
+      dstairports: [{ city: '', stateCode: '', airportCode: '' }],
       redirecttohome: null,
+      redirecttopage: null,
       originerrors: '',
       destinationerrors: '',
       departureDateerrors: '',
@@ -38,44 +48,79 @@ class SearchFlight extends Component {
     this.roundtripChangeHandler = this.roundtripChangeHandler.bind(this);
   }
 
-  //   componentDidMount() {
-  //     // sessionStorage.setItem('personid', 1);
-  //     // const personid1 = JSON.parse(
-  //     //   sessionStorage.getItem('userDetails')
-  //     // ).personId;
-  //     const personid1 = sessionStorage.getItem('personId');
-  //     this.setState({
-  //       personid: personid1,
-  //     });
-  //     this.getusercurrentdetails(personid1);
-  //   }
+  componentDidMount() {
+    this.getairports();
+  }
 
-  originChangeHandler = (e) => {
+  originChangeHandler = (id, e) => {
+    const { srcairports } = this.state;
+    const updatedList = [...srcairports];
+    updatedList[id].airportCode = e.value;
+    console.log(updatedList);
+    this.setState(updatedList);
+
     this.setState({
-      origin: e.target.value,
+      origin: e.value,
     });
   };
-  destinationChangeHandler = (e) => {
+  destinationChangeHandler = (id, e) => {
+    const { dstairports } = this.state;
+    const updatedList = [...dstairports];
+    updatedList[id].airportCode = e.value;
+    console.log(updatedList);
+    this.setState(updatedList);
     this.setState({
-      destination: e.target.value,
+      destination: e.value,
     });
   };
   departureDateChangeHandler = (e) => {
+    var dateFromString = new Date(e.toString());
+    let date = dateFromString.toLocaleDateString();
+    date = date.slice(0, 11);
+    let date1 = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2');
     this.setState({
-      departureDate: e.target.value,
+      departureDate: date1,
+      startDate: new Date(date),
     });
   };
 
   returnDateChangeHandler = (e) => {
+    var dateFromString = new Date(e.toString());
+    let date = dateFromString.toLocaleDateString();
+    date = date.slice(0, 11);
+    let date1 = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2');
     this.setState({
-      returnDate: e.target.value,
+      returnDate: date1,
+      endDate: new Date(date),
     });
   };
 
   roundtripChangeHandler = (e) => {
+    const { roundtrip } = this.state;
     this.setState({
-      roundtrip: e.target.value,
+      roundtrip: !roundtrip,
     });
+  };
+
+  getairports = () => {
+    axios
+      .get(url + '/getairports', {
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+      .then((response) => {
+        const { data } = response;
+        console.log(response.data);
+        const airporttext = data.map((txt) => ({
+          value: txt.airport_code,
+          label: `${txt.city_name},${txt.state_code} - ${txt.airport_code}`,
+        }));
+        console.log(airporttext);
+        console.log(response.data);
+        this.setState({ selectAirports: airporttext });
+      })
+      .catch((err) => console.log(err));
   };
 
   isformvalid = () => {
@@ -92,7 +137,8 @@ class SearchFlight extends Component {
     const phnpattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     const dobpattern = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
 
-    const { origin, destination, departureDate, returnDate } = this.state;
+    const { origin, destination, departureDate, returnDate, roundtrip } =
+      this.state;
 
     if (origin.length === 0) {
       formisvalid = false;
@@ -104,14 +150,19 @@ class SearchFlight extends Component {
       formerrors.destinationerrors = 'Destination cannot be blank!';
       console.log(formerrors.destinationerrors);
     }
+    if (origin.length > 0 && destination.length > 0 && origin == destination) {
+      formisvalid = false;
+      formerrors.destinationerrors = 'Origin and Destination cannot be same!';
+      console.log(formerrors.destinationerrors);
+    }
     if (departureDate.length === 0) {
       formisvalid = false;
       formerrors.departureDateerrors = 'Departure Date cannot be blank!';
       console.log(formerrors.departureDateerrors);
     }
-    if (returnDate.length === 0) {
+    if (roundtrip == true && returnDate.length === 0) {
       formisvalid = false;
-      formerrors.returnDateerrors = 'Destination cannot be blank!';
+      formerrors.returnDateerrors = 'Return Date cannot be blank!';
       console.log(formerrors.returnDateerrors);
     }
 
@@ -130,39 +181,131 @@ class SearchFlight extends Component {
     const formisvalidated = this.isformvalid();
 
     if (formisvalidated) {
-      const data = {
-        origin,
-        destination,
-        departureDate,
-        returnDate,
-        roundtrip,
-      };
-      console.log(data);
+      if (roundtrip) {
+        const departingparams = {
+          origin1: origin,
+          destination1: destination,
+          departureDate: departureDate,
+        };
+        axios
+          .get(url + '/getflights', { params: departingparams })
+          .then((response) => {
+            // console.log('Status Code : ', response.status);
+            if (response.status === 200) {
+              console.log(response.data);
+              const departingresponse = response.data;
+              const retunringparams = {
+                origin1: destination,
+                destination1: origin,
+                departureDate: returnDate,
+              };
+              axios
+                .get(url + '/getflights', { params: retunringparams })
+                .then((response1) => {
+                  // console.log('Status Code : ', response.status);
+                  if (response1.status === 200) {
+                    console.log(response1.data);
+                    const redirectVar1 = (
+                      <Redirect
+                        to={{
+                          pathname: '/displayflights',
+                          state: {
+                            departingresData: departingresponse,
+                            returningresData: response1.data,
+                            origin: origin,
+                            destination: destination,
+                            departureDate: departureDate,
+                            returnDate: returnDate,
+                          },
+                        }}
+                      />
+                    );
+                    this.setState({
+                      redirecttopage: redirectVar1,
+                    });
 
-      axios
-        .get(url + '/getflights', data)
-        .then((response) => {
-          // console.log('Status Code : ', response.status);
-          if (response.status === 200) {
-            console.log(response.data);
+                    //const redirectVar1 = <Redirect to="/dashboard" />;
+                    //this.setState({ redirecttohome: redirectVar1 });
+                  } else {
+                    this.setState({
+                      redirecttohome: null,
+                    });
+                  }
+                })
+                .catch((err) => {
+                  console.log(err.response1);
+                  alert(err.response1.data);
+                  this.setState({
+                    errorMessage: err.response1.data,
+                  });
+                  const { errorMessage } = this.state;
+                  console.log(errorMessage);
+                });
 
-            //const redirectVar1 = <Redirect to="/dashboard" />;
-            //this.setState({ redirecttohome: redirectVar1 });
-          } else {
+              //const redirectVar1 = <Redirect to="/dashboard" />;
+              //this.setState({ redirecttohome: redirectVar1 });
+            } else {
+              this.setState({
+                redirecttohome: null,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err.response);
+            alert(err.response.data);
             this.setState({
-              redirecttohome: null,
+              errorMessage: err.response.data,
             });
-          }
-        })
-        .catch((err) => {
-          console.log(err.response);
-          alert(err.response.data);
-          this.setState({
-            errorMessage: err.response.data,
+            const { errorMessage } = this.state;
+            console.log(errorMessage);
           });
-          const { errorMessage } = this.state;
-          console.log(errorMessage);
-        });
+      } else {
+        const departingparams = {
+          origin1: origin,
+          destination1: destination,
+          departureDate: departureDate,
+        };
+        axios
+          .get(url + '/getflights', { params: departingparams })
+          .then((response) => {
+            // console.log('Status Code : ', response.status);
+            if (response.status === 200) {
+              console.log(response.data);
+              const departingresponse = response.data;
+              const redirectVar1 = (
+                <Redirect
+                  to={{
+                    pathname: '/displayflights',
+                    state: {
+                      departingresData: departingresponse,
+                      returningresData: null,
+                      origin: origin,
+                      destination: destination,
+                      departureDate: departureDate,
+                      returnDate: returnDate,
+                    },
+                  }}
+                />
+              );
+              this.setState({
+                redirecttopage: redirectVar1,
+              });
+            } else {
+              this.setState({
+                redirecttohome: null,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err.response);
+            alert(err.response.data);
+            this.setState({
+              errorMessage: err.response.data,
+            });
+            const { errorMessage } = this.state;
+            console.log(errorMessage);
+          });
+      }
     }
   };
 
@@ -183,6 +326,12 @@ class SearchFlight extends Component {
       departureDateerrors,
       returnDateerrors,
       redirecttohome,
+      srcairports,
+      dstairports,
+      selectAirports,
+      startDate,
+      endDate,
+      redirecttopage,
     } = this.state;
 
     return (
@@ -190,19 +339,72 @@ class SearchFlight extends Component {
         {/* {redirectVar} */}
         <Navheader />
         <div className='profilepage-block'>
-          {/* <h2 className='h2'> Your account </h2>
-          <h3 className='h3'> Flyer Number : {customer_flyer_num}</h3> */}
-
           <section>
-            <Form
-              ref={this.profileform}
-              id='profileform'
-              className='profileform'
-            >
+            <Form>
+              <label
+                htmlFor='roundtrip'
+                className=''
+                style={{
+                  marginLeft: '3.2rem',
+                }}
+              >
+                <input
+                  type='checkbox'
+                  name='roundtrip'
+                  id='roundtrip'
+                  defaultValue='Origin'
+                  onChange={this.roundtripChangeHandler}
+                />{' '}
+                Round Trip
+              </label>
+
               <section className='center-block'>
                 <div className='basic_div'>
-                  <label htmlFor='origin'>
-                    <strong>Origin</strong>
+                  <div
+                    className=''
+                    style={{
+                      width: '1000px',
+                      display: 'flex',
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <br />
+                    {srcairports.map((airport, id) => (
+                      <div
+                        className=''
+                        style={{
+                          width: '200px',
+                        }}
+                      >
+                        <span>
+                          <strong>Origin </strong>
+                        </span>
+                        <Select
+                          options={selectAirports}
+                          className='div-select'
+                          type='text'
+                          value={{
+                            label: airport.airportCode,
+                            value: airport.airportCode,
+                          }}
+                          name={`airports${id + 1}_airportcode`}
+                          id={`airports${id + 1}_airportcode`}
+                          onChange={(e) => this.originChangeHandler(id, e)}
+                          // autoComplete="off"
+                          required
+                        />
+                        {originerrors && (
+                          <span className='errmsg' style={{ color: 'maroon' }}>
+                            {' '}
+                            {originerrors}{' '}
+                          </span>
+                        )}{' '}
+                      </div>
+                    ))}
+
+                    {/* <label htmlFor='origin'>
+                    <strong>Origin </strong>
+                    <br />
                     <input
                       type='text'
                       name='origin'
@@ -210,15 +412,56 @@ class SearchFlight extends Component {
                       defaultValue='Origin'
                       onChange={this.originChangeHandler}
                     />
-                  </label>
-                  {originerrors && (
-                    <span className='errmsg' style={{ color: 'maroon' }}>
-                      {' '}
-                      {originerrors}{' '}
-                    </span>
-                  )}
-                  <label htmlFor='destination'>
-                    <strong>Destination</strong>
+                    <br />
+                    {originerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {originerrors}{' '}
+                      </span>
+                    )}{' '}
+                  </label> */}
+                    {dstairports.map((airport, id) => (
+                      <div
+                        className=''
+                        style={{
+                          width: '200px',
+                          marginLeft: '5rem',
+                        }}
+                      >
+                        <span>
+                          <strong>Destination </strong>
+                        </span>
+                        <Select
+                          options={selectAirports}
+                          className='div-select'
+                          type='text'
+                          value={{
+                            label: airport.airportCode,
+                            value: airport.airportCode,
+                          }}
+                          name={`airports${id + 1}_airportcode`}
+                          id={`airports${id + 1}_airportcode`}
+                          onChange={(e) => this.destinationChangeHandler(id, e)}
+                          // autoComplete="off"
+                          required
+                        />
+                        {destinationerrors && (
+                          <span className='errmsg' style={{ color: 'maroon' }}>
+                            {' '}
+                            {destinationerrors}{' '}
+                          </span>
+                        )}{' '}
+                      </div>
+                    ))}
+
+                    {/* <label
+                    htmlFor='destination'
+                    style={{
+                      marginLeft: '5rem',
+                    }}
+                  >
+                    <strong>Destination </strong>
+                    <br />
                     <input
                       type='text'
                       name='destination'
@@ -226,53 +469,82 @@ class SearchFlight extends Component {
                       defaultValue='Destination'
                       onChange={this.destinationChangeHandler}
                     />
-                  </label>
-                  {destinationerrors && (
-                    <span className='errmsg' style={{ color: 'maroon' }}>
-                      {' '}
-                      {destinationerrors}{' '}
-                    </span>
-                  )}
-                  <label htmlFor='departureDate'>
-                    <strong>Departure Date</strong>
-                    <input
+                    <br />
+                    {destinationerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {destinationerrors}{' '}
+                      </span>
+                    )}{' '}
+                  </label> */}
+                    <label
+                      htmlFor='departureDate'
+                      className=''
+                      style={{ marginLeft: '5rem' }}
+                    >
+                      <strong>Departure Date </strong>
+                      <br />
+                      <DatePicker
+                        selected={startDate}
+                        onChange={this.departureDateChangeHandler}
+                        className=''
+                        style={{ marginLeft: '5rem' }}
+                      />
+                      {/* <input
                       type='text'
                       name='departureDate'
                       id='departureDate'
                       defaultValue='YYYY-MM-DD'
                       onChange={this.departureDateChangeHandler}
-                    />
-                  </label>
-                  {departureDateerrors && (
-                    <span className='errmsg' style={{ color: 'maroon' }}>
-                      {' '}
-                      {departureDateerrors}{' '}
-                    </span>
-                  )}
-
-                  <label htmlFor='returnDate'>
-                    <strong>Return Date</strong> <br />
-                    <input
+                    /> */}
+                      <br />
+                      {departureDateerrors && (
+                        <span className='errmsg' style={{ color: 'maroon' }}>
+                          {' '}
+                          {departureDateerrors}{' '}
+                        </span>
+                      )}{' '}
+                    </label>
+                    <label
+                      htmlFor='returnDate'
+                      className=''
+                      style={{ marginLeft: '5rem' }}
+                    >
+                      <strong>Return Date </strong> <br />
+                      <DatePicker
+                        selected={endDate}
+                        onChange={this.returnDateChangeHandler}
+                        disabled={!roundtrip}
+                      />
+                      {returnDateerrors && (
+                        <span className='errmsg' style={{ color: 'maroon' }}>
+                          {' '}
+                          {returnDateerrors}{' '}
+                        </span>
+                      )}
+                      {/* <input
                       type='text'
                       name='returnDate'
                       id='returnDate'
                       defaultValue='YYYY-MM-DD'
                       onChange={this.returnDateChangeHandler}
-                    />
-                  </label>
-                  {returnDateerrors && (
-                    <span className='errmsg' style={{ color: 'maroon' }}>
-                      {' '}
-                      {returnDateerrors}{' '}
-                    </span>
-                  )}
-                  <br />
-                  <br />
+                    /> */}
+                    </label>
+                    <br />
+                    <br />
+                  </div>
                 </div>
               </section>
               <section className='right-block'>
                 <div className='savebtn' data-testid='Saveupdates'>
-                  <Button className='Save-default' onClick={this.submitsave}>
+                  <br />
+                  <Button
+                    className='Save-default'
+                    onClick={this.submitsave}
+                    style={{
+                      marginLeft: '60rem',
+                    }}
+                  >
                     Search
                   </Button>
                 </div>
@@ -280,6 +552,7 @@ class SearchFlight extends Component {
             </Form>
           </section>
         </div>
+        {redirecttopage}
       </div>
     );
   }

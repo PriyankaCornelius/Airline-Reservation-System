@@ -8,13 +8,12 @@ const router = express.Router();
 
 router.get('/getflights', function (req, res) {
   console.log('Inside search flights');
-  //console.log(req.body);
-  const origin = req.body.origin;
-  const destination = req.body.destination;
-  const departureDate = req.body.departureDate;
+  console.log(req.query);
+  const origin = req.query.origin1;
+  const destination = req.query.destination1;
+  const departureDate = req.query.departureDate;
   // const departureDate = new Date(departure).toDateString();
-  console.log(departureDate);
-  const arrivalDate = req.body.arrivalDate;
+  const returnDate = req.query.returnDate;
   dbconnection.query(
     "SELECT * from flights_search where origin = '" +
       origin +
@@ -27,8 +26,44 @@ router.get('/getflights', function (req, res) {
       if (err) {
         res.status(400).send('Error!');
       } else {
-        console.log(output);
+        // console.log(output);
+        res.status(200).send(output);
+      }
+    }
+  );
+});
 
+router.get('/getairports', function (req, res) {
+  console.log('Inside get airports');
+  dbconnection.query(
+    'SELECT c.city_name,c.state_code,a.airport_code FROM Airports a JOIN Cities c on a.city_id = c.city_id ',
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        // console.log(output);
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.get('/getsrcdstairports', function (req, res) {
+  console.log('Inside get getsrcdstairports');
+  console.log(req.query);
+  const origin = req.query.origin;
+  const destination = req.query.destination;
+  dbconnection.query(
+    "SELECT c.city_name,c.state_code,a.airport_code FROM Airports a JOIN Cities c on a.city_id = c.city_id WHERE a.airport_code = '" +
+      origin +
+      "' or a.airport_code ='" +
+      destination +
+      "';",
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        // console.log(output);
         res.status(200).send(output);
       }
     }

@@ -5,6 +5,7 @@ import Profilepage from './profilePage/profilePage';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import SearchFlight from './SearchFlights/searchFlights';
+import DisplayFlights from './SearchFlights/displayFlights';
 import HomePage from './HomePage/HomePage';
 class Main extends Component {
   render() {
@@ -17,6 +18,8 @@ class Main extends Component {
           <Route path='/profile' component={Profilepage} />
           <Route path='/login' component={Login} exact />
           <Route path='/signup' component={Signup} exact />
+          <Route path='/searchflights' component={SearchFlight} exact />
+          <Route path='/displayflights' component={DisplayFlights} exact />
         </Switch>
       </div>
     );
