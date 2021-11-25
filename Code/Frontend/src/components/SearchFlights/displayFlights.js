@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { url } from '../Constants';
-
+import Table from 'react-bootstrap/Table';
 import { Redirect } from 'react-router';
 
 import cookie from 'react-cookies';
@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 import Navheader from '../navbar/navbar';
 import 'react-datepicker/dist/react-datepicker.css';
+
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 import './searchFlights.css';
 import '../navbar/navbar.css';
@@ -112,62 +113,74 @@ class DisplayFlights extends Component {
                     <br />
                     {departureDate}
                   </p>
-                  <table className='flights_table'>
-                    <tbody>
+                  <Table striped bordered hover>
+                    <thead>
                       <tr>
-                        <table className='flights_table1'>
-                          <td colSpan='2'>Departing Flights</td>
-                          <td className='stops'> Number of Stops </td>
-                          <td className='duration'> Duration </td>
-                          <td className='economy'> Economy </td>
-                          <td className='economy_plus'> Economy Plus</td>
-                          <td className='first_class'> First Class </td>
-                          <td className='buisness'> Business </td>
-                        </table>
+                        <th>Flight Number</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        {/* <th colSpan='3'>Departing Flights</th> */}
+                        <th> Number of Stops </th>
+                        <th> Duration </th>
+                        <th> Economy </th>
+                        <th> Economy Plus</th>
+                        <th> First Class </th>
+                        <th> Business </th>
                       </tr>
+                    </thead>
+                    <tbody>
                       {departingResponse.map((flightdetails, i) => (
                         <>
-                          <tr key={flightdetails.id} className='Row'>
-                            <table className='flights_table1'>
-                              <td>
-                                <h4>#{flightdetails.flight_num}</h4>
-                              </td>
-                              <td>
-                                <h4>
-                                  {new Date(
-                                    flightdetails.departure_time
-                                  ).toLocaleTimeString('en-US')}
-                                  ----{'>'}
-                                </h4>
+                          <tr>
+                            <td>
+                              <span className='spanItem'>
+                                #{flightdetails.flight_num}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {new Date(
+                                  flightdetails.departure_time
+                                ).toLocaleTimeString('en-US')}
+                                ----{'>'}
                                 <p>{origin}</p>
-                              </td>
-                              <td>
-                                <h4>
-                                  {new Date(
-                                    flightdetails.arrival_time
-                                  ).toLocaleTimeString('en-US')}
-                                </h4>
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {new Date(
+                                  flightdetails.arrival_time
+                                ).toLocaleTimeString('en-US')}
+
                                 <p>{destination}</p>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.number_of_stops}</h4>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.duration}</h4>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.Economy.toFixed(2)}</h4>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.Economy_Plus.toFixed(2)}</h4>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.First_Class.toFixed(2)}</h4>
-                              </td>
-                              <td>
-                                <h4>{flightdetails.Business.toFixed(2)}</h4>
-                              </td>
-                            </table>
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {flightdetails.number_of_stops == 0
+                                  ? 'Non stop'
+                                  : flightdetails.number_of_stops + ' stops'}
+                              </span>
+                            </td>
+                            <td>
+                              <span>{flightdetails.duration}</span>
+                            </td>
+                            <td>
+                              <span>${flightdetails.Economy.toFixed(2)}</span>
+                            </td>
+                            <td>
+                              <span>
+                                ${flightdetails.Economy_Plus.toFixed(2)}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                ${flightdetails.First_Class.toFixed(2)}
+                              </span>
+                            </td>
+                            <td>
+                              <span>${flightdetails.Business.toFixed(2)}</span>
+                            </td>
                           </tr>
                           <Button
                             className='Save-default'
@@ -182,7 +195,7 @@ class DisplayFlights extends Component {
                         </>
                       ))}
                     </tbody>
-                  </table>
+                  </Table>
                   <br />
                   <h2>
                     {' '}
@@ -193,20 +206,20 @@ class DisplayFlights extends Component {
                     <br />
                     {returnDate}
                   </p>
-                  <table className='flights_table'>
-                    <thead></thead>
-                    <tbody>
+                  <Table striped bordered hover className='flights_table'>
+                    <thead>
                       <tr>
-                        <table className='flights_table'>
-                          <td colSpan='2'>Returning Flights</td>
-                          <td> Number of Stops </td>
-                          <td> Duration </td>
-                          <td> Economy </td>
-                          <td> Economy Plus</td>
-                          <td> First Class </td>
-                          <td> Business </td>
-                        </table>
+                        <th colSpan='2'>Returning Flights</th>
+                        <th> Number of Stops </th>
+                        <th> Duration </th>
+                        <th> Economy </th>
+                        <th> Economy Plus</th>
+                        <th> First Class </th>
+                        <th> Business </th>
                       </tr>
+                    </thead>
+
+                    <tbody>
                       {returningResponse.map((flightdetails, i) => (
                         <section className='Flight-info'>
                           <div className='flights-info-container'>
@@ -279,7 +292,7 @@ class DisplayFlights extends Component {
                         </section>
                       ))}
                     </tbody>
-                  </table>
+                  </Table>
                 </div>
               </div>
             </section>
