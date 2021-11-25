@@ -1,43 +1,96 @@
 const { sign } = require('crypto');
 const express = require('express');
 var config = require('../store/config');
+const moment=require('moment');
 var dbconnection = config.dbconnection;
 const router = express.Router();
 router.post('/login', function (req, res) {
     const email = req.body.email;
     const password=req.body.password;
-    const loginQuery="Select * from Persons p where p.email='"+email+"' and password='"+password+"'";
+    const loginQuery="Select p.*,c.*,e.* from Persons p left outer join Employees e on e.person_id=p.person_id left outer join Customers c  on  c.person_id=p.person_id where p.email='"+email+"' and p.password='"+password+"'";
+    console.log(loginQuery);
     dbconnection.query(
         loginQuery,
       async (err, output, fields) => {
         if (err) {
-          res.status(400).send('Error!');
+          const loginResponse={
+            "errorCode":"E01",
+            "errorDesc":"Incorrect email/password. Please try again"
+          }
+          res.status(500).send(loginResponse);
         } else {
-          //console.log(output)
+          console.log(output)
+          console.log(output.length);
+          if(output.length===0){
+            const loginResponse={
+              "errorCode":"E01",
+              "errorDesc":"Incorrect email/password. Please try again"
+            }
+            res.status(500).send(loginResponse);
+          }
+          else{
           res.status(200).send(output);
+          }
         }
       }
     );
   });
  
   router.post('/Signup', function (req, res) {
+    console.log(req.body);
     const email = req.body.email;
     const password=req.body.password;
+    const firstName=req.body.firstName;
+    const middleName=req.body.middleName;
+    const lastName=req.body.lastName;
+    const dob=req.body.dob;
+    const parsedDate=moment(dob, "MM/DD/YYYY").format("YYYY-MM-DD");
+    console.log(parsedDate);
+   
+    const phoneNumber=req.body.phoneNumber;
+    const countryCode=req.body.countryCode;
     console.log(req.body);
-    const signupQuery=" INSERT INTO  Persons(email,password) values('" +
-    email +
-    "','"+password+"')";
+    const signupQuery=" INSERT INTO  Persons(email,password,f_name,m_name,l_name,dob,contact,contact_country_code) values('" +
+    email + "','"+password+"','"+firstName+"','"+middleName+"','"+lastName+"','"+parsedDate+"','"+phoneNumber+"','"+countryCode+"')";
     console.log(signupQuery);
+  
     dbconnection.query(
         signupQuery,
       async (err, output, fields) => {
         if (err) {
-          res.status(400).send('Error!');
+          const signupResponse={
+            "errorCode":"E01",
+            "errorDesc":"Something went wrong.Please try again."
+          }
+          res.status(500).send(signupResponse);
         } else {
-          //console.log(output)
-          res.status(200).send(output);
+          console.log(output);
+          //console.log(output);
+          const personId=output.insertId;
+         const flyerId= Math.floor(Math.random() * 900000000000) + 100000000000;
+
+         const flyerNumberQuery="INSERT INTO Customers(person_id,customer_flyer_num) values('" +
+         personId + "','"+flyerId+"')";
+          console.log(flyerId);
+          console.log(personId);
+          console.log(flyerNumberQuery);
+          dbconnection.query(
+            flyerNumberQuery,
+          async (err, result, fields) => {
+            if (err) {
+              res.status(400).send('Error!');
+            } else {
+       let signupResponse={
+         personId:personId,
+         flyerNumber:flyerId,
+         roleId:2
+       }
+
+          res.status(201).send(signupResponse);
         }
       }
     );
+        }
   });
+});
    module.exports = router;

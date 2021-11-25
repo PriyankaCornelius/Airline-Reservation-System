@@ -1,0 +1,143 @@
+.react-datepicker__input-container input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 5.5px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.react-datepicker {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  display: inline-block;
+  position: relative;
+}
+
+th {
+  padding: 0 30px;
+}
+
+td {
+  padding: 50 30px;
+}
+thead,
+tbody,
+tr {
+  display: table;
+  width: -moz-fit-content;
+  padding: 0 30px;
+}
+/* table.flights_table {
+  border-radius: 6px;
+}
+th,
+td {
+  border: 1px solid black;
+}
+table {
+  display: flexbox;
+  list-style: None;
+  width: -moz-fit-content;
+}
+thead,
+tbody,
+tfoot,
+tr {
+  display: table-row-group;
+  width: -moz-fit-content;
+} */
+
+/* table.flights_table.th {
+  font-weight: 500;
+  padding: 0 30px;
+} */
+
+/* .stops {
+  padding-left: 22%;
+  font-size: 12px;
+  color: rgb(154, 154, 155);
+}
+
+.duration {
+  padding-left: 13%;
+}
+
+.economy {
+  padding-left: 13%;
+}
+
+.economy_plus {
+  padding-left: 13%;
+}
+
+.first_class {
+  padding-left: 13%;
+}
+.buisness {
+  padding-left: 12%;
+} */
+/* tr {
+  font-size: 10px;
+}
+
+th {
+  font-size: 17px;
+  border-radius: 6px solid black;
+  border-bottom-left-radius: 30px;
+  border: 10px black solid;
+  padding: 0 30px;
+}
+
+table.flights_table1 td {
+  font-size: 17px;
+  border-radius: 6px solid black;
+  border-bottom-left-radius: 30px;
+  border: 10px black solid;
+  padding: 0 30px;
+}
+td {
+  padding: 0 30px;
+  font-size: 10px;
+} */
+
+/* .Flight-info {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+} */
+
+/* .flights-info-container {
+  flex: 1;
+  text-align: left;
+}
+
+.flights-info-container .card {
+  margin: 10px;
+}
+
+.gray-background {
+  background-color: lightgray;
+}
+
+@media screen and (max-width: 640px) {
+  .Flight-info .detail-label:nth-child(2) {
+    flex: 5 1 80%;
+    text-align: end;
+    margin-bottom: 15px;
+  }
+  .Flight-info .detail-label:nth-child(3),
+  .Flight-info .detail-label:nth-child(4) {
+    flex: 2 1 32%;
+  }
+  .Flight-info .detail-label:nth-child(5) {
+    flex: 2 1 25%;
+  }
+  .Flight-info p {
+    flex: 1 1 70%;
+  }
+} */

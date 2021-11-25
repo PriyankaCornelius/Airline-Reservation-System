@@ -92,13 +92,40 @@ class Navheader extends Component {
     return (
       <div>
         <Navbar className='navbar-default'>
-          <Navbar.Brand classname='Navbar-Brand' variant='light' href='/'>
-            <img src='/Icon_flight.png' className='icon' alt='icon' />
-            <span className='NavItem'>FLIGHTS</span>
+          <Navbar.Brand className='Navbar-Brand' variant='light' href='/'>
+            <img
+              src='/Icon_flight.png'
+              className='icon'
+              alt='icon'
+              style={{
+                marginBottom: '2rem',
+              }}
+            />
+            <span
+              className='NavItem'
+              style={{
+                marginBottom: '2rem',
+                color: 'white',
+              }}
+            >
+              Airline Reservation System
+            </span>
           </Navbar.Brand>
-          <Navbar.Collapse class='navbar-nav ms-auto'>
-            <Nav className='islogged'>Login to view Points balance</Nav>
-            <Nav className='navbar-nav ms-auto'>{isloggedin}</Nav>
+
+          <Navbar.Collapse className='nav navbar-nav navbar-right'>
+            {/* <ul class='nav navbar-nav navbar-right'> */}
+            <span
+              className=''
+              style={{
+                marginLeft: '-20rem',
+                marginRight: '0.5rem',
+                color: 'white',
+              }}
+            >
+              Login to view balance points{' '}
+            </span>
+            <Nav>{isloggedin}</Nav>
+            {/* </ul> */}
           </Navbar.Collapse>
         </Navbar>
       </div>

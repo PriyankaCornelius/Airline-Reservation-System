@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { url } from '../Constants';
 import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
@@ -33,6 +34,7 @@ class Profilepage extends Component {
       setSelectedfile: null,
       firstnameerrors: '',
       emailerrors: '',
+      countrycodeerrors: '',
       contacterrors: '',
       doberrors: '',
     };
@@ -53,7 +55,10 @@ class Profilepage extends Component {
 
   componentDidMount() {
     // sessionStorage.setItem('personid', 1);
-    const personid1 = sessionStorage.getItem('personid');
+    // const personid1 = JSON.parse(
+    //   sessionStorage.getItem('userDetails')
+    // ).personId;
+    const personid1 = sessionStorage.getItem('personId');
     this.setState({
       personid: personid1,
     });
@@ -62,7 +67,7 @@ class Profilepage extends Component {
 
   getusercurrentdetails = (personid) => {
     axios
-      .get(`http://localhost:3001/getuserdetails/${personid}`, {
+      .get(url + `/getuserdetails/${personid}`, {
         headers: {
           'content-type': 'application/json',
         },
@@ -178,14 +183,17 @@ class Profilepage extends Component {
       emailerrors: '',
       doberrors: '',
       contacterrors: '',
+      countrycodeerrors: '',
     };
 
     const emailpattern =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,4})$/;
-    const phnpattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    // const phnpattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    const phnpattern = /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    const countrycodepattern = /^(\+\d{1,2})/;
     const dobpattern = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
 
-    const { firstname, email, contact, dob } = this.state;
+    const { firstname, email, contact, dob, contact_country_code } = this.state;
 
     if (firstname.length === 0) {
       formisvalid = false;
@@ -203,10 +211,27 @@ class Profilepage extends Component {
       console.log(formerrors.emailerrors);
     }
 
-    if (!dobpattern.test(dob)) {
+    if (!dobpattern.test(dob) && dob.length > 0) {
       formisvalid = false;
       formerrors.doberrors = 'Date of birth not of format "YYYY-MM-DD"!';
       console.log(formerrors.doberrors);
+    }
+
+    console.log('swetha', contact.length, contact_country_code.length);
+    if (contact.length < 1 && contact_country_code.length > 0) {
+      formisvalid = false;
+      formerrors.countrycodeerrors = 'Please enter phone number!';
+      console.log(formerrors.countrycodeerrors);
+    }
+
+    if (
+      !countrycodepattern.test(contact_country_code) &&
+      contact_country_code.length > 0
+    ) {
+      console.log('here');
+      formisvalid = false;
+      formerrors.countrycodeerrors = 'Country Code is not valid!';
+      console.log(formerrors.countrycodeerrors);
     }
 
     if (!phnpattern.test(contact) && contact.length > 0) {
@@ -214,6 +239,7 @@ class Profilepage extends Component {
       formerrors.contacterrors = 'Phone Number is not valid!';
       console.log(formerrors.contacterrors);
     }
+
     this.setState((prevstate) => ({
       ...prevstate,
       ...formerrors,
@@ -254,7 +280,7 @@ class Profilepage extends Component {
       console.log(data);
 
       axios
-        .post('http://localhost:3001/customerUpdateProfile', data)
+        .post(url + '/customerUpdateProfile', data)
         .then((response) => {
           // console.log('Status Code : ', response.status);
           if (response.status === 200) {
@@ -307,8 +333,13 @@ class Profilepage extends Component {
     } = this.state;
 
     const { redirecttohome } = this.state;
-    const { firstnameerrors, emailerrors, contacterrors, doberrors } =
-      this.state;
+    const {
+      firstnameerrors,
+      emailerrors,
+      contacterrors,
+      doberrors,
+      countrycodeerrors,
+    } = this.state;
     // console.log(redirecttohome);
     const imagename = sessionStorage.getItem('profilepic');
     // console.log(imagename);
@@ -373,6 +404,7 @@ class Profilepage extends Component {
                       {firstnameerrors}{' '}
                     </span>
                   )}
+
                   <label htmlFor='middlename'>
                     <strong>Middle Name:</strong>
                     <input
@@ -383,6 +415,7 @@ class Profilepage extends Component {
                       onChange={this.middlenamechangeHandler}
                     />
                   </label>
+                  <br />
                   <label htmlFor='lastname'>
                     <strong>Last Name:</strong>
                     <input
@@ -460,6 +493,13 @@ class Profilepage extends Component {
                       defaultValue={contact_country_code}
                       onChange={this.contactCountryCodeChangeHandler}
                     />
+
+                    {countrycodeerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {countrycodeerrors}{' '}
+                      </span>
+                    )}
                     <br />
                     <strong> Contact: </strong>
                     <br />

@@ -62,6 +62,12 @@
 <li> Each review/suggestion from a team member is taken seriously and effectively.</li>
 <li> We are taking small measurable steps to complete the project in the given time.</li>
 
+#### Varun - Communication, Feedback
+
+<li> Each team member took up tasks and estimates required to finish the application and user stories were updated accordingly. </li>
+<li> As a team we listen carefully to each other and provide feedback was given to the team members on the final DB design, architecture deiagn, UI wireframes </li>
+<li> Each member is treated with respect and we are taking small measurable steps to complete the project in the given time. </li>
+
 ## Week 4:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity
@@ -89,3 +95,11 @@
 <li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
+
+## Week 6:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity
+
+<li> As a team we have progressed towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next stesp along with in corporating the feedback from other team members.  </li>
+<li> the coomunication is clear with meetings and weekly standups  </li>
