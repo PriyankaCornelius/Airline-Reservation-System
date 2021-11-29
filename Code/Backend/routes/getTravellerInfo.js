@@ -1,38 +1,52 @@
 const express = require('express');
-// const jwt = require('jsonwebtoken');
-// const passport = require('passport');
-var cookieParser = require('cookie-parser');
 var config = require('../store/config');
 var dbconnection = config.dbconnection;
 const router = express.Router();
 
-router.get('/getuserdetails/:id', function (req, res) {
-  console.log('Inside customer getuserprofile');
-  //console.log(req.body);
+router.get('/getTravellerInfo', function (req, res) {
+  console.log('Inside customer getTravellerInfo');
+  //console.log(req.body);  
   const personId = req.params.id;
-  console.log(personId);
   dbconnection.query(
     'SELECT p.f_name,p.m_name, p.l_name, p.dob, p.email, p.contact_country_code, p.contact, p.address, p.profilePicture, c.customer_flyer_num, c.mileage_reward from Persons p JOIN Customers c on c.person_id = p.person_id where p.person_id = ?; ',
-    [personId],
     async (err, output, fields) => {
       if (err) {
         res.status(400).send('Error!');
       } else {
-        console.log("output",output);
-
+        //console.log(output)
         res.status(200).send(output);
       }
     }
   );
 });
 
-router.post('/customerUpdateProfile', (req, res) => {
+router.post('/addTravellerInfo', function (req, res) {
+    console.log('Inside employee getEmployeeDetails');
+    //console.log(req.body);  
+    const personId = req.body.id;
+
+    dbconnection.query(
+      'SELECT * from Persons p JOIN Employees e on e.person_id = p.person_id where p.person_id = ?;', 
+       [personId],   
+      async (err, output, fields) => {
+        if (err) {
+          res.status(400).send('Error!');
+        } else {
+          //console.log(output)
+          res.status(200).send(output);
+        }
+      }
+    );
+  });
+  
+
+router.post('/employeeUpdateProfile', (req, res) => {
   console.log('Inside  customer updateprofile');
   console.log(req.body);
-  const person_id = req.body.personid;
-  const f_name = req.body.firstname;
-  const m_name = req.body.middlename;
-  const l_name = req.body.lastname;
+  const person_id = req.body.person_id;
+  const f_name = req.body.f_name;
+  const m_name = req.body.m_name;
+  const l_name = req.body.l_name;
   const dob = req.body.dob;
   const email = req.body.email;
   const contact_country_code = req.body.contact_country_code;
@@ -67,12 +81,13 @@ router.post('/customerUpdateProfile', (req, res) => {
     } else {
       req.session.cookie.email = email;
       res.status(200).send({
-        f_name: f_name,
         email: email,
         profilePicture: profilePicture,
       });
     }
   });
 });
+
+
 
 module.exports = router;

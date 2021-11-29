@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Profilepage from './profilePage/profilePage';
+import FlightBooking from './flightBooking';
+import TravellerInfo from './travellerInfo';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import SearchFlight from './SearchFlights/searchFlights';
@@ -16,6 +18,9 @@ class Main extends Component {
           {/* <Route path='/home' component={SearchFlight} exact /> */}
           <Route path='/home' component={HomePage} exact />
           <Route path='/profile' component={Profilepage} />
+          <Route path='/flightBooking' component={FlightBooking} />
+          <Route path='/travellerInfo' component={TravellerInfo} />
+
           <Route path='/login' component={Login} exact />
           <Route path='/signup' component={Signup} exact />
           <Route path='/searchflights' component={SearchFlight} exact />

@@ -5,4 +5,5 @@ module.exports = (app) => {
   app.use('/', require('./LoginRoute'));
   app.use('/', require('./searchFlightsRoute'));
   app.use('/', require('./ChangeFlightRoute'));
+  app.use('/', require('./seatBookingRoute'));
 };
