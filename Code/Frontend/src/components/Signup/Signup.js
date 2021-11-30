@@ -1,246 +1,255 @@
-
-import React, { Component } from "react";
-import {url} from "../Constants";
-import "./Signup.css";
-import axios from "axios";
-import LoginHeader from "../Login/Header/LoginHeader";
-
+import React, { Component } from 'react';
+import { url } from '../Constants';
+import './Signup.css';
+import axios from 'axios';
+import LoginHeader from '../Login/Header/LoginHeader';
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        firstName: "",
-        lastName:"",
-        middleName:"",
-        phoneNumber: "",
-        countryCode: "",
-        dob:"",
-        roleId: 0,
-        email: "",
-        password: "",
-        personId: 0,
-        signUpDone: false
-     
+      firstName: '',
+      lastName: '',
+      middleName: '',
+      phoneNumber: '',
+      countryCode: '',
+      dob: '',
+      roleId: 0,
+      email: '',
+      password: '',
+      personId: 0,
+      signUpDone: false,
     };
   }
-  firstNameChanged = e => {
+  firstNameChanged = (e) => {
     const name = e.target.value;
     this.setState({
-      firstName: name
+      firstName: name,
     });
   };
-  middleNameChanged = e => {
+  middleNameChanged = (e) => {
     const name = e.target.value;
     this.setState({
-      middleName: name
+      middleName: name,
     });
   };
-  lastNameChanged = e => {
+  lastNameChanged = (e) => {
     const name = e.target.value;
     this.setState({
-      lastName: name
+      lastName: name,
     });
   };
-  dobChanged=(e)=>{
-      const dob=e.target.value;
-      this.setState({
-        dob: dob
-      });
-  }
-  emailChanged = e => {
+  dobChanged = (e) => {
+    const dob = e.target.value;
+    this.setState({
+      dob: dob,
+    });
+  };
+  emailChanged = (e) => {
     const email = e.target.value;
     this.setState({
-      email: email
+      email: email,
     });
   };
-  passwordChanged = e => {
+  passwordChanged = (e) => {
     const passwd = e.target.value;
     this.setState({
-      password: passwd
+      password: passwd,
     });
   };
-  phnNumberChanged=e=>{
-    const phnNumber=e.target.value;
+  phnNumberChanged = (e) => {
+    const phnNumber = e.target.value;
     this.setState({
-      phoneNumber: phnNumber
+      phoneNumber: phnNumber,
     });
-  }
-countryCodeChanged  =e=>{
-    const countryCode=e.target.value;
+  };
+  countryCodeChanged = (e) => {
+    const countryCode = e.target.value;
     this.setState({
-      countryCode: countryCode
+      countryCode: countryCode,
     });
-  }
-  signUp = e => {
+  };
+  signUp = (e) => {
     //var headers = new Headers();
     //headers.append("Access-Control-Allow-Credential",true);
     e.preventDefault();
     const signupDetails = {
       firstName: this.state.firstName,
-      middleName:this.state.middleName,
+      middleName: this.state.middleName,
       lastName: this.state.lastName,
-      dob:this.state.dob,
+      dob: this.state.dob,
       email: this.state.email,
       password: this.state.password,
-      phoneNumber:this.state.phoneNumber,
-      countryCode:this.state.countryCode
-    
+      phoneNumber: this.state.phoneNumber,
+      countryCode: this.state.countryCode,
     };
     console.log(signupDetails);
-   
-    
+
     axios
-      .post(url+"/signup", signupDetails)
-      .then(response => {
-          console.log(response);
-        console.log("Status Code : ", response.status);
+      .post(url + '/signup', signupDetails)
+      .then((response) => {
+        console.log(response);
+        console.log('Status Code : ', response.status);
         if (response.status === 201) {
           console.log(response);
-          const userDetails={
+          const userDetails = {
             personId: response.data.personId,
-            flyerId:response.data.flyerNumber,
+            flyerId: response.data.flyerNumber,
             firstName: this.state.firstName,
             middleName: this.state.middleName,
-            lastName:this.state.lastName,
-            dob:this.state.dob,
-            email:this.state.email,
-            phoneNumber:this.state.phoneNumber,
-            countryCode:this.state.countryCode,
-            roleId:this.state.roleId,
+            lastName: this.state.lastName,
+            dob: this.state.dob,
+            email: this.state.email,
+            phoneNumber: this.state.phoneNumber,
+            countryCode: this.state.countryCode,
+            roleId: this.state.roleId,
             signUpDone: true,
-          
-           
-         
-          }
-          sessionStorage.setItem("userDetails", JSON.stringify(userDetails));
+          };
+          sessionStorage.setItem('personid', response.data[0].person_id);
+          sessionStorage.setItem('username', response.data[0].f_name);
+          sessionStorage.setItem('useremail', response.data[0].email);
+          sessionStorage.setItem('profilepic', response.data[0].profilePicture);
+          sessionStorage.setItem(
+            'customer_flyernum',
+            response.data[0].customer_flyer_num
+          );
+          sessionStorage.setItem(
+            'mileage_reward',
+            response.data[0].mileage_reward
+          );
+          sessionStorage.setItem('userDetails', JSON.stringify(userDetails));
           this.setState({
             signUpDone: true,
             personId: response.data.personId,
-            roleId:response.data.roleId
-            
+            roleId: response.data.roleId,
           });
         } else {
           this.setState({
-            signUpDone: false
+            signUpDone: false,
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-        alert(error.response.data.errorDesc)
+        alert(error.response.data.errorDesc);
         this.setState({
           signUpDone: false,
-         // errorMsg: error.response.data.errorDesc
+          // errorMsg: error.response.data.errorDesc
         });
       });
   };
 
   render() {
-   if (this.state.signUpDone) {
-     
-     
+    if (this.state.signUpDone) {
       this.props.history.push({
-        pathname: "/home",
+        pathname: '/home',
         userDetails: {
-        email: this.state.email,
+          email: this.state.email,
           personId: this.state.personId,
           firstName: this.state.firstName,
           middleName: this.state.middleName,
-          lastName:this.state.lastName,
-          dob:this.state.dob,
+          lastName: this.state.lastName,
+          dob: this.state.dob,
           phoneNumber: this.state.phoneNumber,
           countryCode: this.state.countryCode,
-          roleId:this.state.roleId
-        }
+          roleId: this.state.roleId,
+        },
       });
-     
     }
-    
-    return (      
-          <div className="main-container">
-            <LoginHeader />
-            <form onSubmit={this.signUp}>
-              <div className="signup-container">
-               
-                <div className="signup-content">
-               
-                  <div > <strong> First Name</strong></div>
 
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    onChange={this.firstNameChanged}
-                  />
-                  <div > <strong> Middle Name</strong></div>
-                  <input
-                  type="text"
-                  name="middleName"
-                  placeholder="Middle Name"
-                  onChange={this.middleNameChanged}
-                  />
-   
-                   <div >  <strong>Last Name</strong></div>
-                   <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    onChange={this.lastNameChanged}
-                  />
-
-<br/>
-         <strong>DOB</strong>
-      
-           <input
-            type="text"
-            name="dob"
-            placeholder="mm/dd/yyyy"
-            onChange={this.dobChanged}
-          ></input>
-                   <div className="signup-email-passwd">
-         <strong>Email address</strong>
-          <input
-            type="email"
-            name="custEmail"
-            placeholder="Email"
-            className="signup-email"
-            onChange={this.emailChanged}
-          ></input>
-         <strong>Password</strong>
-          <input
-            type="password"
-            name="custPasswd"
-            placeholder="Password"
-            onChange={this.passwordChanged}
-          ></input>
-         <strong>Country Code</strong>
-         <br/>
-          <select name="countryCodes" value={this.state.countryCode} onChange={this.countryCodeChanged}>
-          <option value="0">Select Country Code </option>
-            <option value="+1">United States(+1)</option>
-            <option value="+91">India(+91)</option>
-          </select>
-          <br/>
-         <strong>Phone Number</strong>
-      
-           <input
-            type="text"
-            name="phoneNumber"
-            placeholder="Phone Number"
-            onChange={this.phnNumberChanged}
-          ></input>
-
-
-
-          <button className="signup-btn" type="submit">
-            Sign up
-          </button>
-        </div>
-                </div>
+    return (
+      <div className='main-container'>
+        <LoginHeader />
+        <form onSubmit={this.signUp}>
+          <div className='signup-container'>
+            <div className='signup-content'>
+              <div>
+                {' '}
+                <strong> First Name</strong>
               </div>
-            </form>
+
+              <input
+                type='text'
+                name='firstName'
+                placeholder='First Name'
+                onChange={this.firstNameChanged}
+              />
+              <div>
+                {' '}
+                <strong> Middle Name</strong>
+              </div>
+              <input
+                type='text'
+                name='middleName'
+                placeholder='Middle Name'
+                onChange={this.middleNameChanged}
+              />
+
+              <div>
+                {' '}
+                <strong>Last Name</strong>
+              </div>
+              <input
+                type='text'
+                name='lastName'
+                placeholder='Last Name'
+                onChange={this.lastNameChanged}
+              />
+
+              <br />
+              <strong>DOB</strong>
+
+              <input
+                type='text'
+                name='dob'
+                placeholder='mm/dd/yyyy'
+                onChange={this.dobChanged}
+              ></input>
+              <div className='signup-email-passwd'>
+                <strong>Email address</strong>
+                <input
+                  type='email'
+                  name='custEmail'
+                  placeholder='Email'
+                  className='signup-email'
+                  onChange={this.emailChanged}
+                ></input>
+                <strong>Password</strong>
+                <input
+                  type='password'
+                  name='custPasswd'
+                  placeholder='Password'
+                  onChange={this.passwordChanged}
+                ></input>
+                <strong>Country Code</strong>
+                <br />
+                <select
+                  name='countryCodes'
+                  value={this.state.countryCode}
+                  onChange={this.countryCodeChanged}
+                >
+                  <option value='0'>Select Country Code </option>
+                  <option value='+1'>United States(+1)</option>
+                  <option value='+91'>India(+91)</option>
+                </select>
+                <br />
+                <strong>Phone Number</strong>
+
+                <input
+                  type='text'
+                  name='phoneNumber'
+                  placeholder='Phone Number'
+                  onChange={this.phnNumberChanged}
+                ></input>
+
+                <button className='signup-btn' type='submit'>
+                  Sign up
+                </button>
+              </div>
+            </div>
           </div>
+        </form>
+      </div>
     );
   }
 }

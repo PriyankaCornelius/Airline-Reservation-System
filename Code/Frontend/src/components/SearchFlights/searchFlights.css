@@ -12,19 +12,26 @@
   position: relative;
 }
 
-th {
-  padding: 0 30px;
-}
-
+th,
 td {
-  padding: 50 30px;
+  padding: 15px;
 }
-thead,
-tbody,
-tr {
-  display: table;
-  width: -moz-fit-content;
-  padding: 0 30px;
+/* tr */
+/* { */
+/* border-top: 1px solid gray */
+/* } */
+td {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-radius: 5px;
+  background: white;
+}
+tr td:last-child {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-right: none !important;
+  background: white;
 }
 /* table.flights_table {
   border-radius: 6px;

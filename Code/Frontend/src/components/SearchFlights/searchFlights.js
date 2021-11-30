@@ -5,9 +5,7 @@ import { Redirect } from 'react-router';
 import Select from 'react-select';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
-import { Form, Image } from 'react-bootstrap';
-import { uploadFile } from 'react-s3';
-// import DatePicker from 'sassy-datepicker';
+import { Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -16,7 +14,6 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import NavBar from '../navigation';
 import 'react-datepicker/dist/react-datepicker.css';
-// import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 import './searchFlights.css';
 import '../navbar/navbar.css';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -59,7 +56,6 @@ class SearchFlight extends Component {
     this.getairports();
   }
 
-  
   originChangeHandler = (id, e) => {
     const { srcairports } = this.state;
     const updatedList = [...srcairports];
@@ -145,8 +141,15 @@ class SearchFlight extends Component {
     const phnpattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     const dobpattern = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
 
-    const { origin, destination, departureDate, returnDate, roundtrip } =
-      this.state;
+    const {
+      origin,
+      destination,
+      departureDate,
+      returnDate,
+      roundtrip,
+      startDate,
+      endDate,
+    } = this.state;
 
     if (origin.length === 0) {
       formisvalid = false;
@@ -168,9 +171,26 @@ class SearchFlight extends Component {
       formerrors.departureDateerrors = 'Departure Date cannot be blank!';
       console.log(formerrors.departureDateerrors);
     }
+    if (departureDate.length > 0 && startDate < new Date()) {
+      formisvalid = false;
+      formerrors.departureDateerrors = 'Departure Date cannot be in past!';
+      console.log(formerrors.departureDateerrors);
+    }
+
     if (roundtrip == true && returnDate.length === 0) {
       formisvalid = false;
       formerrors.returnDateerrors = 'Return Date cannot be blank!';
+      console.log(formerrors.returnDateerrors);
+    }
+
+    if (
+      roundtrip == true &&
+      returnDate.length > 0 &&
+      (endDate < new Date() || endDate < startDate)
+    ) {
+      formisvalid = false;
+      formerrors.returnDateerrors =
+        'Return Date cannot be before depature date!';
       console.log(formerrors.returnDateerrors);
     }
 
@@ -224,6 +244,7 @@ class SearchFlight extends Component {
                             destination: destination,
                             departureDate: departureDate,
                             returnDate: returnDate,
+                            roundtrip: roundtrip,
                           },
                         }}
                       />
@@ -316,7 +337,6 @@ class SearchFlight extends Component {
       }
     }
   };
-  
 
   render() {
     let redirectVar = null;
@@ -344,96 +364,111 @@ class SearchFlight extends Component {
     } = this.state;
 
     return (
-      <div >
-
+      <div>
         {/* {redirectVar} */}
         <NavBar />
         <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '50vh', alignContent:"center" }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={12}
-          // sm={4}
-          // md={7}
-          sx={{
-            backgroundImage: 'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            height: '100vh'
-          }}
-        >
-        <Container component="main" maxWidth="lg" sx={{ md: 4, marginTop:'280px' }}>
-        <Paper variant="" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-        
-        {/* <Card sx={{ display: 'flex', justifyContent: 'center' }}> */}
-        <CardContent sx={{ flex: 1 }}>
-        {/* <div className='profilepage-block'> */}
-          <section>
-            <Form>
-              <label
-                htmlFor='roundtrip'
-                className=''
-                style={{
-                  marginLeft: '3.2rem',
-                }}
+          <Grid
+            container
+            component='main'
+            sx={{ height: '50vh', alignContent: 'center' }}
+          >
+            <CssBaseline />
+            <Grid
+              item
+              xs={12}
+              // sm={4}
+              // md={7}
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+              }}
+            >
+              <Container
+                component='main'
+                maxWidth='lg'
+                sx={{ md: 4, marginTop: '280px' }}
               >
-                <input
-                  type='checkbox'
-                  name='roundtrip'
-                  id='roundtrip'
-                  defaultValue='Origin'
-                  onChange={this.roundtripChangeHandler}
-                />{' '}
-                Round Trip
-              </label>
-
-              <section className='center-block'>
-                <div className='basic_div'>
-                  <div
-                    className=''
-                    style={{
-                      width: '1000px',
-                      display: 'flex',
-                      flexDirection: 'row',
-                    }}
-                  >
-                    <br />
-                    {srcairports.map((airport, id) => (
-                      <div
-                        className=''
-                        style={{
-                          width: '200px',
-                        }}
-                      >
-                        <span>
-                          <strong>Origin </strong>
-                        </span>
-                        <Select
-                          options={selectAirports}
-                          className='div-select'
-                          type='text'
-                          value={{
-                            label: airport.airportCode,
-                            value: airport.airportCode,
+                <Paper
+                  variant=''
+                  sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+                >
+                  {/* <Card sx={{ display: 'flex', justifyContent: 'center' }}> */}
+                  <CardContent sx={{ flex: 1 }}>
+                    {/* <div className='profilepage-block'> */}
+                    <section>
+                      <Form>
+                        <label
+                          htmlFor='roundtrip'
+                          className=''
+                          style={{
+                            marginLeft: '3.2rem',
                           }}
-                          name={`airports${id + 1}_airportcode`}
-                          id={`airports${id + 1}_airportcode`}
-                          onChange={(e) => this.originChangeHandler(id, e)}
-                          // autoComplete="off"
-                          required
-                        />
-                        {originerrors && (
-                          <span className='errmsg' style={{ color: 'maroon' }}>
-                            {' '}
-                            {originerrors}{' '}
-                          </span>
-                        )}{' '}
-                      </div>
-                    ))}
+                        >
+                          <input
+                            type='checkbox'
+                            name='roundtrip'
+                            id='roundtrip'
+                            defaultValue='Origin'
+                            onChange={this.roundtripChangeHandler}
+                          />{' '}
+                          Round Trip
+                        </label>
 
-                    {/* <label htmlFor='origin'>
+                        <section className='center-block'>
+                          <div className='basic_div'>
+                            <div
+                              className=''
+                              style={{
+                                width: '1000px',
+                                display: 'flex',
+                                flexDirection: 'row',
+                              }}
+                            >
+                              <br />
+                              {srcairports.map((airport, id) => (
+                                <div
+                                  className=''
+                                  style={{
+                                    width: '200px',
+                                  }}
+                                >
+                                  <span>
+                                    <strong>Origin </strong>
+                                  </span>
+                                  <Select
+                                    options={selectAirports}
+                                    className='div-select'
+                                    type='text'
+                                    value={{
+                                      label: airport.airportCode,
+                                      value: airport.airportCode,
+                                    }}
+                                    name={`airports${id + 1}_airportcode`}
+                                    id={`airports${id + 1}_airportcode`}
+                                    onChange={(e) =>
+                                      this.originChangeHandler(id, e)
+                                    }
+                                    // autoComplete="off"
+                                    required
+                                  />
+                                  {originerrors && (
+                                    <span
+                                      className='errmsg'
+                                      style={{ color: 'maroon' }}
+                                    >
+                                      {' '}
+                                      {originerrors}{' '}
+                                    </span>
+                                  )}{' '}
+                                </div>
+                              ))}
+
+                              {/* <label htmlFor='origin'>
                     <strong>Origin </strong>
                     <br />
                     <input
@@ -451,41 +486,46 @@ class SearchFlight extends Component {
                       </span>
                     )}{' '}
                   </label> */}
-                    {dstairports.map((airport, id) => (
-                      <div
-                        className=''
-                        style={{
-                          width: '200px',
-                          marginLeft: '5rem',
-                        }}
-                      >
-                        <span>
-                          <strong>Destination </strong>
-                        </span>
-                        <Select
-                          options={selectAirports}
-                          className='div-select'
-                          type='text'
-                          value={{
-                            label: airport.airportCode,
-                            value: airport.airportCode,
-                          }}
-                          name={`airports${id + 1}_airportcode`}
-                          id={`airports${id + 1}_airportcode`}
-                          onChange={(e) => this.destinationChangeHandler(id, e)}
-                          // autoComplete="off"
-                          required
-                        />
-                        {destinationerrors && (
-                          <span className='errmsg' style={{ color: 'maroon' }}>
-                            {' '}
-                            {destinationerrors}{' '}
-                          </span>
-                        )}{' '}
-                      </div>
-                    ))}
+                              {dstairports.map((airport, id) => (
+                                <div
+                                  className=''
+                                  style={{
+                                    width: '200px',
+                                    marginLeft: '5rem',
+                                  }}
+                                >
+                                  <span>
+                                    <strong>Destination </strong>
+                                  </span>
+                                  <Select
+                                    options={selectAirports}
+                                    className='div-select'
+                                    type='text'
+                                    value={{
+                                      label: airport.airportCode,
+                                      value: airport.airportCode,
+                                    }}
+                                    name={`airports${id + 1}_airportcode`}
+                                    id={`airports${id + 1}_airportcode`}
+                                    onChange={(e) =>
+                                      this.destinationChangeHandler(id, e)
+                                    }
+                                    // autoComplete="off"
+                                    required
+                                  />
+                                  {destinationerrors && (
+                                    <span
+                                      className='errmsg'
+                                      style={{ color: 'maroon' }}
+                                    >
+                                      {' '}
+                                      {destinationerrors}{' '}
+                                    </span>
+                                  )}{' '}
+                                </div>
+                              ))}
 
-                    {/* <label
+                              {/* <label
                     htmlFor='destination'
                     style={{
                       marginLeft: '5rem',
@@ -508,76 +548,82 @@ class SearchFlight extends Component {
                       </span>
                     )}{' '}
                   </label> */}
-                    <label
-                      htmlFor='departureDate'
-                      className=''
-                      style={{ marginLeft: '5rem' }}
-                    >
-                      <strong>Departure Date </strong>
-                      <br />
-                      <DatePicker
-                        selected={startDate}
-                        onChange={this.departureDateChangeHandler}
-                        className=''
-                        style={{ marginLeft: '5rem' }}
-                      />
-                      {/* <input
+                              <label
+                                htmlFor='departureDate'
+                                className=''
+                                style={{ marginLeft: '5rem' }}
+                              >
+                                <strong>Departure Date </strong>
+                                <br />
+                                <DatePicker
+                                  selected={startDate}
+                                  onChange={this.departureDateChangeHandler}
+                                  className=''
+                                  style={{ marginLeft: '5rem' }}
+                                />
+                                {/* <input
                       type='text'
                       name='departureDate'
                       id='departureDate'
                       defaultValue='YYYY-MM-DD'
                       onChange={this.departureDateChangeHandler}
                     /> */}
-                      <br />
-                      {departureDateerrors && (
-                        <span className='errmsg' style={{ color: 'maroon' }}>
-                          {' '}
-                          {departureDateerrors}{' '}
-                        </span>
-                      )}{' '}
-                    </label>
-                    <label
-                      htmlFor='returnDate'
-                      className=''
-                      style={{ marginLeft: '5rem' }}
-                    >
-                      <strong>Return Date </strong> <br />
-                      <DatePicker
-                        selected={endDate}
-                        onChange={this.returnDateChangeHandler}
-                        disabled={!roundtrip}
-                      />
-                      {returnDateerrors && (
-                        <span className='errmsg' style={{ color: 'maroon' }}>
-                          {' '}
-                          {returnDateerrors}{' '}
-                        </span>
-                      )}
-                      {/* <input
+                                <br />
+                                {departureDateerrors && (
+                                  <span
+                                    className='errmsg'
+                                    style={{ color: 'maroon' }}
+                                  >
+                                    {' '}
+                                    {departureDateerrors}{' '}
+                                  </span>
+                                )}{' '}
+                              </label>
+                              <label
+                                htmlFor='returnDate'
+                                className=''
+                                style={{ marginLeft: '5rem' }}
+                              >
+                                <strong>Return Date </strong> <br />
+                                <DatePicker
+                                  selected={endDate}
+                                  onChange={this.returnDateChangeHandler}
+                                  disabled={!roundtrip}
+                                />
+                                {returnDateerrors && (
+                                  <span
+                                    className='errmsg'
+                                    style={{ color: 'maroon' }}
+                                  >
+                                    {' '}
+                                    {returnDateerrors}{' '}
+                                  </span>
+                                )}
+                                {/* <input
                       type='text'
                       name='returnDate'
                       id='returnDate'
                       defaultValue='YYYY-MM-DD'
                       onChange={this.returnDateChangeHandler}
                     /> */}
-                    </label>
-                    <br />
-                    <br />
-                  </div>
-                </div>
-              </section>
-              <Button
-                    className='Save-default'
-                    onClick={this.submitsave}
-                    style={{
-                      marginLeft: '50rem',
-                      marginTop: '2rem',
-                      backgroundColor:"#1c3f60"
-                    }}
-                  >
-                    Search
-                  </Button>
-              {/* <section >
+                              </label>
+                              <br />
+                              <br />
+                            </div>
+                          </div>
+                        </section>
+                        <Button
+                          className='Save-default'
+                          onClick={this.submitsave}
+                          style={{
+                            marginLeft: '50rem',
+                            marginTop: '2rem',
+                            backgroundColor: '#1c3f60',
+                          }}
+                        >
+                          Search
+                        </Button>
+                        {/* <section >
                 <div className='savebtn' data-testid='Saveupdates'>
                   <br />
                   <Button
@@ -591,14 +637,17 @@ class SearchFlight extends Component {
                   </Button>
                 </div>
               </section> */}
-            </Form>
-          </section>
-        {/* </div> */}
-        {redirecttopage}
-        </CardContent>
-                {/* </Card> */}
-              </Paper></Container></Grid>
-            </Grid></ThemeProvider>
+                      </Form>
+                    </section>
+                    {/* </div> */}
+                    {redirecttopage}
+                  </CardContent>
+                  {/* </Card> */}
+                </Paper>
+              </Container>
+            </Grid>
+          </Grid>
+        </ThemeProvider>
       </div>
     );
   }
