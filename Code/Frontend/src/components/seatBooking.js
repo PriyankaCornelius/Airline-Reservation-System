@@ -79,6 +79,8 @@ class SeatBooking extends React.Component {
     console.log("seat sel", seat);
     var travelTicket = JSON.parse(localStorage.getItem('travelTicket'));
     travelTicket['seatID'] = seat.seat_id;
+    travelTicket['seatPrice'] = seat.flight_class_price;
+    travelTicket['seatClass'] = seat.flight_class_name;
     localStorage.setItem('travelTicket', JSON.stringify(travelTicket));
     this.setState({
       seatSelected : (<div >

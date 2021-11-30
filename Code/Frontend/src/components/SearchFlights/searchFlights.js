@@ -9,13 +9,20 @@ import { Form, Image } from 'react-bootstrap';
 import { uploadFile } from 'react-s3';
 // import DatePicker from 'sassy-datepicker';
 import DatePicker from 'react-datepicker';
-
-import Navheader from '../navbar/navbar';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import NavBar from '../navigation';
 import 'react-datepicker/dist/react-datepicker.css';
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 import './searchFlights.css';
 import '../navbar/navbar.css';
+import CssBaseline from '@mui/material/CssBaseline';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createTheme();
 class SearchFlight extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +59,7 @@ class SearchFlight extends Component {
     this.getairports();
   }
 
+  
   originChangeHandler = (id, e) => {
     const { srcairports } = this.state;
     const updatedList = [...srcairports];
@@ -308,6 +316,7 @@ class SearchFlight extends Component {
       }
     }
   };
+  
 
   render() {
     let redirectVar = null;
@@ -335,10 +344,32 @@ class SearchFlight extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div >
+
         {/* {redirectVar} */}
-        <Navheader />
-        <div className='profilepage-block'>
+        <NavBar />
+        <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '50vh', alignContent:"center" }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={12}
+          // sm={4}
+          // md={7}
+          sx={{
+            backgroundImage: 'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100vh'
+          }}
+        >
+        <Container component="main" maxWidth="lg" sx={{ md: 4, marginTop:'280px' }}>
+        <Paper variant="" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        
+        {/* <Card sx={{ display: 'flex', justifyContent: 'center' }}> */}
+        <CardContent sx={{ flex: 1 }}>
+        {/* <div className='profilepage-block'> */}
           <section>
             <Form>
               <label
@@ -535,7 +566,18 @@ class SearchFlight extends Component {
                   </div>
                 </div>
               </section>
-              <section className='right-block'>
+              <Button
+                    className='Save-default'
+                    onClick={this.submitsave}
+                    style={{
+                      marginLeft: '50rem',
+                      marginTop: '2rem',
+                      backgroundColor:"#1c3f60"
+                    }}
+                  >
+                    Search
+                  </Button>
+              {/* <section >
                 <div className='savebtn' data-testid='Saveupdates'>
                   <br />
                   <Button
@@ -548,11 +590,15 @@ class SearchFlight extends Component {
                     Search
                   </Button>
                 </div>
-              </section>
+              </section> */}
             </Form>
           </section>
-        </div>
+        {/* </div> */}
         {redirecttopage}
+        </CardContent>
+                {/* </Card> */}
+              </Paper></Container></Grid>
+            </Grid></ThemeProvider>
       </div>
     );
   }

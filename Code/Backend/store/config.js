@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 
 const config = {
-  host: 'airline-booking.cu0buaumd8bx.us-east-2.rds.amazonaws.com',
+  host: 'splitwisedatabase.cwgv9f0vak1r.us-east-2.rds.amazonaws.com',
   user: 'admin',
-  password: 'admin123',
+  password: 'Splitwise12345',
   ssl: true,
   database: 'airline_booking',
   multipleStatements: true,
