@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
 
-import Navheader from '../navbar/navbar';
+import NavBar from '../navigation';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
@@ -98,7 +98,7 @@ class DisplayFlights extends Component {
     return (
       <div>
         {/* {redirectVar} */}
-        <Navheader />
+        <NavBar />
         <div className='profilepage-block'>
           <section>
             <section className='center-block'>

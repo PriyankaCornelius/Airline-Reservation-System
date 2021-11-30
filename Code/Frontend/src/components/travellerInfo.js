@@ -27,9 +27,9 @@ class TravellerInfo extends React.Component {
         this.setState({
           personid: personid1,
         });
-        this.getuserdetails(1);
+        this.getTravellerInfo(1);
       }
-    getuserdetails = (personid) => {
+      getTravellerInfo = (personid) => {
         axios
           .get(`http://localhost:3001/getuserdetails/${personid}`, {
             headers: {
@@ -46,6 +46,7 @@ class TravellerInfo extends React.Component {
               dob: response.data[0].dob,
               mileage_reward: response.data[0].mileage_reward
             });
+            localStorage.setItem('mileageRewardBalance', this.state.mileage_reward);
         })
         .catch((err) => console.log(err));
     };

@@ -6,11 +6,21 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
-import { Grid, TextField, Checkbox,Typography } from '@mui/material';
+import { Grid, TextField, Checkbox, Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState();
+  const [seatPrice, setSeatPrice] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
+  const [flightFare, setFlightFare] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
+  const [totalFare, setTotalFare] = React.useState(seatPrice+flightFare);
+  const [mileageRewardsEarned, setMileageRewardsEarned] = React.useState('MileagePlus Earnings for this trip : 12$');
+  const [insufficientBalance, setInsufficientBalance] = React.useState('');
+  const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -75,21 +85,61 @@ export default function ErrorRadios() {
       );
       setError(false);
     } else if (value === 'mileage_rewards') {
+      if (totalFare > mileageRewards) {
+        console.log("low bal")
+        setInsufficientBalance("Insufficient Balance");
+        setError(true);
+      }
       setHelperText(
+        
         <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField
+          <Typography component="h5" variant="h5">
+          Available Reward Balance
+           </Typography>
+           <Typography component="h5" variant="h5">
+          {mileageRewards}
+           </Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+        <Card sx={{ display: 'flex' }}>
+           <CardContent sx={{ flex: 1 }}>
+           <Typography component="h5" variant="h5">
+             Fare
+           </Typography>
+           <Typography component="h5" variant="h5">
+             {JSON.parse(localStorage.getItem('travelTicket')).seatClass}
+           </Typography>
+           <Typography component="h5" variant="h5">
+             Total Due
+           </Typography>
+           </CardContent>
+           <CardContent sx={{ flex: 1 }}>
+           <Typography component="h5" variant="h5">
+              $ {flightFare}
+           </Typography>
+           <Typography component="h5" variant="h5">
+              $ {seatPrice}
+           </Typography>
+           <Typography component="h5" variant="h5">
+              $ {totalFare}
+           </Typography>
+           </CardContent>
+         </Card>
+        </Grid>
+        
+        
+        <Grid item xs={12}>
+          {insufficientBalance}
+          <FormControlLabel
             required
-            id="cardName"
-            label="Name on card"
-            fullWidth
-            autoComplete="cc-name"
-            variant="standard"
+            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+            label="I agree to all the terms and conditions"
           />
-          </Grid>
-          </Grid>
+        </Grid>
+      </Grid>
       );
-      setError(true);
+      
     } else {
       setHelperText('Please select an option.');
       setError(true);

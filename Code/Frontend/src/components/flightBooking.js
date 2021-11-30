@@ -17,7 +17,7 @@ import TravellerInfo from './travellerInfo';
 import SeatBooking from './seatBooking';
 import Review from './review';
 import Payments from './paymentsPage';
-
+import NavBar from './navigation';
 class FlightBooking extends React.Component {
 
     constructor(props) {
@@ -70,7 +70,9 @@ class FlightBooking extends React.Component {
           
     render() { 
         const theme = createTheme();
-        return <div>
+      return <div>
+          
+        <NavBar/>
         <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar

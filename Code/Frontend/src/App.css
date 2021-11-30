@@ -1,7 +1,18 @@
-
-.form-heading { color:#fff; font-size:23px;}
-.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.form-heading {
+  color: #fff;
+  font-size: 23px;
+}
+.panel h2 {
+  color: #444444;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+.panel p {
+  color: #777777;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 24px;
+}
 .login-form .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
   border: 1px solid #d4d4d4;
@@ -11,22 +22,24 @@
   line-height: 50px;
 }
 .main-div {
-  background: #ffffff none repeat scroll 0 0;  
+  background: #ffffff none repeat scroll 0 0;
   margin: 10px auto 30px;
   max-width: 38%;
-  padding: 50px 70px 70px 71px;  
+  padding: 50px 70px 70px 71px;
 }
 
 .login-form .form-group {
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
-.login-form{ text-align:center;}
+.login-form {
+  text-align: center;
+}
 .forgot a {
   color: #777777;
   font-size: 14px;
   text-decoration: underline;
 }
-.login-form  .btn.btn-primary {
+.login-form .btn.btn-primary {
   background: #f0ad4e none repeat scroll 0 0;
   border-color: #f0ad4e;
   color: #ffffff;
@@ -37,15 +50,23 @@
   padding: 0;
 }
 .forgot {
-  text-align: left; margin-bottom:30px;
+  text-align: left;
+  margin-bottom: 30px;
 }
 .botto-text {
   color: #ffffff;
   font-size: 14px;
   margin: auto;
 }
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}
+.back {
+  text-align: left;
+  margin-top: 10px;
+}
+.back a {
+  color: #444444;
+  font-size: 13px;
+  text-decoration: none;
+}
 .popup-content {
   width: 30% !important;
   height: 35%;
@@ -54,4 +75,96 @@
   margin-top: -308px !important;
 }
 
+.logo {
+  height: 250px;
+  width: 280px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: -40px;
+  position: relative;
+}
 
+.logoText {
+  color: #afc1d0;
+  font-size: 30px;
+  font-family: Roboto;
+}
+.navBarText {
+  color: #fff;
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.nav {
+  background-color: #1c3f60;
+  height: 100px;
+}
+
+.inputFields {
+  width: 350px;
+  height: 40px;
+  border: #afc1d0;
+  padding: 5;
+  background-color: #afc1d0;
+}
+
+.submitbtn {
+  width: 70px;
+  height: 40px;
+  background-color: #1c3f60;
+  color: #000;
+  padding: 5;
+  color: #afc1d0;
+}
+
+/* template */
+#classicformpage .view {
+  background-image: url("http://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+
+#classicformpage .gradient {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(72, 15, 144, 0.4) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    45deg,
+    from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(72, 15, 144, 0.4) 100%
+  );
+}
+
+#classicformpage .card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+#classicformpage h6 {
+  line-height: 1.7;
+}
+
+#classicformpage .navbar {
+  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+#classicformpage .top-nav-collapse {
+  background: #424f95 !important;
+}
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95 !important;
+  }
+}
+
+#classicformpage label {
+  color: #fff !important;
+}
