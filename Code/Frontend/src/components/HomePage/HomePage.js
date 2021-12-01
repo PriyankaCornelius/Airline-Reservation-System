@@ -12,9 +12,11 @@ import cookie from "react-cookies";
 import { BrowserRouter, HashRouter } from "react-router-dom/cjs/react-router-dom";
 import axios from "axios";
 import profilePage from "../profilePage/profilePage";
+import Navheader from '../navbar/navbar';
 
 import NavBar from "./NavBar/NavBar";
 import SearchFlight from "../SearchFlights/searchFlights";
+import Reservations from "../Reservations/Reservations";
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -83,6 +85,7 @@ class HomePage extends Component {
       return (
         <HashRouter>
           <div>
+            <Navheader/>
             {/* <Header userDetails={this.state.userDetails} loggedIn={this.state.loggedIn} logOut={this.logOut} /> */}
             <div className="grid-container">
               <div className="left-side">
@@ -101,7 +104,18 @@ class HomePage extends Component {
 
                   exact />
                
-               
+               <Route
+                  path="/myReservations"
+                  render={props => (
+                    <Reservations
+                      {...props}
+                      userDetails={this.state.userDetails}
+                    
+
+                    />
+                  )}
+                  exact
+                />
 
                 <Route
                   path="/myprofile"

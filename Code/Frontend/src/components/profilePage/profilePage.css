@@ -16,9 +16,9 @@
   display: block;
   font-weight: bold;
 }
-label {
+/* label {
   font-weight: normal !important;
-}
+} */
 
 .profilepage-block {
   flex: auto;

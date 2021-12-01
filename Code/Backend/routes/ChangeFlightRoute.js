@@ -108,4 +108,37 @@ router.post('/cancelFlight', function (req, res) {
       }
     );
   });
+
+  router.get('/reservations', function (req, res) {
+    const personId = req.query.personId;
+  
+    const getReservationQuery="Select t.*,a.airport_code as source_airport,b.airport_code as dest_airport from Tickets t inner join Airports a on a.airport_id=t.source_airport_id inner join Airports b on b.airport_id=t.destination_airport_id where  t.person_id="+personId+" order by t.created_date desc" ;
+    
+    dbconnection.query(
+      getReservationQuery,
+      async (err, output, fields) => {
+        if (err) {
+          const reservationResponse={
+            "errorCode":"E04",
+            "errorDesc":"Unable to fetch the reservations"
+          }
+          res.status(500).send(reservationResponse);
+        } else {
+          console.log(output)
+        
+          if(output.length===0){
+            const reservationResponse={
+                "errorCode":"E05",
+                "errorDesc":"No reservations exist"
+              }
+            res.status(500).send(reservationResponse);
+          }
+          else{
+          res.status(200).send(output);
+          }
+        }
+      }
+    );
+  });
+
    module.exports = router;

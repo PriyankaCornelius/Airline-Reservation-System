@@ -49,6 +49,12 @@ class NavBar extends Component {
                       </NavLink>
                     </li>
                     <li>
+                      <NavLink to="/myReservations" activeClassName="active">
+                        <span><i className="fa fa-tasks" style={{fontSize:'20px'}}></i> </span>
+                        <label className="ml-4" > Reservations</label>
+                      </NavLink>
+                    </li>
+                    <li>
                       <NavLink to="/myprofile" activeClassName="active">
                         <span><i className="fa fa-tasks" style={{fontSize:'20px'}}></i> </span>
                         <label className="ml-4" > My Profile</label>

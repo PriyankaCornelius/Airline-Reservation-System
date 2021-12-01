@@ -20,6 +20,7 @@ router.post('/login', function (req, res) {
         errorCode: 'E01',
         errorDesc: 'Incorrect email/password. Please try again',
       };
+      console.log('error');
       res.status(500).send(loginResponse);
     } else {
       console.log(output);
@@ -105,8 +106,12 @@ router.post('/Signup', function (req, res) {
         } else {
           let signupResponse = {
             personId: personId,
-            flyerNumber: flyerId,
+            customerFlyerNum: flyerId,
             roleId: 2,
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            email:req.body.email,
+            mileageReward:0
           };
           res.cookie('cookie', email, {
             maxAge: 900000,

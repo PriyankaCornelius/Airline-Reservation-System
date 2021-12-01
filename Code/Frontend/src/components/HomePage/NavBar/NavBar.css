@@ -5,14 +5,14 @@
     /* background-color: red; */
   
   }
-  ß
-  .flex-container {
+  
+  .left-side-bar .flex-container {
     display: flex;
     flex-flow: column wrap;
     border-right: 1px solid #eee;
   
   }
-  .flex-container .flex-item {
+  .left-side-bar .flex-container .flex-item {
     margin: 11px 0 0;
     padding: 3px 8px 5px 5px;
     font-size: 16px;
@@ -26,7 +26,7 @@
     text-decoration: none;
     color: #007bff;
   } */
-  .flex-item:hover {
+  .left-side-bar .flex-container .flex-item:hover {
     background-color: rgb(236, 232, 232);
   }
   a.active {
