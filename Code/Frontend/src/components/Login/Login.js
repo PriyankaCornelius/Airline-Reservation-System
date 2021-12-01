@@ -169,6 +169,7 @@ class Login extends Component {
                 name='email'
                 placeholder='Email'
                 onChange={this.loginEmailChanged}
+                size="30"
                 required
               />
 
@@ -178,6 +179,7 @@ class Login extends Component {
                 name='password'
                 placeholder='Password'
                 onChange={this.passwordChanged}
+                size="30"
                 required
               />
               <br />
