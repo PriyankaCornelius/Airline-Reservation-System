@@ -163,17 +163,17 @@ https://github.com/gopinathsjsu/team-project-spartans-1/tree/main/Project_Docume
 
 Root folder
 
-1.Clone the entire respoitory on machine that has nodejs installed on it.
+1. Clone the entire respoitory on machine that has nodejs installed on it.
    <br/>
 
 <br/>
 
 Backend
 
-1.Open terminal in the Backend folder and execute "npm i" to install all the backend dependencies.
-2.Locate index.js file and update the frontend server's IP address and port number.
-3.Update the config.js file in Backend/store with the MySQL connection string
-4.run "node index.js" to run the backend server.
+1. Open terminal in the Backend folder and execute "npm i" to install all the backend dependencies.
+2. Locate index.js file and update the frontend server's IP address and port number.
+3. Update the config.js file in Backend/store with the MySQL connection string
+4. run "node index.js" to run the backend server.
    <br/>
 
 <br/>
