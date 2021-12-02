@@ -130,5 +130,53 @@ router.post('/addFlight', function (req, res) {
   });
 });
 
+router.get('/getAirports', function (req, res) {
+  console.log('Inside employee getAirports'); 
+
+  dbconnection.query(
+    'SELECT * from countries inner join Airports on countries.country_id = Airports.country_id inner join Cities on Airports.city_id = Cities.city_id',    
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.get('/getAircrafts', function (req, res) {
+  console.log('Inside employee getAirports'); 
+
+  dbconnection.query(
+    'SELECT * from Aircrafts',       
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.get('/getAllFlights', function (req, res) {
+  console.log('Inside employee getAllFlights'); 
+
+  dbconnection.query(
+    'select * from Flights inner join Routes on Flights.route_id = Routes.route_id',       
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
 
 module.exports = router;
