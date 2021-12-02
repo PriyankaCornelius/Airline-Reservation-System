@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { url } from '../Constants';
-import Table from 'react-bootstrap/Table';
 import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
 import NavBar from '../navigation';
 import 'react-datepicker/dist/react-datepicker.css';
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
-import './searchFlights.css';
+
 import '../navbar/navbar.css';
+import './searchFlights.css';
+
 class DisplayFlights extends Component {
   constructor(props) {
     super(props);
@@ -64,6 +65,7 @@ class DisplayFlights extends Component {
         economy_plus: economyPlus,
         first_class: firstClass,
         business: business,
+        departure_date: location.state.departureDate,
       };
       htmlvar +=
         '<td>#' +
@@ -104,13 +106,20 @@ class DisplayFlights extends Component {
         '<td>' +
         "<button id = 'btnBook" +
         JSON.stringify(departingdata) +
-        "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold'> Book </button>" +
+        "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
         '</td>';
       htmlvar += '</tr>';
       //   htmlvar +=
       //     "<<Button className='Save-default' style={{ marginLeft: '80rem',}}> Book </Button>";
     }
     document.getElementById('departingTable').innerHTML = htmlvar;
+
+    // document
+    //   .getElementById(
+    //     'btnBook{"flight_num":111,"departure_time":"12:45:56 PM","arrival_time":"6:45:56 PM","origin":"LAX","destination":"JFK","duration":"6h 0m ","number_of_stops":"Non stop","economy":"$1484.94","economy_plus":"$1785.19","first_class":"$2234.69","business":"$2734.44"}'
+    //   )
+    //   .focus();
+
     for (let i = 0; i < departingresponseData.length; i++) {
       const economy = '$' + departingresponseData[i].Economy.toFixed(2);
       const economyPlus =
@@ -138,6 +147,7 @@ class DisplayFlights extends Component {
         economy_plus: economyPlus,
         first_class: firstClass,
         business: business,
+        departure_date: location.state.departureDate,
       };
       document.getElementById(
         'btnBook' + JSON.stringify(departingdata)
@@ -175,6 +185,7 @@ class DisplayFlights extends Component {
           economy_plus: economyPlus,
           first_class: firstClass,
           business: business,
+          return_date: location.state.returnDate,
         };
         htmlvar1 +=
           "<tr> <th> Flight Number</th> <th>Departure Time</th> <th>Arrival Time</th> <th> Number of Stops </th><th> Duration </th><th> Economy </th><th>Economy <br />Plus</th><th>First <br />Class</th><th> Business </th><th style={{ borderTop: 'none' }}></th></tr>";
@@ -217,7 +228,7 @@ class DisplayFlights extends Component {
           '<td>' +
           "<button id = 'returnbtnBook" +
           JSON.stringify(returningData) +
-          "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold'> Book </button>" +
+          "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
           '</td>';
         htmlvar1 += '</tr>';
         //   htmlvar +=
@@ -253,6 +264,7 @@ class DisplayFlights extends Component {
           economy_plus: economyPlus,
           first_class: firstClass,
           business: business,
+          return_date: location.state.returnDate,
         };
         document.getElementById(
           'returnbtnBook' + JSON.stringify(returningData)
@@ -272,7 +284,7 @@ class DisplayFlights extends Component {
   }
   redirect = (e) => {
     const { roundtrip, count } = this.state;
-
+    alert(e.target.id.substring(13, e.target.id.length));
     if (roundtrip) {
       if (count == 2) {
         sessionStorage.setItem(

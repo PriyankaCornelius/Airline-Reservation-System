@@ -1,33 +1,51 @@
-.react-datepicker__input-container input {
+.searchDatePicker .react-datepicker__input-container input {
   border: 1px solid #cccccc;
   border-radius: 5px;
   padding: 5.5px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-.react-datepicker {
+.searchDatePicker .react-datepicker {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.8rem;
   display: inline-block;
   position: relative;
 }
 
-th,
-td {
+.searchDatePicker {
+  width: 200px;
+  height: 40px !important;
+  border-radius: 5px;
+  border: 2px solid;
+}
+
+.btnBook:focus {
+  color: #a09a94;
+  background-color: #4d4d4d;
+  border-color: #070707;
+}
+table#departingTable,
+table#returningTable,
+table#departingTable th,
+table#departingTable td,
+table#returningTable th,
+table#returningTable td {
   padding: 15px;
 }
 /* tr */
 /* { */
 /* border-top: 1px solid gray */
 /* } */
-td {
+table#departingTable td,
+table#returningTable td {
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-radius: 5px;
   background: white;
 }
-tr td:last-child {
+table#departingTable tr td:last-child,
+table#returningTable tr td:last-child {
   border-top: none !important;
   border-bottom: none !important;
   border-right: none !important;

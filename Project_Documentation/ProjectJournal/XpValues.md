@@ -98,8 +98,23 @@
 
 ## Week 6:
 
-#### Swetha - Communication, Feedback, Respect, Simplicity
+#### Swetha - Communication, Feedback, Respect, Simplicity, Courage
 
 <li> As a team we have progressed towards the term project. </li>
 <li> Each team member showcased the tasks done and discussed about the next stesp along with in corporating the feedback from other team members.  </li>
-<li> the coomunication is clear with meetings and weekly standups  </li>
+<li> the comunication is clear with meetings and weekly standups  </li>
+
+## Week 7:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members. Integration discussions done.   </li>
+<li> As a team we discussed next steps and integration plan to move towards completeion of the project. </li>
+ 
+## Week 8:
+
+#### Swetha - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> Each team member showcased all teh values to bring the project to completion with the requirements provided  </li>
+<li> Every team member was involved in testing and fixing the bugs through discussions, feedback and support </li>
+<li> Team Members are aware of the features impelented in the project </li>

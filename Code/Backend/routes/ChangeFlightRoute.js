@@ -7,11 +7,11 @@ const router = express.Router();
 router.post('/cancelFlight', function (req, res) {
     const personId = req.body.personId;
     const ticketId=req.body.ticketId;
-    const flightId=req.body.flightId;
-    const today=new Date();
-    const cancelFlightCheckQuery="Select * from Tickets where date_of_cancellation is not null and person_id="+personId+" and ticket_number="+ticketId+" and flightId="+flightId+" and date_of_travel>"+today ;
-    const cancelFlightUpdateQuery="update Tickets set date_of_cancellation="+today+",modified_date="+today+" where person_id="+personId+" and ticket_number="+ticketId+" and flightId="+flightId ;
-  
+    const currDate=new moment().format("YYYY-MM-DD");
+    const currDateTime=new moment().format("YYYY-MM-DD HH:mm:ss");
+   // const cancelFlightCheckQuery="Select * from Tickets where date_of_cancellation is not null and person_id="+personId+" and ticket_number="+ticketId+" and flightId="+flightId+" and date_of_travel>"+today ;
+    const cancelFlightUpdateQuery="update Tickets set date_of_cancellation='"+currDate+"',modified_date='"+currDateTime+"' where person_id="+personId+" and ticket_number="+ticketId;
+  console.log(cancelFlightUpdateQuery);
     dbconnection.query(
         cancelFlightUpdateQuery,
       async (err, output, fields) => {
@@ -112,8 +112,9 @@ router.post('/cancelFlight', function (req, res) {
   router.get('/reservations', function (req, res) {
     const personId = req.query.personId;
   
-    const getReservationQuery="Select t.*,a.airport_code as source_airport,b.airport_code as dest_airport from Tickets t inner join Airports a on a.airport_id=t.source_airport_id inner join Airports b on b.airport_id=t.destination_airport_id where  t.person_id="+personId+" order by t.created_date desc" ;
-    
+    //const getReservationQuery="Select t.*,a.airport_code as source_airport,b.airport_code as dest_airport,f.arrival_time,f.departure_time from Tickets t inner join Airports a on a.airport_id=t.source_airport_id inner join Airports b on b.airport_id=t.destination_airport_id inner join Flights f on f.flight_id=t.flight_id where  t.person_id="+personId+" order by t.created_date desc" ;
+    const getReservationQuery="Select t.*,f.arrival_time,f.departure_time from Tickets t  inner join Flights f on f.flight_id=t.flight_id where  t.person_id="+personId+" order by t.created_date desc" ;
+    console.log(getReservationQuery);
     dbconnection.query(
       getReservationQuery,
       async (err, output, fields) => {

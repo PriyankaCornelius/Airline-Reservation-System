@@ -22,6 +22,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 class SearchFlight extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       origin: '',
@@ -41,6 +42,7 @@ class SearchFlight extends Component {
       destinationerrors: '',
       departureDateerrors: '',
       returnDateerrors: '',
+      ticketId:this.props.location.ticketNumber,
     };
 
     // Bind the handlers to this class
@@ -558,7 +560,7 @@ class SearchFlight extends Component {
                                 <DatePicker
                                   selected={startDate}
                                   onChange={this.departureDateChangeHandler}
-                                  className=''
+                                  className='searchDatePicker'
                                   style={{ marginLeft: '5rem' }}
                                 />
                                 {/* <input
@@ -587,6 +589,7 @@ class SearchFlight extends Component {
                                 <strong>Return Date </strong> <br />
                                 <DatePicker
                                   selected={endDate}
+                                  className='searchDatePicker'
                                   onChange={this.returnDateChangeHandler}
                                   disabled={!roundtrip}
                                 />
