@@ -53,13 +53,14 @@ router.post('/Signup', function (req, res) {
   const lastName = req.body.lastName;
   const dob = req.body.dob;
   const parsedDate = moment(dob, 'MM/DD/YYYY').format('YYYY-MM-DD');
+  const roleId=req.body.roleId;
   console.log(parsedDate);
 
   const phoneNumber = req.body.phoneNumber;
   const countryCode = req.body.countryCode;
   console.log(req.body);
   const signupQuery =
-    " INSERT INTO  Persons(email,password,f_name,m_name,l_name,dob,contact,contact_country_code) values('" +
+    " INSERT INTO  Persons(email,password,f_name,m_name,l_name,dob,contact,contact_country_code,person_role_id) values('" +
     email +
     "','" +
     password +
@@ -75,6 +76,8 @@ router.post('/Signup', function (req, res) {
     phoneNumber +
     "','" +
     countryCode +
+    "','" +
+    roleId + 
     "')";
   console.log(signupQuery);
 

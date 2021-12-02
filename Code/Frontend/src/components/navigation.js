@@ -4,6 +4,7 @@ import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import MessageIcon from "@mui/icons-material/Message";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import cookie from 'react-cookies';
 // import EmployersJobPost from "../Employer/employersJobPost";
 // import indeedLogo from "../../Images/IndeedIcon.png";
 // import { Link } from "react-router-dom";
@@ -38,7 +39,12 @@ const NavBar = (props) => {
       value: "searchFlights",
       href: "/searchFlights",
     },
-
+    {
+      label:<span className="navBarText">Reservations</span>,
+      to: "/reservations",
+      value: "reservations",
+      href: "/reservations",
+    },
     {
       label:<span className="navBarText">Profile</span>,
       to: "/profilePage",
@@ -46,7 +52,7 @@ const NavBar = (props) => {
       href: "/profile",
     },
       {
-          label: <span className="navBarText">Logout</span>,
+          label: <span className="navBarText" onClick={()=>{sessionStorage.clear();cookie.remove('cookie')}}>Logout</span>,
           to: "/login",
           value: "logout",
           href: "/login"

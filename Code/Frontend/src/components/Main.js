@@ -10,6 +10,7 @@ import SearchFlight from './SearchFlights/searchFlights';
 import DisplayFlights from './SearchFlights/displayFlights';
 import HomePage from './HomePage/HomePage';
 import Flights from './flightsList';
+import Reservations from './Reservations/Reservations';
 class Main extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class Main extends Component {
           <Route path='/searchflights' component={SearchFlight} exact />
           <Route path='/displayflights' component={DisplayFlights} exact />
           <Route path='/flightsList' component={Flights} />
+          <Route path='/reservations' component={Reservations} />
         </Switch>
       </div>
     );
