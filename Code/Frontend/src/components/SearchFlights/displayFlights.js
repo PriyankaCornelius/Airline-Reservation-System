@@ -113,11 +113,13 @@ class DisplayFlights extends Component {
       //     "<<Button className='Save-default' style={{ marginLeft: '80rem',}}> Book </Button>";
     }
     document.getElementById('departingTable').innerHTML = htmlvar;
+
     // document
     //   .getElementById(
     //     'btnBook{"flight_num":111,"departure_time":"12:45:56 PM","arrival_time":"6:45:56 PM","origin":"LAX","destination":"JFK","duration":"6h 0m ","number_of_stops":"Non stop","economy":"$1484.94","economy_plus":"$1785.19","first_class":"$2234.69","business":"$2734.44"}'
     //   )
     //   .focus();
+
     for (let i = 0; i < departingresponseData.length; i++) {
       const economy = '$' + departingresponseData[i].Economy.toFixed(2);
       const economyPlus =

@@ -18,7 +18,8 @@ class Signup extends React.Component {
       email: '',
       password: '',
       personId: 0,
-      signUpDone: false,
+      signUpDone: false
+     
     };
   }
   firstNameChanged = (e) => {
@@ -69,6 +70,12 @@ class Signup extends React.Component {
       countryCode: countryCode,
     });
   };
+  roleChanged=(e)=>{
+    const userRole=e.target.value;
+    this.setState({
+      roleId:parseInt(userRole)
+    })
+  }
   signUp = (e) => {
     //var headers = new Headers();
     //headers.append("Access-Control-Allow-Credential",true);
@@ -82,6 +89,7 @@ class Signup extends React.Component {
       password: this.state.password,
       phoneNumber: this.state.phoneNumber,
       countryCode: this.state.countryCode,
+      roleId:this.state.roleId
     };
     console.log(signupDetails);
 
@@ -142,18 +150,8 @@ class Signup extends React.Component {
   render() {
     if (this.state.signUpDone) {
       this.props.history.push({
-        pathname: '/home',
-        userDetails: {
-          email: this.state.email,
-          personId: this.state.personId,
-          firstName: this.state.firstName,
-          middleName: this.state.middleName,
-          lastName: this.state.lastName,
-          dob: this.state.dob,
-          phoneNumber: this.state.phoneNumber,
-          countryCode: this.state.countryCode,
-          roleId: this.state.roleId,
-        },
+        pathname: '/searchFlights',
+        ticketNumber:0,
       });
     }
 
@@ -221,6 +219,18 @@ class Signup extends React.Component {
                   placeholder='Password'
                   onChange={this.passwordChanged}
                 ></input>
+               <strong>Role</strong>
+               <br />
+                 <select
+                  name='roles'
+                  value={this.state.role}
+                  onChange={this.roleChanged}
+                >
+                  <option value='0'>Select Role </option>
+                  <option value='1'>Employee</option>
+                  <option value='2'>Customer</option>
+                </select>
+                <br />
                 <strong>Country Code</strong>
                 <br />
                 <select

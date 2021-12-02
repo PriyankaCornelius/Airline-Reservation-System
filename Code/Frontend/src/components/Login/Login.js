@@ -149,18 +149,8 @@ class Login extends Component {
   render() {
     if (this.state.loginSuccessful) {
       this.props.history.push({
-        pathname: '/home',
-        userDetails: {
-          email: this.state.email,
-          personId: this.state.personId,
-          firstName: this.state.firstName,
-          middleName: this.state.middleName,
-          lastName: this.state.lastName,
-          dob: this.state.dob,
-          phoneNumber: this.state.phoneNumber,
-          countryCode: this.state.countryCode,
-          roleId: this.state.roleId,
-        },
+        pathname: '/searchflights',
+      ticketNumber:0
       });
     }
     return (
