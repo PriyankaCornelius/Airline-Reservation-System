@@ -88,6 +88,47 @@ router.post('/employeeUpdateProfile', (req, res) => {
   });
 });
 
+router.post('/addFlight', function (req, res) {
+  
+  const arrivalTime = req.body.arrivalTime;
+  const departureTime = req.body.departureTime;
+  const flightStatus = req.body.flightStatus;
+  const originAirportId = req.body.originAirportId;
+  const destinationAirportId = req.body.destinationAirportId;
+  const aircraftId = req.body.aircraftId;  
+  const flightNum = req.body.flightNum; 
+  const flightPrice = req.body.flightPrice; 
+  const routeDistance = req.body.routeDistance;  
+  const numberOfStops = req.body.numberOfStops; 
+  const arrivalDate = req.body.arrivalDate;
+  const departureDate = req.body.departureDate;
+  //const date = new SimpleDateFormat('YYYY-MM-DD').departureDate;
+  
+  const arrival = arrivalDate.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2') + " " + arrivalTime + ":00";
+  const departure = departureDate.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2') + " " + departureTime + ":00";
+
+  const sqlquery = "Insert into Routes(flight_num, origin_airport_id, destination_airport_id, aircraft_id, route_distance, number_of_stops) values(" 
+  + flightNum + "," + originAirportId + "," + destinationAirportId + "," + aircraftId + "," + routeDistance + "," + numberOfStops + ")";   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {
+      const route_id = output.insertId;
+      const addFlightQuery = "Insert into Flights(route_id, arrival_time, departure_time, flight_status, flight_price) values(" 
+      + route_id + ",'" + arrival + "','" + departure + "','" + flightStatus + "'," + flightPrice +")";   
+    
+      dbconnection.query(addFlightQuery, (err, output, fields) => {
+        if (err) {
+          res.status(400).send('Error!');
+        } else {          
+          res.status(200).send();
+        }
+      });
+      
+    }
+  });
+});
 
 
 module.exports = router;
