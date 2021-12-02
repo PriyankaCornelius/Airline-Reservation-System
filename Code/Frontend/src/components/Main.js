@@ -18,6 +18,7 @@ import CancelFlight from './Employee/CancelFlight';
 import UpdateFlightPrice from './Employee/UpdatePrice';
 
 
+import TravelTicket from './ticket';
 class Main extends Component {
   render() {
     return (
@@ -42,6 +43,7 @@ class Main extends Component {
           <Route path='/employee-cancelFlight' component={CancelFlight} exact />
           <Route path='/employee-updateFlightPrice' component={UpdateFlightPrice} exact />          
 
+          <Route path='/ticket' component={TravelTicket} />
         </Switch>
       </div>
     );

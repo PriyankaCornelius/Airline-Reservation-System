@@ -80,17 +80,32 @@ class TravellerInfo extends React.Component {
             gender: e.target.value,
         });
       };
-    handleSubmit = e => {
-        e.preventDefault();
-        var travelTicket = {
-            'firstname': this.state.firstname,
-            'middlename': this.state.middlename,
-            'lastname': this.state.lastname,
-            'dob': this.state.dob,
-            'passportNumber': this.state.passportNumber,
-            'gender': this.state.gender
-        }
-        localStorage.setItem("travelTicket",JSON.stringify(travelTicket))
+  handleSubmit = e => {
+    e.preventDefault();
+   
+    const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+    const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+    
+    departingflightSelected['firstname'] = this.state.firstname;
+    departingflightSelected['middlename'] = this.state.middlename;
+    departingflightSelected['lastname'] = this.state.lastname;
+    departingflightSelected['dob'] = this.state.dob;
+    departingflightSelected['passportNumber'] = this.state.passportNumber;
+    departingflightSelected['gender'] = this.state.gender;
+    sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected));
+    
+    if (returningflightSelected) {
+      returningflightSelected['firstname'] = this.state.firstname;
+      returningflightSelected['middlename'] = this.state.middlename;
+        returningflightSelected['lastname'] = this.state.lastname;
+        returningflightSelected['dob'] = this.state.dob;
+        returningflightSelected['passportNumber'] = this.state.passportNumber;
+        returningflightSelected['gender'] = this.state.gender;
+        sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
+    } else {
+      console.log("no return tkt");
+    }
+    
       }
     render() { 
         return <div>
@@ -99,6 +114,7 @@ class TravellerInfo extends React.Component {
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={4}>
                                     <TextField
+                                        
                                         id="f_name"
                                         name="f_name"
                                         label="First Name"
@@ -123,6 +139,7 @@ class TravellerInfo extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <TextField
+                                        
                                         id="l_name"
                                         name="l_name"
                                         label="Last Name"
@@ -135,6 +152,7 @@ class TravellerInfo extends React.Component {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
+                                        
                                         id="passport_num"
                                         name="passport_num"
                                         label="Passport Number"
@@ -142,11 +160,12 @@ class TravellerInfo extends React.Component {
                                         autoComplete="Passport Number"
                                         variant="standard"
                                         value={this.state.passportNumber}
-                                        onChange={this.dobChangeHandler}
+                                        onChange={this.passportNumberChangeHandler}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
+                                        
                                         id="dob"
                                         name="dob"
                                         label="Date of Birth"
@@ -154,11 +173,13 @@ class TravellerInfo extends React.Component {
                                         autoComplete="Date of Birth"
                                         variant="standard"
                                         value={this.state.dob}
-                                        onChange={this.passportNumberChangeHandler}
+                                        onChange={this.dobChangeHandler}
+                                        type="date"
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
+                                        
                                         id="gender"
                                         name="gender"
                                         label="Gender"

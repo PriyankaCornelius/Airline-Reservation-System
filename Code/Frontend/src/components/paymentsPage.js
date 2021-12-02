@@ -82,7 +82,8 @@ export default function ErrorRadios() {
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
+            label="I agree to the terms and conditions"
+            onChange={console.log(" booooook card")}
           />
         </Grid>
       </Grid>
@@ -122,32 +123,7 @@ export default function ErrorRadios() {
           </Card>
           </CardActionArea> 
         </Grid>
-        {/* <Grid item xs={12} md={6}>
-        <Card sx={{ display: 'flex' }}>
-           <CardContent sx={{ flex: 1 }}>
-           <Typography component="h5" variant="h5">
-             Fare
-           </Typography>
-           <Typography component="h5" variant="h5">
-             {JSON.parse(localStorage.getItem('travelTicket')).seatClass}
-           </Typography>
-           <Typography component="h5" variant="h5">
-             Total Due
-           </Typography>
-           </CardContent>
-           <CardContent sx={{ flex: 1 }}>
-           <Typography component="h5" variant="h5">
-              $ {flightFare}
-           </Typography>
-           <Typography component="h5" variant="h5">
-              $ {seatPrice}
-           </Typography>
-           <Typography component="h5" variant="h5">
-              $ {totalFare}
-           </Typography>
-           </CardContent>
-         </Card>
-        </Grid> */}
+        
         
         
         <Grid item xs={12}>
@@ -155,7 +131,8 @@ export default function ErrorRadios() {
           <FormControlLabel
             required
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="I agree to all the terms and conditions"
+            label="I agree to the terms and conditions"
+            onChange={console.log(" booooook")}
           />
         </Grid>
       </Grid>
@@ -166,7 +143,7 @@ export default function ErrorRadios() {
       // setError(true);
     }
   };
-
+  
   return (
       <form onSubmit={handleSubmit}>
       <h4 style={{ color: "red" }}> {insufficientBalance} </h4>
@@ -204,7 +181,7 @@ export default function ErrorRadios() {
              Fare
            </Typography>
            <Typography component="h5" variant="h5">
-             {JSON.parse(localStorage.getItem('travelTicket')).seatClass}
+             {JSON.parse(localStorage.getItem('travelTicket')).seatClass} Seat
            </Typography>
            <Typography component="h5" variant="h5">
              Total Due

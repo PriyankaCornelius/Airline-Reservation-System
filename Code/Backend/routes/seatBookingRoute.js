@@ -8,8 +8,10 @@ router.get('/getSeatInfo/', function (req, res) {
     //console.log(req.body);  
     const aircraftId = req.query.aircraftId;
     // console.log("*********************",aircraftId);
+  const sql1 = 'SELECT * from Seats s JOIN Flight_Class f on s.flight_class_id = f.flight_class_id where s.aircraft_id=?';
     dbconnection.query(
       'SELECT * from Seats s JOIN Flight_Class f on s.flight_class_id = f.flight_class_id where s.aircraft_id=?',aircraftId,
+      
       async (err, output, fields) => {
         if (err) {
             console.log("error while fetching seat details",err);

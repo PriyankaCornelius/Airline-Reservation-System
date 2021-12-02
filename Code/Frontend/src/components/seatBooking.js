@@ -56,7 +56,8 @@ class SeatBooking extends React.Component {
     super(props);
     this.state = {
       seats: [],
-      seatSelected:''
+      seatSelected: '',
+      disableBtn:false
     }
   }
   componentDidMount() {
@@ -74,16 +75,35 @@ class SeatBooking extends React.Component {
           seats:response.data
         })
       })
+     
+    
   }
   seatClickHandler = seat => {
     console.log("seat sel", seat);
-    var travelTicket = JSON.parse(localStorage.getItem('travelTicket'));
-    travelTicket['seatID'] = seat.seat_id;
-    travelTicket['seatPrice'] = seat.flight_class_price;
-    travelTicket['seatClass'] = seat.flight_class_name;
-    localStorage.setItem('travelTicket', JSON.stringify(travelTicket));
+    
+    const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+    const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+   
+    if (departingflightSelected.seatID) {
+      if (returningflightSelected) {
+        returningflightSelected['seatID'] = seat.seat_id;
+        returningflightSelected['seatPrice'] = seat.flight_class_price;
+        returningflightSelected['seatClass'] = seat.flight_class_name;
+        sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
+      }
+      else {
+        console.log("no return tkt");
+      }
+    }
+    else {
+      departingflightSelected['seatID'] = seat.seat_id;
+      departingflightSelected['seatPrice'] = seat.flight_class_price;
+      departingflightSelected['seatClass'] = seat.flight_class_name;
+      sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected));
+    }
+
     this.setState({
-      seatSelected : (<div >
+      seatSelected : (<div>
         <Grid item xs={8} md={10}>
       <CardActionArea component="a">
         <Card sx={{ display: 'flex' }}>
@@ -116,12 +136,13 @@ class SeatBooking extends React.Component {
     render() { 
       
       return <div>
-        <h1>Seat Booking</h1>
+        <h1>Seat Booking </h1>
          {this.state.seatSelected}
          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 10, sm: 0}}>
           {this.state.seats.map((seat, index) => {
             var SeatButton;
-            if (seat.flight_class_id === 4) SeatButton = <BusinessSeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</BusinessSeat>
+            // if () SeatButton = <BusinessSeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</BusinessSeat>
+             if (seat.flight_class_id === 4) SeatButton = <BusinessSeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</BusinessSeat>
             else if (seat.flight_class_id === 3) SeatButton = <FirstClassSeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</FirstClassSeat>
             else if (seat.flight_class_id === 2) SeatButton = <EconomyPlusSeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</EconomyPlusSeat>
             else SeatButton = <EconomySeat onClick={()=>this.seatClickHandler(seat)}>{seat.seat_num}{seat.seat_pos}</EconomySeat>
@@ -132,33 +153,6 @@ class SeatBooking extends React.Component {
             )
           })}
           </Grid>
-        
-        {/* <Container>
-          <Row>
-          <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={1}>
-                <Grid container item spacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {this.state.seats.map((seat, index) => { 
-            
-          return (
-            <Col xs="3">
-              <Card style={{ width: '15rem' }}>
-              <div>
-                
-                <Grid item xs={2} spacing={3}>
-                  <MyButton2></MyButton2>
-                </Grid>
-                
-              </div>
-              </Card>
-              </Col>
-            )
-        })}
-              </Grid>
-              </Grid>
-        </Box>
-        </Row>
-        </Container> */}
             
         </div>;
     }
