@@ -178,5 +178,19 @@ router.get('/getAllFlights', function (req, res) {
   );
 });
 
+router.post('/deleteFlight', function (req, res) {
+  
+  const flightId = req.body.flightId; 
+ 
+  const sqlquery = "Update Flights set active = 0 where flight_id = " + flightId;   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {      
+      res.status(200).send();      
+    }
+  });
+});
 
 module.exports = router;
