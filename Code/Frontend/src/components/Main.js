@@ -10,6 +10,9 @@ import SearchFlight from './SearchFlights/searchFlights';
 import DisplayFlights from './SearchFlights/displayFlights';
 import HomePage from './HomePage/HomePage';
 import Flights from './flightsList';
+import AddFlight from './Employee/AddFlight'
+import CancelFlight from './Employee/CancelFlight';
+
 class Main extends Component {
   render() {
     return (
@@ -27,6 +30,9 @@ class Main extends Component {
           <Route path='/searchflights' component={SearchFlight} exact />
           <Route path='/displayflights' component={DisplayFlights} exact />
           <Route path='/flightsList' component={Flights} />
+		  <Route path='/employee-addFlight' component={AddFlight} exact />
+          <Route path='/employee-cancelFlight' component={CancelFlight} exact />
+          
         </Switch>
       </div>
     );
