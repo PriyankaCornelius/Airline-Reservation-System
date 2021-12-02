@@ -66,6 +66,12 @@ class Login extends Component {
               'profilepic',
               response.data[0].profilePicture
             );
+            //2->Passenger 1-> Employee
+            sessionStorage.setItem(
+              'person_role',
+              response.data[0].person_role_id
+              
+            );
             sessionStorage.setItem(
               'customer_flyernum',
               response.data[0].customer_flyer_num
