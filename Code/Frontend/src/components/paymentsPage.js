@@ -13,7 +13,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(false);
+  // const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState();
   const [seatPrice, setSeatPrice] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
   const [flightFare, setFlightFare] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
@@ -21,17 +21,21 @@ export default function ErrorRadios() {
   const [mileageRewardsEarned, setMileageRewardsEarned] = React.useState('MileagePlus Earnings for this trip : 12$');
   const [insufficientBalance, setInsufficientBalance] = React.useState('');
   const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
+  // const [reducedMileageRewards, setReducedMileageRewards] = React.useState((totalFare>mileageRewards)? (mileageRewards - totalFare) : 0);
+  const [tripMileageRewards, settripMileageRewards] = React.useState(100);
+
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
     setHelperText(' ');
-    setError(false);
+    // setError(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (value === 'card') {
+      setInsufficientBalance('');
       setHelperText(
         <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -83,25 +87,42 @@ export default function ErrorRadios() {
         </Grid>
       </Grid>
       );
-      setError(false);
+      // setError(false);
     } else if (value === 'mileage_rewards') {
       if (totalFare > mileageRewards) {
         console.log("low bal")
-        setInsufficientBalance("Insufficient Balance");
-        setError(true);
+        setInsufficientBalance("Insufficient Balance in Mileage Rewards Account");
+        // setReducedMileageRewards(0);
+        // setError(true);
       }
       setHelperText(
         
-        <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <Grid container spacing={2}>
+        <Grid item xs={12} md={9}>
+        <CardActionArea component="a">
+        <Card sx={{ display: 'flex' , backgroundColor:"#D4BA6A", justifyContent:"center", marginLeft:'60px', padding:'10px' }}>
+          <CardContent sx={{ flex: 3 }}>
           <Typography component="h5" variant="h5">
           Available Reward Balance
-           </Typography>
-           <Typography component="h5" variant="h5">
-          {mileageRewards}
-           </Typography>
+          </Typography>
+          
+          <Typography component="h5" variant="h5">
+          Additional Rewards Offered with this trip
+          </Typography>
+          </CardContent>
+          
+          <CardContent sx={{ flex: 1 }}>
+          <Typography component="h5" variant="h5">
+          $ {mileageRewards}
+          </Typography>
+          <Typography component="h5" variant="h5">
+         $ {tripMileageRewards}
+          </Typography>
+          </CardContent>
+          </Card>
+          </CardActionArea> 
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
         <Card sx={{ display: 'flex' }}>
            <CardContent sx={{ flex: 1 }}>
            <Typography component="h5" variant="h5">
@@ -126,11 +147,11 @@ export default function ErrorRadios() {
            </Typography>
            </CardContent>
          </Card>
-        </Grid>
+        </Grid> */}
         
         
         <Grid item xs={12}>
-          {insufficientBalance}
+          {/* {insufficientBalance} */}
           <FormControlLabel
             required
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
@@ -142,17 +163,18 @@ export default function ErrorRadios() {
       
     } else {
       setHelperText('Please select an option.');
-      setError(true);
+      // setError(true);
     }
   };
 
   return (
       <form onSubmit={handleSubmit}>
-          
+      <h4 style={{ color: "red" }}> {insufficientBalance} </h4>
       <FormControl
-        sx={{ m: 3 }}
+        fullWidth
+        // sx={{ m: 3 }}
         component="fieldset"
-        error={error}
+        // error={error}
         variant="standard"
       >
         <FormLabel component="legend">
@@ -160,7 +182,11 @@ export default function ErrorRadios() {
               Payment Method
         </Typography>     
         </FormLabel>
+
+        <Grid container spacing={1}>
+        <Grid item xs={12} md={6}>
         <RadioGroup
+        fullWidth
           aria-label="Payment"
           name="Payment"
           value={value}
@@ -169,7 +195,39 @@ export default function ErrorRadios() {
         <FormControlLabel value="card" control={<Radio />} label="Credit/Debit Card" />
         <FormControlLabel value="mileage_rewards" control={<Radio />} label="Mileage Rewards" />
         </RadioGroup>
+        </Grid>
+        <Grid item xs={12} md={6}>
+        <CardActionArea component="a">
+        <Card sx={{ display: 'flex' }}>
+          <CardContent sx={{ flex: 1 }}>
+           <Typography component="h5" variant="h5">
+             Fare
+           </Typography>
+           <Typography component="h5" variant="h5">
+             {JSON.parse(localStorage.getItem('travelTicket')).seatClass}
+           </Typography>
+           <Typography component="h5" variant="h5">
+             Total Due
+           </Typography>
+           </CardContent>
+           <CardContent sx={{ flex: 1 }}>
+           <Typography component="h5" variant="h5">
+              $ {flightFare}
+           </Typography>
+           <Typography component="h5" variant="h5">
+              $ {seatPrice}
+           </Typography>
+           <Typography component="h5" variant="h5">
+              $ {totalFare}
+           </Typography>
+           </CardContent>
+         </Card>
+         </CardActionArea>
+        </Grid>
+        </Grid>
         <FormHelperText>{helperText}</FormHelperText>
+
+        
         <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
           Continue to payment
         </Button>

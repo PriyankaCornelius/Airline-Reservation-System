@@ -88,6 +88,125 @@ router.post('/employeeUpdateProfile', (req, res) => {
   });
 });
 
+router.post('/addFlight', function (req, res) {
+  
+  const arrivalTime = req.body.arrivalTime;
+  const departureTime = req.body.departureTime;
+  const flightStatus = req.body.flightStatus;
+  const originAirportId = req.body.originAirportId;
+  const destinationAirportId = req.body.destinationAirportId;
+  const aircraftId = req.body.aircraftId;  
+  const flightNum = req.body.flightNum; 
+  const flightPrice = req.body.flightPrice; 
+  const routeDistance = req.body.routeDistance;  
+  const numberOfStops = req.body.numberOfStops; 
+  const arrivalDate = req.body.arrivalDate;
+  const departureDate = req.body.departureDate;
+  //const date = new SimpleDateFormat('YYYY-MM-DD').departureDate;
+  
+  const arrival = arrivalDate.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2') + " " + arrivalTime + ":00";
+  const departure = departureDate.replace(/(\d\d)\/(\d\d)\/(\d{4})/, '$3-$1-$2') + " " + departureTime + ":00";
 
+  const sqlquery = "Insert into Routes(flight_num, origin_airport_id, destination_airport_id, aircraft_id, route_distance, number_of_stops) values(" 
+  + flightNum + "," + originAirportId + "," + destinationAirportId + "," + aircraftId + "," + routeDistance + "," + numberOfStops + ")";   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {
+      const route_id = output.insertId;
+      const addFlightQuery = "Insert into Flights(route_id, arrival_time, departure_time, flight_status, flight_price) values(" 
+      + route_id + ",'" + arrival + "','" + departure + "','" + flightStatus + "'," + flightPrice +")";   
+    
+      dbconnection.query(addFlightQuery, (err, output, fields) => {
+        if (err) {
+          res.status(400).send('Error!');
+        } else {          
+          res.status(200).send();
+        }
+      });
+      
+    }
+  });
+});
+
+router.get('/getAirports', function (req, res) {
+  console.log('Inside employee getAirports'); 
+
+  dbconnection.query(
+    'SELECT * from countries inner join Airports on countries.country_id = Airports.country_id inner join Cities on Airports.city_id = Cities.city_id',    
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.get('/getAircrafts', function (req, res) {
+  console.log('Inside employee getAirports'); 
+
+  dbconnection.query(
+    'SELECT * from Aircrafts',       
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.get('/getAllFlights', function (req, res) {
+  console.log('Inside employee getAllFlights'); 
+
+  dbconnection.query(
+    'select * from Flights inner join Routes on Flights.route_id = Routes.route_id',       
+    async (err, output, fields) => {
+      if (err) {
+        res.status(400).send('Error!');
+      } else {
+        //console.log(output)
+        res.status(200).send(output);
+      }
+    }
+  );
+});
+
+router.post('/deleteFlight', function (req, res) {
+  
+  const flightId = req.body.flightId; 
+ 
+  const sqlquery = "Update Flights set active = 0 where flight_id = " + flightId;   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {      
+      res.status(200).send();      
+    }
+  });
+});
+
+router.post('/updateFlightPrice', function (req, res) {
+  
+  const flightId = req.body.flightId; 
+  const flightPrice = req.body.flightPrice;
+ 
+  const sqlquery = "Update Flights set flight_price = " + flightPrice + " where flight_id = " + flightId;   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {      
+      res.status(200).send();      
+    }
+  });
+});
 
 module.exports = router;
