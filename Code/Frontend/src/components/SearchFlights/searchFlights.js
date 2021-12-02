@@ -558,7 +558,7 @@ class SearchFlight extends Component {
                                 <DatePicker
                                   selected={startDate}
                                   onChange={this.departureDateChangeHandler}
-                                  className=''
+                                  className='searchDatePicker'
                                   style={{ marginLeft: '5rem' }}
                                 />
                                 {/* <input
@@ -587,6 +587,7 @@ class SearchFlight extends Component {
                                 <strong>Return Date </strong> <br />
                                 <DatePicker
                                   selected={endDate}
+                                  className='searchDatePicker'
                                   onChange={this.returnDateChangeHandler}
                                   disabled={!roundtrip}
                                 />
