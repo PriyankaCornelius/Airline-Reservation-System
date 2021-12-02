@@ -96,10 +96,27 @@
 
 <li> What tasks did I work on / complete? - Created the frontend componnent to display and update the employee profile.  </li>
 <li> What am I planning to work on next? - I will be creating the backend for employee edit flight the flights this week. </li>
+
 ## Week 6:
 
 #### Swetha
 
-<li> What tasks did I work on / complete? - Created backend api for seraching flights.  </li>
+<li> What tasks did I work on / complete? - Created backend api for searching flights.  </li>
 <li> What am I planning to work on next? - I will be creating the frontend for searching the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+## Week 7:
+
+#### Swetha
+
+<li> What tasks did I work on / complete? - Created frontend api for searching flights.  </li>
+<li> What am I planning to work on next? - I will be creating the frontend for displaying the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+## Week 8:
+
+#### Swetha
+
+<li> What tasks did I work on / complete? - Created frontend api for displaying flights.  </li>
+<li> What am I planning to work on next? - Documentation for the project </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
