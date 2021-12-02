@@ -193,4 +193,20 @@ router.post('/deleteFlight', function (req, res) {
   });
 });
 
+router.post('/updateFlightPrice', function (req, res) {
+  
+  const flightId = req.body.flightId; 
+  const flightPrice = req.body.flightPrice;
+ 
+  const sqlquery = "Update Flights set flight_price = " + flightPrice + " where flight_id = " + flightId;   
+
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      res.status(400).send('Error!');
+    } else {      
+      res.status(200).send();      
+    }
+  });
+});
+
 module.exports = router;
