@@ -5,14 +5,10 @@ import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
 import Navheader from '../navbar/navbar';
 import '../navbar/navbar.css';
-import './UpdatePrice.css';
-import DatePicker from 'react-datepicker';
+import './AddFlight.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
-import TimePicker from 'react-time-picker';
 
-
-class UpdatePrice extends Component {
+class UpdateFlightPrice extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,11 +25,38 @@ class UpdatePrice extends Component {
         .get(url + "/getAirports")
         .then((response) => {
             console.log(response);
+            var airportMap = new Map([[Int32Array.prototype, [String.prototype]]]);
+
+            for(var i = 0; i <response.data.length; i++)
+            {
+              airportMap.set(response.data[i].airport_id, response.data[i]);
+            }
+
+            this.setState({
+              airportMap : airportMap
+            })
 
             axios
             .get(url + "/getAllFlights")
             .then((response) => {
                 console.log(response);
+                var html = '<option value = "">Select Flight Number</option>';
+                var map = new Map([[Int32Array.prototype, [String.prototype]]]);
+
+                for(var i = 0; i < response.data.length; i++)
+                {
+                  if(response.data[i].active.data[0] == 0)
+                  {continue;}
+
+                  map.set(response.data[i].flight_id, response.data[i]);
+                  html += '<option value = "' + response.data[i].flight_id + '">' + response.data[i].flight_num + '</option>';
+                }
+
+                this.setState({
+                  flightMap : map
+                })
+                document.getElementById('dropdownFlightNum').innerHTML = html;
+
             })
             .catch((err) => {
                 console.log(err.response);          
@@ -46,7 +69,48 @@ class UpdatePrice extends Component {
         })        
   } 
 
+  onChangeFlightnum = () => {
+    const flightNum = document.getElementById('dropdownFlightNum').value;
+    var html = '';
+    const arr = this.state.flightMap.get(parseInt(flightNum));
+    html += "<table id = 'tblUpdatePrice'>";
+    html += '<tr><td>Departure Time: </td><td><label>' + arr.departure_time + '</td></label></tr>';
+    html += '<tr><td>Arrival Time: </td><td><label>' + arr.arrival_time + '</td></label><tr/>';
+    html += '<tr><td>Arrival Airport:</td><td><label>' + this.state.airportMap.get(parseInt(arr.origin_airport_id)).airport_name + '</td></label><tr/>';
+    html += '<tr><td>Destination Airport: </td><td><label>' + this.state.airportMap.get(parseInt(arr.destination_airport_id)).airport_name + '</label><tr/>';
+    html += '<tr><td>Flight Price:</td><td> <input style = "border: 2px solid;border-radius: 5px;" type = "number" id = "txtFlightPrice" value =' + arr.flight_price + '></input><tr/>';
+    html += "</table><br/>";
+    html += '<button id = "btnUpdateFlightPrice">Update Flight Price</button>';
+    document.getElementById('divFlightDetails').innerHTML = html;
+    document.getElementById('divFlightDetails').style.display = '';
+    document.getElementById('btnUpdateFlightPrice').onclick = this.cancelFlight;
+  }
  
+  cancelFlight = () => {
+    const data = {
+      flightId: document.getElementById('dropdownFlightNum').value,
+      flightPrice: document.getElementById('txtFlightPrice').value
+    }
+    axios
+    .post(url + "/updateFlightPrice", data)
+    .then((response) => {
+      console.log('Status Code : ', response.status);
+      if (response.status === 200) {
+         alert("Flight price updated successfully");
+         window.location.reload();
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+      //alert(err.response.data);
+      alert("Something went wrong");
+
+    //   this.setState({
+    //     errorMessage: err.response.data,
+    //   });
+    });    
+  }
+
   render() {
     let redirectVar = null;
     if (!cookie.load('cookie')) {
@@ -55,14 +119,19 @@ class UpdatePrice extends Component {
     return (
      <div>
          <Navheader></Navheader>
+         <div style = {{marginLeft:"5%"}} id = "divBorder">
+          <label style = {{fontSize : "30px"}}>Update Flight Price</label>
          <div>
-             <select id = 'dropdownFlightNum'>
-
+             <select id = 'dropdownFlightNum' onChange = {this.onChangeFlightnum}>                
              </select>
+          </div>
+          <div id = 'divFlightDetails' style = {{marginTop: "15px", display: "none"}}>
+              
+          </div>         
          </div>
     </div>
     );
   }
 }
 
-export default UpdatePrice;
+export default UpdateFlightPrice;

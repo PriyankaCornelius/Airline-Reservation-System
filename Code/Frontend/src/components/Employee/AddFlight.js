@@ -344,7 +344,7 @@ class AddFlight extends Component {
             <tr>
             <td>Flight Number:</td>
             <td>
-              <input type = 'number' placeholder = 'Enter Flight Number' id = 'txtFlightNum'></input>
+              <input type = 'number' class = 'numberClass' placeholder = 'Enter Flight Number' id = 'txtFlightNum'></input>
             </td>
           </tr>
           <tr>
@@ -352,7 +352,7 @@ class AddFlight extends Component {
               Flight Price:
             </td>
             <td>
-              <input type = 'number' placeholder = 'Enter Flight Price' id = 'txtFlightPrice'></input>
+              <input type = 'number' class = 'numberClass' placeholder = 'Enter Flight Price' id = 'txtFlightPrice'></input>
             </td>
           </tr>
           

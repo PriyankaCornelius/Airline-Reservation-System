@@ -22,7 +22,7 @@ test tr,td,th {
     position: relative;
   }
 
-  select, input[type='text'],input[type='number'],TimePicker {
+  select, input[type='text'],TimePicker, .numberClass {
     width: 200px; 
      height: 20px;
      border-radius: 5px;
@@ -31,14 +31,15 @@ test tr,td,th {
 #btnCreateFlight {    
     
     margin-top: 22px;
-    margin-left: 22.5%;
-    width: 19%;
-    font-size: 17px;
-    border: 0px;
-    /* border-radius: 5px; */
-    background: #001c68;
-    color: white;
+    margin-left: 27.5%;   
     margin-bottom: 5px;
+    background: #001c68;
+    border: 0px;
+    color: white;
+    width: 15%;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 28px;
 }
 .react-time-picker__clock  {
     display: none !important;
@@ -50,5 +51,34 @@ test tr,td,th {
     width: 51%;
     border-radius: 15px;
     padding: 10px;
+
+}
+#divBorder{
+    
+    border: 2px solid;
+    margin-left: 4.5%;
+    width: 40%;
+    border-radius: 15px;
+    padding: 10px;
+
+}
+
+#tblUpdatePrice tr,td {
+    border: 0px;
+}
+
+#tblCreateFlight  tr,td {
+    border: 0px;
+}
+
+#btnUpdateFlightPrice,#btnCancelFlight{
+    
+    background: #001c68;
+    border: 0px;
+    color: white;
+    width: 27%;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 30px;
 
 }
