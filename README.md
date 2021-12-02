@@ -5,7 +5,8 @@
 
 # Team Name and Team Members
 
-## Team Name: Team-project-spartans-1
+## Team Name: 
+Team-project-spartans-1
 
 <br/>
 
@@ -162,28 +163,26 @@ https://github.com/gopinathsjsu/team-project-spartans-1/tree/main/Project_Docume
 
 Root folder
 
-1. Clone the entire respoitory and get into the root folder on machine that has nodejs installed on it.
+1.Clone the entire respoitory on machine that has nodejs installed on it.
    <br/>
 
 <br/>
 
 Backend
 
-1. Get into the Backend folder from the root folder.
-2. Open terminal in the Backend folder and execute "npm i" to install all the backend dependencies.
-3. Locate index.js file and update the frontend server's IP address and port number.
-4. Update the config.js file in Backend/store with the MySQL connection string and
-5. run "node index.js" to run the backend server.
+1.Open terminal in the Backend folder and execute "npm i" to install all the backend dependencies.
+2.Locate index.js file and update the frontend server's IP address and port number.
+3.Update the config.js file in Backend/store with the MySQL connection string
+4.run "node index.js" to run the backend server.
    <br/>
 
 <br/>
 
 Frontend
 
-1. Get into the frontend folder from the root folder.
-2. Open terminal in the frontend folder and execute "npm i" to install all the frontend dependencies.
-3. Locate the Constants.js file in src folder and update the backend server's IP address and port number.
-4. run "npm start" to run the application.
+1. Open terminal in the frontend folder and execute "npm i" to install all the frontend dependencies.
+2. Locate the Constants.js file in src folder and update the backend server's IP address and port number.
+3. run "npm start" to run the application.
    <br/>
 
 Open the browser and navigate to server's IP address with port number to find the landing page of the application.
