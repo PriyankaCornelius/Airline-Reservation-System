@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
 import TimePicker from 'react-time-picker';
+import Grid from '@mui/material/Grid';
 
 
 class AddFlight extends Component {
@@ -46,12 +47,11 @@ class AddFlight extends Component {
           this.setState({
             airportsList : response.data
           });
-
-             
-          var htmlSource = "<option value= ''>Select Source Country</option>";
-          var htmlDestination = "<option value= ''>Select Destination Country</option>";
-          var htmlSourceCity = "<option value= ''>Select Source City</option>";
-          var htmlDestinationCity = "<option value= ''>Select Destination City</option>";
+         
+          var htmlSource =  document.getElementById('dropdownSource').innerHTML ;
+          var htmlDestination =  document.getElementById('dropdownDestination').innerHTML ;
+          var htmlSourceCity =  document.getElementById('dropdownSourceCity').innerHTML ;
+          var htmlDestinationCity =  document.getElementById('dropdownDestinationCity').innerHTML ;
           var cities = new Map([[Int32Array.prototype, [String.prototype]]]);
           const set = new Set();
 
@@ -175,17 +175,33 @@ class AddFlight extends Component {
       console.log('Status Code : ', response.status);
       if (response.status === 200) {
          alert("Flight added successfully");
+         this.setDefaultValues();
       }
     })
     .catch((err) => {
       console.log(err.response);
       //alert(err.response.data);
-      alert("Something went wrong");
+      alert("Flight number already exists.");
 
     //   this.setState({
     //     errorMessage: err.response.data,
     //   });
     });    
+  }
+
+  setDefaultValues = () => {
+    document.getElementById('dropdownSource').value = '';
+    document.getElementById('dropdownDestination').value = '';
+    document.getElementById('dropdownSourceCity').value = '';
+    document.getElementsByClassName('hiddenElements')[0].style.display = 'none';
+    document.getElementsByClassName('hiddenElements')[1].style.display = 'none'; 
+    document.getElementById('dropdownDestinationCity').value = '';  
+    document.getElementById('dropdownAircraft').value = '';
+    document.getElementById('dropdownNoOfStops').value = '';
+    document.getElementById('endDate').value = '';
+    document.getElementById('startDate').value = '';
+    document.getElementById('txtFlightNum').value = '';
+    document.getElementById('txtFlightPrice').value = '';
   }
 
   onChangeSourceCountry = (e) => {
@@ -257,6 +273,9 @@ class AddFlight extends Component {
     })
   }
 
+  // onFocus = (e) => {
+  //   document.getElementById('btnCreateFlight').style.background = 'yellow';
+  // }
   render() {
     let redirectVar = null;
     if (!cookie.load('cookie')) {
@@ -264,8 +283,22 @@ class AddFlight extends Component {
     }   
     return (
      <div>
+         <Grid
+              item
+              xs={12}
+             
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+              }}
+          >
          <Navheader></Navheader>
-         <div id = 'divBorder'>
+
+         <div id = 'divBorder' style = {{background: "white", marginLeft: "29%"}}>
            <label style = {{fontSize:"32px", marginBottom:"3%", marginLeft:"1%"}}>Add Flight</label>
          <table id = 'tblCreateFlight'>
            <tr>
@@ -273,6 +306,7 @@ class AddFlight extends Component {
             <td>
               {/* <label>Source : </label> */}
               <select id = 'dropdownSource'  onChange ={this.onChangeSourceCountry}>
+              <option value = ''>Select Source Country</option>  
               </select>
             </td>
            </tr>
@@ -280,7 +314,8 @@ class AddFlight extends Component {
            <td>Destination Country:</td>
             <td>
               {/* <label>Destination : </label> */}
-              <select id = 'dropdownDestination' onChange ={this.onChangeSourceCountry}>            
+              <select id = 'dropdownDestination' onChange ={this.onChangeSourceCountry}>  
+              <option value = ''>Select Destination Country</option>            
               </select>
             </td>
           </tr>
@@ -387,7 +422,8 @@ class AddFlight extends Component {
          </table>
       
          <button id = 'btnCreateFlight' onClick = {this.createFlight}>Add Flight</button>  
-         </div>    
+         </div> 
+         </Grid>   
      </div>
     );
   }
