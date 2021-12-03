@@ -11,9 +11,8 @@ class LoginHeader extends Component {
       <div className="header">
         <div className="headerContainer">
           <div className="left-side-header">
-          <h2>Airline Booking Application</h2>
-          </div>
-          <div className="login-header">
+          <h2 style = {{paddingLeft: "108%", width: "96%", float: "left"}}>Airline Booking Application</h2>
+          <div className="login-header" style = {{marginLeft: "90%", marginTop: "3%"}}>
             <Link to="/">
             </Link>
             <div className="loginLinks">
@@ -25,6 +24,8 @@ class LoginHeader extends Component {
               </Link>
             </div>
           </div>
+          </div>
+          
         </div>
       </div>
     );

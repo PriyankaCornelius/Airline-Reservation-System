@@ -23,11 +23,11 @@ class FlightBooking extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            steps: ['Review trip itinerary', 'Add traveller details', 'Seat Booking'],
+            steps: ['Review trip itinerary', 'Add traveller details', 'Seat Booking Departing Flight', 'Seat Booking Returning Flight'],
             activeStep: 0
         }
     }
-
+  
     // Copyright() {
     //     return (
     //       <Typography variant="body2" color="text.secondary" align="center">
@@ -49,6 +49,13 @@ class FlightBooking extends React.Component {
             return <TravellerInfo />;
           case 2:
             return <SeatBooking />;
+          case 3:
+            {
+              const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+              if (returningflightSelected)
+              return <SeatBooking />;
+              else return <h3>No Return Flight Selected</h3>;
+            }
           default:
             throw new Error('Unknown step');
         }

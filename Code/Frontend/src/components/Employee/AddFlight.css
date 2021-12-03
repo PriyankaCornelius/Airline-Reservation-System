@@ -1,84 +1,102 @@
-test tr,
-td,
-th {
-  padding: 5px;
+test tr,td,th {
+   
+    padding: 5px;
 }
 
 #test {
-  border-collapse: collapse;
-  border-spacing: 65px 0;
+    border-collapse: collapse ;
+    border-spacing: 65px 0;
 }
 
-.addflightpicker .react-datepicker__input-container input {
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  padding: 5.5px;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+.react-datepicker__input-container input {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5.5px;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  }
+  
+  .react-datepicker {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    display: inline-block;
+    position: relative;
+  }
+
+  TimePicker, .numberClass {
+    width: 200px; 
+     height: 20px;
+     border-radius: 5px;
+     border: 2px solid;
+}
+#endDate,#startDate {
+    width: 190px; 
+     height: 15px;
+     border-radius: 5px;
+     border: 2px solid;
+}
+.react-time-picker {
+    width: 210px; 
+     height: 30px;
+     border-radius: 5px;
+     border: 2px solid;
+}
+#dropdownFlightNum,#dropdownDestination, #dropdownSourceCity, #dropdownDestinationCity,#dropdownSource,#dropdownAircraft,#dropdownNoOfStops {
+    width: 202px; 
+    height: 23px;
+    border-radius: 5px;
+    border: 2px solid;
+}
+#btnCreateFlight {    
+    
+    margin-top: 22px;
+    margin-left: 27.5%;   
+    margin-bottom: 5px;
+    background: #001c68;
+    border: 0px;
+    color: white;
+    width: 15%;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 28px;
+}
+.react-time-picker__clock  {
+    display: none !important;
+}
+#divBorder{
+    
+    border: 0px;
+    margin-left: 4.5%;
+    width: 51%;
+    border-radius: 15px;
+    padding: 10px;
+
+}
+#divBorder{
+    
+    border: 2px solid;
+    margin-left: 4.5%;
+    width: 40%;
+    border-radius: 15px;
+    padding: 10px;
+
 }
 
-.addflightpicker .react-datepicker {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
-  display: inline-block;
-  position: relative;
+#tblUpdatePrice tr,td {
+    border: 0px;
 }
 
-.addflightpicker select,
-input[type='text'],
-TimePicker,
-.numberClass {
-  width: 200px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px solid;
-}
-#btnCreateFlight {
-  margin-top: 22px;
-  margin-left: 27.5%;
-  margin-bottom: 5px;
-  background: #001c68;
-  border: 0px;
-  color: white;
-  width: 15%;
-  font-size: 15px;
-  border-radius: 5px;
-  height: 28px;
-}
-.react-time-picker__clock {
-  display: none !important;
-}
-#divBorder {
-  border: 2px solid;
-  margin-left: 4.5%;
-  width: 51%;
-  border-radius: 15px;
-  padding: 10px;
-}
-#divBorder {
-  border: 2px solid;
-  margin-left: 4.5%;
-  width: 40%;
-  border-radius: 15px;
-  padding: 10px;
+#tblCreateFlight  tr,td {
+    border: 0px;
 }
 
-#tblUpdatePrice tr,
-td {
-  border: 0px;
-}
+#btnUpdateFlightPrice,#btnCancelFlight{
+    
+    background: #001c68;
+    border: 0px;
+    color: white;
+    width: 27%;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 30px;
 
-#tblCreateFlight tr,
-td {
-  border: 0px;
-}
-
-#btnUpdateFlightPrice,
-#btnCancelFlight {
-  background: #001c68;
-  border: 0px;
-  color: white;
-  width: 27%;
-  font-size: 15px;
-  border-radius: 5px;
-  height: 30px;
 }

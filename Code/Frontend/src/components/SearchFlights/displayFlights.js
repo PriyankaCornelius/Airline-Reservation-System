@@ -326,7 +326,7 @@ class DisplayFlights extends Component {
         'departingflightSelected',
         e.target.id.substring(7, e.target.id.length)
       );
-      sessionStorage.setItem('returningFlightSelected', '');
+      sessionStorage.setItem('returningFlightSelected', 'null');
       const redirectVar1 = (
         <Redirect
           to={{

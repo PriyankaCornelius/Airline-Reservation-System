@@ -3,7 +3,7 @@ import { url } from '../Constants';
 import './Signup.css';
 import axios from 'axios';
 import LoginHeader from '../Login/Header/LoginHeader';
-
+import Grid from '@mui/material/Grid';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -157,7 +157,23 @@ class Signup extends React.Component {
 
     return (
       <div className='main-container'>
+          <Grid
+              item
+              xs={12}
+             
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '1000px',
+              }}
+          >
         <LoginHeader />
+
+        <div style = {{background:"white", height: "900px", marginTop:"2%", width: "35%", marginLeft: "33%", borderRadius: "15px"}}>
+        <div style = {{marginLeft: "2%", paddingTop: "8px"}}>
         <form onSubmit={this.signUp}>
           <div className='signup-container'>
             <div className='signup-content'>
@@ -259,6 +275,9 @@ class Signup extends React.Component {
             </div>
           </div>
         </form>
+        </div>
+        </div>
+        </Grid>
       </div>
     );
   }

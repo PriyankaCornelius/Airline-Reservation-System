@@ -7,6 +7,7 @@ import Navheader from '../navbar/navbar';
 import '../navbar/navbar.css';
 import './AddFlight.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import Grid from '@mui/material/Grid';
 class CancelFlight extends Component {
   constructor(props) {
     super(props);
@@ -117,8 +118,22 @@ class CancelFlight extends Component {
     }   
     return (
      <div>
-         <Navheader></Navheader>
-         <div style = {{marginLeft:"5%"}} id = "divBorder">
+         
+         <Grid
+              item
+              xs={12}
+             
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+              }}
+          >
+            <Navheader></Navheader>
+         <div style = {{marginLeft:"29%", background: "white"}} id = "divBorder">
           <label style = {{fontSize : "30px"}}>Cancel Flight</label>
          <div>
              <select id = 'dropdownFlightNum' onChange = {this.onChangeFlightnum}>                
@@ -128,6 +143,7 @@ class CancelFlight extends Component {
               
           </div>         
          </div>
+         </Grid>
     </div>
     );
   }

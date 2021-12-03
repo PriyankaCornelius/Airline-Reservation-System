@@ -94,6 +94,7 @@ class Profilepage extends Component {
           customer_flyer_num: response.data[0].customer_flyer_num,
           mileage_reward: response.data[0].mileage_reward,
         });
+        localStorage.setItem('mileageRewardBalance', response.data[0].mileage_reward)
       })
       .catch((err) => console.log(err));
   };
@@ -388,6 +389,7 @@ class Profilepage extends Component {
               </label> */}
 
               <CardContent sx={{ flex: 1 }}>
+                <h3>Mileage Rewards Balance {this.state.mileage_reward}</h3>
                 <Form
                   ref={this.profileform}
                   id='profileform'

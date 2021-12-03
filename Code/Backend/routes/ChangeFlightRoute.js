@@ -113,7 +113,9 @@ router.post('/cancelFlight', function (req, res) {
     const personId = req.query.personId;
   
     //const getReservationQuery="Select t.*,a.airport_code as source_airport,b.airport_code as dest_airport,f.arrival_time,f.departure_time from Tickets t inner join Airports a on a.airport_id=t.source_airport_id inner join Airports b on b.airport_id=t.destination_airport_id inner join Flights f on f.flight_id=t.flight_id where  t.person_id="+personId+" order by t.created_date desc" ;
-    const getReservationQuery="Select t.*,f.arrival_time,f.departure_time from Tickets t  inner join Flights f on f.flight_id=t.flight_id where  t.person_id="+personId+" order by t.created_date desc" ;
+    //const getReservationQuery="Select t.*,f.arrival_time,f.departure_time from Tickets t  inner join Flights f on f.flight_id=t.flight_id where  t.person_id="+personId+" order by t.created_date desc" ;
+    const getReservationQuery="select * from Tickets where person_id = " + personId;
+
     console.log(getReservationQuery);
     dbconnection.query(
       getReservationQuery,
