@@ -13,11 +13,9 @@ import Flights from './flightsList';
 
 import Reservations from './Reservations/Reservations';
 
-
-import AddFlight from './Employee/AddFlight'
+import AddFlight from './Employee/AddFlight';
 import CancelFlight from './Employee/CancelFlight';
 import UpdateFlightPrice from './Employee/UpdatePrice';
-
 
 import TravelTicket from './ticket';
 class Main extends Component {
@@ -27,7 +25,8 @@ class Main extends Component {
         <Switch>
           {/* <Route exact path="/" component={LandingPage} /> */}
           {/* <Route path='/home' component={SearchFlight} exact /> */}
-          <Route path='/home' component={HomePage} exact />
+          {/* <Route path='/home' component={HomePage} exact /> */}
+          <Route path='/' component={Login} exact />
           <Route path='/profile' component={Profilepage} />
           <Route path='/flightBooking' component={FlightBooking} />
           <Route path='/travellerInfo' component={TravellerInfo} />
@@ -40,12 +39,15 @@ class Main extends Component {
 
           <Route path='/reservations' component={Reservations} />
 
-		      <Route path='/employee-addFlight' component={AddFlight} exact />
+          <Route path='/employee-addFlight' component={AddFlight} exact />
           <Route path='/employee-cancelFlight' component={CancelFlight} exact />
-          <Route path='/employee-updateFlightPrice' component={UpdateFlightPrice} exact />          
+          <Route
+            path='/employee-updateFlightPrice'
+            component={UpdateFlightPrice}
+            exact
+          />
 
           <Route path='/ticket' component={TravelTicket} />
-
         </Switch>
       </div>
     );

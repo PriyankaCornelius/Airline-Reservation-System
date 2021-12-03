@@ -52,9 +52,9 @@ router.post('/Signup', function (req, res) {
   const middleName = req.body.middleName;
   const lastName = req.body.lastName;
   const dob = req.body.dob;
-  const parsedDate = moment(dob, 'MM/DD/YYYY').format('YYYY-MM-DD');
-  const roleId=req.body.roleId;
-  console.log(parsedDate);
+  // const parsedDate = moment(dob, 'MM/DD/YYYY').format('YYYY-MM-DD');
+  const roleId = req.body.roleId;
+  // console.log(parsedDate);
 
   const phoneNumber = req.body.phoneNumber;
   const countryCode = req.body.countryCode;
@@ -71,13 +71,13 @@ router.post('/Signup', function (req, res) {
     "','" +
     lastName +
     "','" +
-    parsedDate +
+    dob +
     "','" +
     phoneNumber +
     "','" +
     countryCode +
     "','" +
-    roleId + 
+    roleId +
     "')";
   console.log(signupQuery);
 
@@ -111,10 +111,10 @@ router.post('/Signup', function (req, res) {
             personId: personId,
             customerFlyerNum: flyerId,
             roleId: 2,
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            email:req.body.email,
-            mileageReward:0
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            mileageReward: 0,
           };
           res.cookie('cookie', email, {
             maxAge: 900000,

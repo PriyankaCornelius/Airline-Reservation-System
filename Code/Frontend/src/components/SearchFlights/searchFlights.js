@@ -42,7 +42,7 @@ class SearchFlight extends Component {
       destinationerrors: '',
       departureDateerrors: '',
       returnDateerrors: '',
-      ticketId:this.props.location.ticketNumber,
+      ticketId: this.props.location.ticketNumber,
     };
 
     // Bind the handlers to this class
@@ -345,7 +345,7 @@ class SearchFlight extends Component {
     if (!cookie.load('cookie')) {
       redirectVar = <Redirect to='/' />;
     }
-    //const { redirecttohome } = this.state;
+
     const {
       origin,
       destination,
@@ -367,7 +367,7 @@ class SearchFlight extends Component {
 
     return (
       <div>
-        {/* {redirectVar} */}
+        {redirectVar}
         <NavBar />
         <ThemeProvider theme={theme}>
           <Grid
@@ -409,6 +409,7 @@ class SearchFlight extends Component {
                           className=''
                           style={{
                             marginLeft: '3.2rem',
+                            fontSize: '20px',
                           }}
                         >
                           <input
@@ -429,6 +430,8 @@ class SearchFlight extends Component {
                                 width: '1000px',
                                 display: 'flex',
                                 flexDirection: 'row',
+                                fontSize: '20px',
+                                fontWeight: '250',
                               }}
                             >
                               <br />
@@ -437,6 +440,7 @@ class SearchFlight extends Component {
                                   className=''
                                   style={{
                                     width: '200px',
+                                    fontSize: '15px',
                                   }}
                                 >
                                   <span>
@@ -494,6 +498,7 @@ class SearchFlight extends Component {
                                   style={{
                                     width: '200px',
                                     marginLeft: '5rem',
+                                    fontSize: '15px',
                                   }}
                                 >
                                   <span>
