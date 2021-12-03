@@ -8,6 +8,7 @@ import '../navbar/navbar.css';
 import './AddFlight.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import Grid from '@mui/material/Grid';
+import EmployeeNavBar from '../employeeNavigation';
 
 class UpdateFlightPrice extends Component {
   constructor(props) {
@@ -132,7 +133,7 @@ class UpdateFlightPrice extends Component {
                 height: '100vh',
               }}
           >
-         <Navheader></Navheader>
+         <EmployeeNavBar></EmployeeNavBar>
          <div style = {{marginLeft:"29%", background:"white"}} id = "divBorder">
           <label style = {{fontSize : "30px"}}>Update Flight Price</label>
          <div>
