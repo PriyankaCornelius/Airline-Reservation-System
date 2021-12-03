@@ -115,7 +115,8 @@ class UpdateFlightPrice extends Component {
 
   render() {
     let redirectVar = null;
-    if (!cookie.load('cookie')) {
+    const userDetails=sessionStorage.getItem("userDetails");
+    if (userDetails===null||userDetails===undefined){
       redirectVar = <Redirect to='/' />;
     }   
     return (

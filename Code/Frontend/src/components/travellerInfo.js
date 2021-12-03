@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import {url} from "./Constants";
 
 class TravellerInfo extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class TravellerInfo extends React.Component {
   }
   getTravellerInfo = (personid) => {
     axios
-      .get(`http://localhost:3001/getuserdetails/${personid}`, {
+      .get(url+`/getuserdetails/${personid}`, {
         headers: {
           'content-type': 'application/json',
         },

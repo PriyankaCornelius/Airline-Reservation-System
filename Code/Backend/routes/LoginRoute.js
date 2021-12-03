@@ -35,7 +35,8 @@ router.post('/login', function (req, res) {
         res.cookie('cookie', email, {
           maxAge: 900000,
           httpOnly: false,
-          path: '/',
+          path: '/'
+          
         });
         req.session.cookie.email = email;
         res.status(200).send(output);
