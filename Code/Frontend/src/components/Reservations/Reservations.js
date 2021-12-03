@@ -5,6 +5,7 @@ import { url } from '../Constants';
 import NavBar from '../navigation';
 import moment from 'moment';
 import Grid from '@mui/material/Grid';
+import EmployeeNavBar from '../employeeNavigation';
 class Reservations extends Component {
     constructor(props) {
       super(props);
@@ -142,7 +143,7 @@ axios
         else{
             reservations=(<span>No Reservations</span>)
         }
-       
+        const role = sessionStorage.getItem('person_role');
 return(
     
     <div className="reservation">
@@ -159,7 +160,7 @@ return(
                 height: '100vh',
               }}
           >
-        <NavBar/>
+        {role === '1' ? (<EmployeeNavBar></EmployeeNavBar>) : <NavBar />}
     <div className="reservations">
       <div className="flex-container" style = {{background :"white", "margin-left": "27%", width: "50%", "border-radius": "15px"}}>
         <div style = {{marginLeft: "2%", marginBottom: "15px"}}>

@@ -17,6 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './searchFlights.css';
 import '../navbar/navbar.css';
 import CssBaseline from '@mui/material/CssBaseline';
+import EmployeeNavBar from '../employeeNavigation';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
@@ -365,10 +366,13 @@ class SearchFlight extends Component {
       redirecttopage,
     } = this.state;
 
+
+    const role = sessionStorage.getItem('person_role');
     return (
       <div>
         {redirectVar}
-        <NavBar />
+        {role === '1' ? (<EmployeeNavBar></EmployeeNavBar>) : <NavBar />}
+        
         <ThemeProvider theme={theme}>
           <Grid
             container

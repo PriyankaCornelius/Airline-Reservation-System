@@ -13,6 +13,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { Grid, TextField, Button, Typography } from '@mui/material';
+import EmployeeNavBar from '../employeeNavigation';
 
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 
@@ -365,12 +366,13 @@ class Profilepage extends Component {
       profilepic = imagename;
       console.log(profilepic);
     }
+    const role = sessionStorage.getItem('person_role');
     // console.log(profilepic);
     // if (profilephoto) profilepic = DefaultAvatar;
     return (
       <div>
-        {/* {redirectVar} */}
-        <NavBar />
+        {redirectVar}
+        {role === '1' ? (<EmployeeNavBar></EmployeeNavBar>) : <NavBar />}
 
         <Container component='main' maxWidth='lg' sx={{ mb: 4 }}>
           <Paper variant='' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>

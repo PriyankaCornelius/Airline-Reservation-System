@@ -12,30 +12,82 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Redirect } from 'react-router';
+import {url} from './Constants'
 import axios from 'axios';
 
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
   const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
    const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+  // const data = {businessPrice: departingflightSelected.business, economyPrice: departingflightSelected.economy, economyPlusPrice: departingflightSelected.economy_plus, firstClassPrice:departingflightSelected.first_class};
+  // const returnData = {businessPrice: returningflightSelected.business, economyPrice: returningflightSelected.economy, economyPlusPrice: returningflightSelected.economy_plus, firstClassPrice:returningflightSelected.first_class};
+
+   const seatClassName = departingflightSelected.seatClass;
+   var depPrice = '';
+   if(seatClassName === 'Business')
+      {depPrice = departingflightSelected.business;}
+    else if(seatClassName === 'Economy')
+      {depPrice = departingflightSelected.economy}
+      else if(seatClassName === 'Economy Plus')
+      {depPrice = departingflightSelected.economy_plus} 
+      else if(seatClassName === 'First Class')
+      {depPrice = departingflightSelected.first_class}
+
+      const returnClassName = returningflightSelected.seatClass;
+      var returnPrice = '';
+      if(returnClassName === 'Business')
+         {returnPrice = returningflightSelected.business;}
+       else if(returnClassName === 'Economy')
+         {returnPrice = returningflightSelected.economy}
+         else if(returnClassName === 'Economy Plus')
+         {returnPrice = returningflightSelected.economy_plus} 
+         else if(returnClassName === 'First Class')
+         {returnPrice = returningflightSelected.first_class}
   // const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState();
-  const [seatPrice, setSeatPrice] = React.useState(departingflightSelected.seatPrice);
+  // const [seatPrice, setSeatPrice] = React.useState(departingflightSelected.seatPrice);
   const [flightFare, setFlightFare] = React.useState(departingflightSelected.business);
-  console.log()
-  const [totalFare, setTotalFare] = React.useState(parseInt(seatPrice) + parseInt(flightFare.slice(1)));
+  // const [returnseatPrice, setReturnSeatPrice] = React.useState(returningflightSelected.seatPrice);
+  const [returnflightFare, setReturnFlightFare] = React.useState(returningflightSelected.business);
+ 
+  const [totalFare, setTotalFare] = React.useState(parseInt(depPrice.slice(1)));
+  const [retTotalFare, setretTotalFare] = React.useState(parseInt(returnPrice.slice(1)));
+
   const [mileageRewardsEarned, setMileageRewardsEarned] = React.useState('MileagePlus Earnings for this trip : 12$');
+  const [roundTripFare, setRoundTripFare] = React.useState( parseInt(depPrice.slice(1))+  parseInt(returnPrice.slice(1)));
   const [insufficientBalance, setInsufficientBalance] = React.useState('');
   const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
   // const [reducedMileageRewards, setReducedMileageRewards] = React.useState((totalFare>mileageRewards)? (mileageRewards - totalFare) : 0);
-  const [tripMileageRewards, settripMileageRewards] = React.useState(100);
+  const [tripMileageRewards, settripMileageRewards] = React.useState();
   const [showTicket, setShowTicket] = React.useState();
+ 
+
+  // this.setState({
+  //   ticketPrice: data.ticketPrice
+  // })
+  // alert(roundTripFare);
+  console.log(roundTripFare);
+  // setRoundTripFare(roundTripFare);
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
     setHelperText(' ');
     // setError(false);
   };
+
+//   const data = {
+//     personId : sessionStorage.getItem('personId'),
+//     ticketPrice : roundTripFare
+//   }
+
+
+//   //roundTripFare = roundTripFare;
+//   axios
+//   .post(url + '/updateMiles', data)
+//   .then((response) => {
+//     console.log('response', response.data);
+//   })
+// .catch((err) => console.log("Something went wrong",err));
 
   const postTravelTicket = (flightSelected) => {
     // const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
@@ -46,6 +98,24 @@ export default function ErrorRadios() {
     }
     var personId=JSON.parse(sessionStorage.getItem("personid"));
     flightSelected['personId']=personId;
+    flightSelected['value'] = value;
+    flightSelected['ticketPrice'] = roundTripFare;
+
+    if (value == 'mileage_rewards'){
+        const data = {
+    personId : sessionStorage.getItem('personid'),
+    ticketPrice : roundTripFare
+  }
+
+
+  //roundTripFare = roundTripFare;
+  axios
+  .post(url + '/updateMiles', data)
+  .then((response) => {
+    console.log('response', response.data);
+  })
+.catch((err) => console.log("Something went wrong",err));
+    }
     axios
       .post(`http://localhost:3001/postTravelTicket/`, flightSelected)
       .then((response) => {
@@ -66,17 +136,22 @@ export default function ErrorRadios() {
 
     departingflightSelected['currentDate'] = format;
     departingflightSelected['totalFare'] = totalFare;
-    
+   // var roundTripFare = parseInt(totalFare.slice(1));
     sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected))
 
     postTravelTicket(departingflightSelected);
 
     if (returningflightSelected) {
       returningflightSelected['currentDate'] = format;
-      returningflightSelected['totalFare'] = totalFare;
+      returningflightSelected['totalFare'] = retTotalFare;
+      //roundTripFare += parseInt(flightFare.slice(1))
       sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
       postTravelTicket(returningflightSelected);
+      
     }
+    
+
+
     setShowTicket ( <div>
          <Redirect to={{
             pathname: "ticket"
@@ -160,9 +235,9 @@ export default function ErrorRadios() {
           Available Reward Balance
           </Typography>
           
-          <Typography component="h5" variant="h5">
+          {/* <Typography component="h5" variant="h5">
           Additional Rewards Offered with this trip
-          </Typography>
+          </Typography> */}
           </CardContent>
           
           <CardContent sx={{ flex: 1 }}>
@@ -170,7 +245,7 @@ export default function ErrorRadios() {
           $ {mileageRewards}
           </Typography>
           <Typography component="h5" variant="h5">
-         $ {tripMileageRewards}
+         {/* $ {tripMileageRewards} */}
           </Typography>
           </CardContent>
           </Card>
@@ -232,25 +307,25 @@ export default function ErrorRadios() {
         <CardActionArea component="a">
         <Card sx={{ display: 'flex' }}>
           <CardContent sx={{ flex: 1 }}>
-           <Typography component="h5" variant="h5">
+           {/* <Typography component="h5" variant="h5">
              Fare
-           </Typography>
-           <Typography component="h5" variant="h5">
+           </Typography> */}
+           {/* <Typography component="h5" variant="h5">
              {departingflightSelected.seatClass} Seat
-           </Typography>
+           </Typography> */}
            <Typography component="h5" variant="h5">
              Total Due
            </Typography>
            </CardContent>
            <CardContent sx={{ flex: 1 }}>
-           <Typography component="h5" variant="h5">
+           {/* <Typography component="h5" variant="h5">
               $ {flightFare}
            </Typography>
            <Typography component="h5" variant="h5">
               $ {seatPrice}
-           </Typography>
+           </Typography> */}
            <Typography component="h5" variant="h5">
-              $ {totalFare}
+              $ {roundTripFare}
            </Typography>
            </CardContent>
          </Card>

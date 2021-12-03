@@ -42,9 +42,9 @@ class TravelTicket extends React.Component {
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Passenger Name
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
+                {/* <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Passport Number
-                </Typography>
+                </Typography> */}
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Date of birth
                 </Typography>
@@ -58,9 +58,9 @@ class TravelTicket extends React.Component {
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
                 {userDetails.firstName} {userDetails.middleName} {userDetails.lastName}
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
+                {/* <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
                 {userDetails.passportNumber} 
-                </Typography>
+                </Typography> */}
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
                 {userDetails.dob} 
                 </Typography>

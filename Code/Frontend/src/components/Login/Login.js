@@ -100,7 +100,7 @@ class Login extends Component {
 
           if (response.status === 200) {
             console.log(response.data);
-            if (response.data[0].person_role_id === 2) {
+            // if (response.data[0].person_role_id === 2) {
               const userDetails = {
                 personId: response.data[0].person_id,
                 firstName: response.data[0].f_name,
@@ -139,41 +139,41 @@ class Login extends Component {
                 'userDetails',
                 JSON.stringify(userDetails)
               );
-            } else {
-              const userDetails = {
-                personId: response.data[0].person_id,
-                firstName: response.data[0].f_name,
-                middleName: response.data[0].m_name,
-                lastName: response.data[0].l_name,
-                dob: response.data[0].dob,
-                email: response.data[0].email,
-                phoneNumber: response.data[0].contact,
-                countryCode: response.data[0].contact_country_code,
-                roleId: response.data[0].person_role_id,
-                profilePicture: response.data[0].profilePicture,
-                airportId: response.data[0].airport_id,
-              };
-              sessionStorage.setItem('personid', response.data[0].person_id);
-              sessionStorage.setItem('username', response.data[0].f_name);
-              sessionStorage.setItem('useremail', response.data[0].email);
-              sessionStorage.setItem(
-                'profilepic',
-                response.data[0].profilePicture
-              );
-              sessionStorage.setItem(
-                'customer_flyernum',
-                response.data[0].customer_flyer_num
-              );
-              sessionStorage.setItem(
-                'mileage_reward',
-                response.data[0].mileage_reward
-              );
+            // } else {
+            //   const userDetails = {
+            //     personId: response.data[0].person_id,
+            //     firstName: response.data[0].f_name,
+            //     middleName: response.data[0].m_name,
+            //     lastName: response.data[0].l_name,
+            //     dob: response.data[0].dob,
+            //     email: response.data[0].email,
+            //     phoneNumber: response.data[0].contact,
+            //     countryCode: response.data[0].contact_country_code,
+            //     roleId: response.data[0].person_role_id,
+            //     profilePicture: response.data[0].profilePicture,
+            //     airportId: response.data[0].airport_id,
+            //   };
+            //   sessionStorage.setItem('personid', response.data[0].person_id);
+            //   sessionStorage.setItem('username', response.data[0].f_name);
+            //   sessionStorage.setItem('useremail', response.data[0].email);
+            //   sessionStorage.setItem(
+            //     'profilepic',
+            //     response.data[0].profilePicture
+            //   );
+            //   sessionStorage.setItem(
+            //     'customer_flyernum',
+            //     response.data[0].customer_flyer_num
+            //   );
+            //   sessionStorage.setItem(
+            //     'mileage_reward',
+            //     response.data[0].mileage_reward
+            //   );
 
-              sessionStorage.setItem(
-                'userDetails',
-                JSON.stringify(userDetails)
-              );
-            }
+            //   sessionStorage.setItem(
+            //     'userDetails',
+            //     JSON.stringify(userDetails)
+            //   );
+            // }
             this.setState({
               loginSuccessful: true,
             });
@@ -185,7 +185,7 @@ class Login extends Component {
         })
         .catch((error) => {
           console.log(error.response);
-          alert(error.response.data.errorDesc);
+          alert("Enter Valid Credentials");
           this.setState({
             loginSuccessful: false,
             errorMsg: error.response.data.errorDesc,

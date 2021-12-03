@@ -35,21 +35,50 @@ router.post('/postTravelTicket/', function (req, res) {
   + req.body.ticketNumber+ ",'" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + req.body.personId + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
   }
   else {
-     sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + req.body.personId + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "');"+"UPDATE Customers SET mileage_reward =mileage_reward+ (SELECT route_distance from Routes where flight_num ="+req.body.flight_num+"), miles_travelled = miles_travelled+(SELECT route_distance from Routes where flight_num ="+req.body.flight_num+") where person_id = "+req.body.personId+";";   
+     sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + req.body.personId + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "');"+"UPDATE Customers SET mileage_reward = mileage_reward + (SELECT route_distance from Routes where flight_num ="+req.body.flight_num+"), miles_travelled = miles_travelled + (SELECT route_distance from Routes where flight_num ="+req.body.flight_num+") where person_id = "+req.body.personId+";";   
 console.log(sqlquery);
   }
   
   dbconnection.query(sqlquery, (err, output, fields) => {
     if (err) {
       console.log("error", err)
+      
       res.status(400).send('Error!');
     } else {
       console.log("seat info received");
+      // if(req.body.value == 'mileage_rewards' ){
+      // var sqlquery1 = "UPDATE Customers SET mileage_reward = (mileage_reward - " + req.body.ticketPrice + ")  where person_id = " + req.body.personId + ";";
+      // dbconnection.query(sqlquery1, (err, output, fields) => {
+      //   if (err) {
+      //     console.log("error", err)
+      //     res.status(400).send('Error!');
+      //   } else {
+      //     console.log("Miles updated");
+      //     res.status(200).send(output);
+      //   }
+      // })
+    // }
       res.status(200).send(output);
     }
   })
 });
 
+router.post('/updateMiles', function (req, res) {
+  console.log('Inside customer updateMiles');
+  console.log("reqbody", req.body);
+ 
+  var sqlquery = "UPDATE Customers SET mileage_reward = (mileage_reward - " + req.body.ticketPrice + ")  where person_id = " + req.body.personId + ";";
+  
+  dbconnection.query(sqlquery, (err, output, fields) => {
+    if (err) {
+      console.log("error", err)
+      res.status(400).send('Error!');
+    } else {
+      console.log("Miles updated");
+      res.status(200).send(output);
+    }
+  })
+});
 router.get('/checkIfSeatIsBooked/', function (req, res) {
 console.log('Inside customer checkIfSeatIsBooked');
   console.log(req.query.travelDate)

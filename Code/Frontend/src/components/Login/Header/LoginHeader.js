@@ -11,7 +11,7 @@ class LoginHeader extends Component {
       <div className="header">
         <div className="headerContainer">
           <div className="left-side-header">
-          <h2 style = {{paddingLeft: "108%", width: "96%", float: "left"}}>Airline Booking Application</h2>
+          <h2 style = {{paddingLeft: "10%", width: "96%", float: "left"}}>FlyUnited</h2>
           <div className="login-header" style = {{marginLeft: "90%", marginTop: "3%"}}>
             <Link to="/">
             </Link>
