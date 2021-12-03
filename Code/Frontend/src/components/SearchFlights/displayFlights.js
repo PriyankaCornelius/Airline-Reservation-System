@@ -379,7 +379,7 @@ class DisplayFlights extends Component {
     if (!cookie.load('cookie')) {
       redirectVar = <Redirect to='/login' />;
     }
-    //const { redirecttohome } = this.state;
+
     const {
       redirecttohome,
       departingResponse,
@@ -396,7 +396,7 @@ class DisplayFlights extends Component {
 
     return (
       <div>
-        {/* {redirectVar} */}
+        {redirectVar}
         <Grid
           item
           xs={12}

@@ -94,7 +94,10 @@ class Profilepage extends Component {
           customer_flyer_num: response.data[0].customer_flyer_num,
           mileage_reward: response.data[0].mileage_reward,
         });
-        localStorage.setItem('mileageRewardBalance', response.data[0].mileage_reward)
+        localStorage.setItem(
+          'mileageRewardBalance',
+          response.data[0].mileage_reward
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -411,6 +414,12 @@ class Profilepage extends Component {
                         required
                       />
                     </Grid>
+                    {firstnameerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {firstnameerrors}{' '}
+                      </span>
+                    )}
                     <Grid item xs={12} sm={4}>
                       <TextField
                         id='middlename'
@@ -452,6 +461,12 @@ class Profilepage extends Component {
                         required
                       />
                     </Grid>
+                    {emailerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {emailerrors}{' '}
+                      </span>
+                    )}
                     <Grid item xs={12}>
                       <Typography>Date of Birth</Typography>
                       <TextField
@@ -467,6 +482,12 @@ class Profilepage extends Component {
                         type={'date'}
                       />
                     </Grid>
+                    {doberrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {doberrors}{' '}
+                      </span>
+                    )}
                     <Grid item xs={12}>
                       <TextField
                         id='address'
@@ -494,6 +515,12 @@ class Profilepage extends Component {
                         required
                       />
                     </Grid>
+                    {countrycodeerrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {countrycodeerrors}{' '}
+                      </span>
+                    )}
                     <Grid item xs={12} sm={9}>
                       <TextField
                         id='contact'
@@ -508,6 +535,12 @@ class Profilepage extends Component {
                         required
                       />
                     </Grid>
+                    {contacterrors && (
+                      <span className='errmsg' style={{ color: 'maroon' }}>
+                        {' '}
+                        {contacterrors}{' '}
+                      </span>
+                    )}
                     <Button
                       type='submit'
                       variant='contained'
