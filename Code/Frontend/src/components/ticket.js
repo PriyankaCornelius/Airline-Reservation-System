@@ -54,13 +54,13 @@ class TravelTicket extends React.Component {
                 {departingflightSelected.firstname} {departingflightSelected.middlename} {departingflightSelected.lastname}
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.passportNumber} 
+                {departingflightSelected.passportNumber} .
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.dob} 
+                {departingflightSelected.dob} .
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.gender} 
+                {departingflightSelected.gender} .
                 </Typography>
                 </Grid>
                 
@@ -81,16 +81,16 @@ class TravelTicket extends React.Component {
                 
                 <Grid item xs={12} md={3} >
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                Seat Number
+                {departingflightSelected.seatID} .
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                Class
+                {departingflightSelected.seatClass} .
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Fare Total
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                Date of booking
+                {departingflightSelected.currentDate} .
                 </Typography>
                 </Grid>
                 </Grid>

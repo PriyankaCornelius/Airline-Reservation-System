@@ -62,44 +62,44 @@ const NavBar = (props) => {
   if (user === "Signed In") {
     RIGHT_PROFILE_TABS = [
       {
-        value: "profile",
-        icon: <PersonIcon width={20} height={20} onClick={handleClick} />,
-        style: {
-          textTransform: "none",
-          padding: 0,
-          margin: 10,
-          minWidth: "30px",
-          color: "black",
-        },
+        // value: "profile",
+        // icon: <PersonIcon width={20} height={20} onClick={handleClick} />,
+        // style: {
+        //   textTransform: "none",
+        //   padding: 0,
+        //   margin: 10,
+        //   minWidth: "30px",
+        //   color: "black",
+        // },
       },
 
       {
-        label: "Employers / Post Job",
-        // href: "/employersPostJobs",
-        value: "employersPostJobs",
-        style: {
-          textTransform: "none",
-          padding: 0,
-          margin: 10,
-          minWidth: "20px",
-          color: "black",
-        },
+        // label: "Employers / Post Job",
+        // // href: "/employersPostJobs",
+        // value: "employersPostJobs",
+        // style: {
+        //   textTransform: "none",
+        //   padding: 0,
+        //   margin: 10,
+        //   minWidth: "20px",
+        //   color: "black",
+        // },
       },
     ];
   } else {
     RIGHT_PROFILE_TABS = [
       {
-        label: "Upload your resume",
-        // href: "/uploadResume",
-        // component: <UploadResume />,
-        value: "uploadResume",
-        style: {
-          textTransform: "none",
-          padding: 0,
-          margin: 10,
-          minWidth: "20px",
-          color: "black",
-        },
+        // label: "Upload your resume",
+        // // href: "/uploadResume",
+        // // component: <UploadResume />,
+        // value: "uploadResume",
+        // style: {
+        //   textTransform: "none",
+        //   padding: 0,
+        //   margin: 10,
+        //   minWidth: "20px",
+        //   color: "black",
+        // },
       },
       {
         label: "Sign in",
@@ -116,17 +116,17 @@ const NavBar = (props) => {
         },
       },
       {
-        label: "Employers / Post Job",
-        // href: "/employersPostJobs",
-        // component: <EmployersJobPost />,
-        value: "employersPostJobs",
-        style: {
-          textTransform: "none",
-          padding: 0,
-          margin: 10,
-          minWidth: "20px",
-          color: "black",
-        },
+        // label: "Employers / Post Job",
+        // // href: "/employersPostJobs",
+        // // component: <EmployersJobPost />,
+        // value: "employersPostJobs",
+        // style: {
+        //   textTransform: "none",
+        //   padding: 0,
+        //   margin: 10,
+        //   minWidth: "20px",
+        //   color: "black",
+        // },
       },
     ];
   }

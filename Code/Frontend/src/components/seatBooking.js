@@ -57,7 +57,8 @@ class SeatBooking extends React.Component {
     this.state = {
       seats: [],
       seatSelected: '',
-      disableBtn:false
+      disableBtn: false,
+      booked: ''
     }
   }
   componentDidMount() {
@@ -78,9 +79,13 @@ class SeatBooking extends React.Component {
      
     
   }
+
+  
   seatClickHandler = seat => {
     console.log("seat sel", seat);
-    
+      this.setState({
+        booked: " "
+      })
     const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
     const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
    
@@ -89,7 +94,28 @@ class SeatBooking extends React.Component {
         returningflightSelected['seatID'] = seat.seat_id;
         returningflightSelected['seatPrice'] = seat.flight_class_price;
         returningflightSelected['seatClass'] = seat.flight_class_name;
+        returningflightSelected['travelDate'] = returningflightSelected.return_date;
         sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
+
+        var data = {
+          params: {
+            seatID: seat.seat_id,
+            travelDate: returningflightSelected.return_date,
+            flight_num: returningflightSelected.flight_num
+          }
+        };
+        console.log("dataaaaaaaaaaaaa%%%%%%%%%%%%%", data);
+        axios.get("http://localhost:3001/checkIfSeatIsBooked/",data)
+        .then(response => {
+          console.log("received seat info : seat is booked or not");
+          console.log("length",response.data);
+          if (response.data.length > 0) { 
+            this.setState({
+              booked: "Booked Already. Please choose another seat"
+            })
+            window.alert("Selected seat is booked Already. Please choose another seat");
+          }
+         })
       }
       else {
         console.log("no return tkt");
@@ -99,9 +125,31 @@ class SeatBooking extends React.Component {
       departingflightSelected['seatID'] = seat.seat_id;
       departingflightSelected['seatPrice'] = seat.flight_class_price;
       departingflightSelected['seatClass'] = seat.flight_class_name;
+      departingflightSelected['travelDate'] = departingflightSelected.departure_date;
       sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected));
-    }
 
+      var data = {
+        params: {
+          seatID: departingflightSelected.seatID,
+          travelDate: departingflightSelected.departure_date,
+          flight_num: departingflightSelected.flight_num
+        }
+      };
+      console.log("dataaaaaaaaaaaaa%%%%%%%%%%%%%", data);
+      axios.get("http://localhost:3001/checkIfSeatIsBooked/",data)
+      .then(response => {
+        console.log("received seat info : seat is booked or not");
+        console.log("length", response.data);
+        if (response.data.length > 0) { 
+          this.setState({
+            booked: "Selected seat is booked Already. Please choose another seat"
+          })
+          window.alert("Selected seat is booked Already. Please choose another seat");
+        }
+      })
+    }
+  
+   
     this.setState({
       seatSelected : (<div>
         <Grid item xs={8} md={10}>
@@ -137,6 +185,7 @@ class SeatBooking extends React.Component {
       
       return <div>
         <h1>Seat Booking </h1>
+        <h5 style={{color: "red"}}>{this.state.booked}</h5>
          {this.state.seatSelected}
          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 10, sm: 0}}>
           {this.state.seats.map((seat, index) => {

@@ -13,6 +13,7 @@ import Flights from './flightsList';
 
 import Reservations from './Reservations/Reservations';
 
+
 import AddFlight from './Employee/AddFlight'
 import CancelFlight from './Employee/CancelFlight';
 import UpdateFlightPrice from './Employee/UpdatePrice';
@@ -44,6 +45,7 @@ class Main extends Component {
           <Route path='/employee-updateFlightPrice' component={UpdateFlightPrice} exact />          
 
           <Route path='/ticket' component={TravelTicket} />
+
         </Switch>
       </div>
     );

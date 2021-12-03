@@ -11,6 +11,9 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { Redirect } from 'react-router';
+import axios from 'axios';
+
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
   // const [error, setError] = React.useState(false);
@@ -23,7 +26,7 @@ export default function ErrorRadios() {
   const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
   // const [reducedMileageRewards, setReducedMileageRewards] = React.useState((totalFare>mileageRewards)? (mileageRewards - totalFare) : 0);
   const [tripMileageRewards, settripMileageRewards] = React.useState(100);
-
+  const [showTicket, setShowTicket] = React.useState();
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -31,6 +34,46 @@ export default function ErrorRadios() {
     // setError(false);
   };
 
+  const postTravelTicket = (flightSelected) => {
+    // const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+    // const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+    axios
+      .post(`http://localhost:3001/postTravelTicket/`, flightSelected)
+      .then((response) => {
+        console.log('response', response.data);
+      })
+    .catch((err) => console.log("tkt creation error",err));
+};
+
+  const showTicketHandler = e => {
+    const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+    const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+
+    var dateFromString = new Date();
+    let datevalue = dateFromString.getDate(); 
+    let month = dateFromString.getMonth();
+    let year = dateFromString.getFullYear(); 
+    let format = year + "-" + month + "-" + datevalue;
+
+    departingflightSelected['currentDate'] = format;
+    departingflightSelected['totalFare'] = totalFare;
+    sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected))
+
+    postTravelTicket(departingflightSelected);
+
+    if (returningflightSelected) {
+      returningflightSelected['currentDate'] = format;
+      returningflightSelected['totalFare'] = totalFare;
+      sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
+      postTravelTicket(returningflightSelected);
+    }
+    setShowTicket ( <div>
+         <Redirect to={{
+            pathname: "ticket"
+        }}>
+        </Redirect>
+      </div>)
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -83,7 +126,7 @@ export default function ErrorRadios() {
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="I agree to the terms and conditions"
-            onChange={console.log(" booooook card")}
+            onChange={showTicketHandler}
           />
         </Grid>
       </Grid>
@@ -132,7 +175,7 @@ export default function ErrorRadios() {
             required
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="I agree to the terms and conditions"
-            onChange={console.log(" booooook")}
+            onChange={showTicketHandler}
           />
         </Grid>
       </Grid>
@@ -145,6 +188,8 @@ export default function ErrorRadios() {
   };
   
   return (
+  <div>
+    {showTicket}
       <form onSubmit={handleSubmit}>
       <h4 style={{ color: "red" }}> {insufficientBalance} </h4>
       <FormControl
@@ -210,6 +255,7 @@ export default function ErrorRadios() {
         </Button>
       </FormControl>
     </form>
+    </div>
   );
 }
 
