@@ -5,7 +5,8 @@
 
 # Team Name and Team Members
 
-## Team Name: 
+## Team Name:
+
 Team-project-spartans-1
 
 <br/>
@@ -133,6 +134,11 @@ Deployment: Bharat <br/>
 <br/>
 
 # UI Wireframes
+
+<br/>
+<br/>
+
+# ScrumBoard
 
 <br/>
 <br/>

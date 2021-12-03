@@ -5,6 +5,7 @@ import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
 import Button from 'react-bootstrap/Button';
 import NavBar from '../navigation';
+import Grid from '@mui/material/Grid';
 import 'react-datepicker/dist/react-datepicker.css';
 // import DefaultAvatar from '../../../public/Profile_photos/default_avatar.png'; // import DefaultAvatar from '../  Profile_photos/default_avatar.png';
 
@@ -106,7 +107,7 @@ class DisplayFlights extends Component {
         '<td>' +
         "<button id = 'btnBook" +
         JSON.stringify(departingdata) +
-        "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
+        "' style = 'background: rgb(28, 63, 96);color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
         '</td>';
       htmlvar += '</tr>';
       //   htmlvar +=
@@ -114,11 +115,9 @@ class DisplayFlights extends Component {
     }
     document.getElementById('departingTable').innerHTML = htmlvar;
 
-    // document
-    //   .getElementById(
-    //     'btnBook{"flight_num":111,"departure_time":"12:45:56 PM","arrival_time":"6:45:56 PM","origin":"LAX","destination":"JFK","duration":"6h 0m ","number_of_stops":"Non stop","economy":"$1484.94","economy_plus":"$1785.19","first_class":"$2234.69","business":"$2734.44"}'
-    //   )
-    //   .focus();
+    // document.getElementById('btnBook111').focus(function () {
+    //   document.getElementById('btnBook111').styel.background = 'pink';
+    // });
 
     for (let i = 0; i < departingresponseData.length; i++) {
       const economy = '$' + departingresponseData[i].Economy.toFixed(2);
@@ -149,6 +148,9 @@ class DisplayFlights extends Component {
         business: business,
         departure_date: location.state.departureDate,
       };
+      document.getElementById(
+        'btnBook' + JSON.stringify(departingdata)
+      ).onfocus = this.onbtnfocus;
       document.getElementById(
         'btnBook' + JSON.stringify(departingdata)
       ).onclick = this.redirect;
@@ -228,7 +230,7 @@ class DisplayFlights extends Component {
           '<td>' +
           "<button id = 'returnbtnBook" +
           JSON.stringify(returningData) +
-          "' style = 'background: #001c68;color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
+          "' style = 'background: rgb(28, 63, 96);color:white;width:55px;height:36px;border-radius:5px;border:0px;font-weight:bold; '> Book </button>" +
           '</td>';
         htmlvar1 += '</tr>';
         //   htmlvar +=
@@ -268,6 +270,9 @@ class DisplayFlights extends Component {
         };
         document.getElementById(
           'returnbtnBook' + JSON.stringify(returningData)
+        ).onfocus = this.onbtnfocus;
+        document.getElementById(
+          'returnbtnBook' + JSON.stringify(returningData)
         ).onclick = this.redirect;
       }
     }
@@ -282,9 +287,13 @@ class DisplayFlights extends Component {
     });
     this.getairports();
   }
+
+  onbtnfocus = (e) => {
+    document.getElementById(e.target.id).style.background = 'gray';
+  };
   redirect = (e) => {
     const { roundtrip, count } = this.state;
-    alert(e.target.id.substring(13, e.target.id.length));
+    // alert(e.target.id.substring(13, e.target.id.length));
     if (roundtrip) {
       if (count == 2) {
         sessionStorage.setItem(
@@ -388,73 +397,103 @@ class DisplayFlights extends Component {
     return (
       <div>
         {/* {redirectVar} */}
-        <NavBar />
-        <div className='profilepage-block'>
-          <section>
-            <section className='center-block'>
-              <div className='basic_div'>
-                <div className='flight-container'>
-                  <h2>
-                    {' '}
-                    Depart: {origin} To {destination}
-                  </h2>
-                  <p>
-                    {originairport} to {destinationairport}
+        <Grid
+          item
+          xs={12}
+          // sm={4}
+          // md={7}
+          sx={{
+            backgroundImage:
+              'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100vh',
+          }}
+        >
+          <NavBar />
+          <div className='profilepage-block'>
+            <section>
+              <section className='center-block'>
+                <div
+                  className='basic_div'
+                  style={{
+                    background: 'white',
+                    'border-radius': '15px',
+                    // height: '800px',
+                    width: '122%',
+                  }}
+                >
+                  <div
+                    className='flight-container'
+                    style={{
+                      'margin-left': '6%',
+                      'margin-top': '46px',
+                      'margin-bottom': '46px',
+                    }}
+                  >
+                    <h2>
+                      {' '}
+                      Depart: {origin} To {destination}
+                    </h2>
+                    <p>
+                      {originairport} to {destinationairport}
+                      <br />
+                      {departureDate}
+                    </p>
+                    <table id='departingTable'>
+                      <tr>
+                        <th>Flight Number</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th> Number of Stops </th>
+                        <th> Duration </th>
+                        <th> Economy </th>
+                        <th>
+                          {' '}
+                          Economy <br />
+                          Plus
+                        </th>
+                        <th>
+                          {' '}
+                          First <br />
+                          Class{' '}
+                        </th>
+                        <th> Business </th>
+                        <th style={{ borderTop: 'none' }}></th>
+                      </tr>
+                    </table>
                     <br />
-                    {departureDate}
-                  </p>
-                  <table id='departingTable'>
-                    <tr>
-                      <th>Flight Number</th>
-                      <th>Departure Time</th>
-                      <th>Arrival Time</th>
-                      <th> Number of Stops </th>
-                      <th> Duration </th>
-                      <th> Economy </th>
-                      <th>
-                        {' '}
-                        Economy <br />
-                        Plus
-                      </th>
-                      <th>
-                        {' '}
-                        First <br />
-                        Class{' '}
-                      </th>
-                      <th> Business </th>
-                      <th style={{ borderTop: 'none' }}></th>
-                    </tr>
-                  </table>
-                  <br />
-                  <br />
+                    <br />
 
-                  {roundtrip ? (
-                    <>
-                      <h2>
-                        {' '}
-                        Return: {destination} To {origin}
-                      </h2>
-                      <p>
-                        {destinationairport} to {originairport}
-                        <br />
-                        {returnDate}
-                      </p>
-                    </>
-                  ) : (
-                    <div>{/* <table id='returningTable'> </table> */}</div>
-                  )}
-                  <table id='returningTable'></table>
+                    {roundtrip ? (
+                      <>
+                        <h2>
+                          {' '}
+                          Return: {destination} To {origin}
+                        </h2>
+                        <p>
+                          {destinationairport} to {originairport}
+                          <br />
+                          {returnDate}
+                        </p>
+                      </>
+                    ) : (
+                      <div>{/* <table id='returningTable'> </table> */}</div>
+                    )}
+                    <table id='returningTable'></table>
+                  </div>
                 </div>
-              </div>
+              </section>
+              <section className='right-block'>
+                <div className='savebtn' data-testid='Saveupdates'>
+                  <br />
+                </div>
+              </section>
             </section>
-            <section className='right-block'>
-              <div className='savebtn' data-testid='Saveupdates'>
-                <br />
-              </div>
-            </section>
-          </section>
-        </div>
-        {redirecttopage}
+          </div>
+          {redirecttopage}
+        </Grid>
       </div>
     );
   }
