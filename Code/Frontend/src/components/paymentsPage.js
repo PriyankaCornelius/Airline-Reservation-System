@@ -16,11 +16,14 @@ import axios from 'axios';
 
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
+  const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+   const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
   // const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState();
-  const [seatPrice, setSeatPrice] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
-  const [flightFare, setFlightFare] = React.useState(JSON.parse(localStorage.getItem('travelTicket')).seatPrice);
-  const [totalFare, setTotalFare] = React.useState(seatPrice+flightFare);
+  const [seatPrice, setSeatPrice] = React.useState(departingflightSelected.seatPrice);
+  const [flightFare, setFlightFare] = React.useState(departingflightSelected.business);
+  console.log()
+  const [totalFare, setTotalFare] = React.useState(parseInt(seatPrice) + parseInt(flightFare.slice(1)));
   const [mileageRewardsEarned, setMileageRewardsEarned] = React.useState('MileagePlus Earnings for this trip : 12$');
   const [insufficientBalance, setInsufficientBalance] = React.useState('');
   const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
@@ -37,6 +40,10 @@ export default function ErrorRadios() {
   const postTravelTicket = (flightSelected) => {
     // const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
     // const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
+    var tktNum = JSON.parse(sessionStorage.getItem("ticketNumber"));
+    if (tktNum) {
+      flightSelected['ticketNumber']=tktNum
+    }
     axios
       .post(`http://localhost:3001/postTravelTicket/`, flightSelected)
       .then((response) => {
@@ -57,6 +64,7 @@ export default function ErrorRadios() {
 
     departingflightSelected['currentDate'] = format;
     departingflightSelected['totalFare'] = totalFare;
+    
     sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected))
 
     postTravelTicket(departingflightSelected);
@@ -226,7 +234,7 @@ export default function ErrorRadios() {
              Fare
            </Typography>
            <Typography component="h5" variant="h5">
-             {JSON.parse(localStorage.getItem('travelTicket')).seatClass} Seat
+             {departingflightSelected.seatClass} Seat
            </Typography>
            <Typography component="h5" variant="h5">
              Total Due
