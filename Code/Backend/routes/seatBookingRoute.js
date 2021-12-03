@@ -25,13 +25,20 @@ router.get('/getSeatInfo/', function (req, res) {
     );
 });
 
+
 router.post('/postTravelTicket/', function (req, res) {
   console.log('Inside customer postTravelTicket');
-  console.log("reqbody",req.body);
+  console.log("reqbody", req.body);
+  var sqlquery;
+  if (req.body.ticketNumber) {
+     sqlquery = "REPLACE INTO Tickets(ticket_number, source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values(" 
+  + req.body.ticketNumber+ ",'" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + 1 + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
+  }
+  else {
+     sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" 
+   + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + 1 + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
 
-  const sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" 
-  + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + 1 + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
-
+  }
   
   dbconnection.query(sqlquery, (err, output, fields) => {
     if (err) {

@@ -1,15 +1,5 @@
 import React from "react";
-// import { Tabs, Tab, Divider, Grid } from "@material-ui/core";
-// import SignIn from "./signIn";
-import PersonIcon from "@mui/icons-material/Person";
-import MessageIcon from "@mui/icons-material/Message";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import cookie from 'react-cookies';
-// import EmployersJobPost from "../Employer/employersJobPost";
-// import indeedLogo from "../../Images/IndeedIcon.png";
-// import { Link } from "react-router-dom";
-// import UploadResume from "./uploadResume";
-//  import ProfileIconData from "./profileIconData";
 import { Grid, Divider, Tabs, Tab, Link } from '@mui/material';
 import { Navbar } from 'react-bootstrap';
 

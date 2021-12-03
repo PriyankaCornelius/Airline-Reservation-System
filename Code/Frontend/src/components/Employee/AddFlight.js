@@ -12,6 +12,7 @@ import { useState } from 'react';
 import TimePicker from 'react-time-picker';
 import Grid from '@mui/material/Grid';
 import Navheader from '../navigation';
+import EmployeeNavBar from '../employeeNavigation';
 
 
 class AddFlight extends Component {
@@ -283,7 +284,8 @@ class AddFlight extends Component {
       redirectVar = <Redirect to='/' />;
     }   
     return (
-     <div>
+      <div>
+        
          <Grid
               item
               xs={12}
@@ -297,7 +299,7 @@ class AddFlight extends Component {
                 height: '100%',
               }}
           >
-         <Navheader></Navheader>
+         <EmployeeNavBar></EmployeeNavBar>
 
          <div id = 'divBorder' style = {{background: "white", marginLeft: "29%"}}>
            <label style = {{fontSize:"32px", marginBottom:"3%", marginLeft:"1%"}}>Add Flight</label>
