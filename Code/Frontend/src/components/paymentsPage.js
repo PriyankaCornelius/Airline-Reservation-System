@@ -44,6 +44,8 @@ export default function ErrorRadios() {
     if (tktNum) {
       flightSelected['ticketNumber']=tktNum
     }
+    var personId=JSON.parse(sessionStorage.getItem("personid"));
+    flightSelected['personId']=personId;
     axios
       .post(`http://localhost:3001/postTravelTicket/`, flightSelected)
       .then((response) => {

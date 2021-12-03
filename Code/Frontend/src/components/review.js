@@ -39,6 +39,10 @@ class Review extends React.Component {
                 <CardContent sx={{ flex: 3 }}>
                   <Grid container spacing={3}>
                     <Grid item xs={12} md={5}>
+                    <Typography component='h4' variant='h4'>
+                        Flight Number: {departingflightSelected.flight_num}
+                        
+                      </Typography>
                       <Typography component='h4' variant='h4'>
                         Date: {departingflightSelected.departure_date}
                       </Typography>
@@ -58,14 +62,22 @@ class Review extends React.Component {
                       </Typography>
                     </Grid>
                     <Grid item xs={12} md={5}>
+                    <Typography component='h4' variant='h4'>
+                       <br/>
+                      </Typography>
                       <Typography component='h4' variant='h4'>
                         Date: {departingflightSelected.departure_date}
+                        
                       </Typography>
                       <Typography component='h2' variant='h2'>
                         {departingflightSelected.arrival_time}
                       </Typography>
                       <Typography component='h4' variant='h4'>
                         {departingflightSelected.destination}
+                      </Typography>
+                      <Typography component='h4' variant='h4'>
+                        Seat: {departingflightSelected.seatNum}
+                        
                       </Typography>
                     </Grid>
                   </Grid>
@@ -86,8 +98,12 @@ class Review extends React.Component {
                   <CardContent sx={{ flex: 3 }}>
                     <Grid container spacing={3}>
                       <Grid item xs={12} md={5}>
+                      <Typography component='h4' variant='h4'>
+                        Flight Number: {returningflightSelected.flight_num}
+                        
+                      </Typography>
                         <Typography component='h4' variant='h4'>
-                          Date: {returningflightSelected.departure_date}
+                          Date: {returningflightSelected.return_date}
                         </Typography>
                         <Typography component='h2' variant='h2'>
                           {returningflightSelected.departure_time}
@@ -105,8 +121,11 @@ class Review extends React.Component {
                         </Typography>
                       </Grid>
                       <Grid item xs={12} md={5}>
+                      <Typography component='h4' variant='h4'>
+                       <br/>
+                      </Typography>
                         <Typography component='h4' variant='h4'>
-                          Date: {returningflightSelected.departure_date}
+                          Date: {returningflightSelected.return_date}
                         </Typography>
                         <Typography component='h2' variant='h2'>
                           {returningflightSelected.arrival_time}
@@ -114,6 +133,10 @@ class Review extends React.Component {
                         <Typography component='h4' variant='h4'>
                           {returningflightSelected.destination}
                         </Typography>
+                        <Typography component='h4' variant='h4'>
+                        Seat: {returningflightSelected.seatNum}
+                        
+                      </Typography>
                       </Grid>
                     </Grid>
                   </CardContent>

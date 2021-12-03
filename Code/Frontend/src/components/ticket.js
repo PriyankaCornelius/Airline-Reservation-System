@@ -11,9 +11,14 @@ import { Grid, TextField, Checkbox, Typography, Box } from '@mui/material';
 
 class TravelTicket extends React.Component {
     render() { 
+        const userDetails=JSON.parse(sessionStorage.getItem('userDetails'));
+        console.log('user details');
+        console.log(userDetails);
     const departingflightSelected = JSON.parse(sessionStorage.getItem('departingflightSelected'));
+    console.log(departingflightSelected);
     const returningflightSelected = JSON.parse(sessionStorage.getItem('returningFlightSelected'));
-    
+    const returnPrice=returningflightSelected===null||returningflightSelected===undefined?0:returningflightSelected.totalFare;
+
     // departingflightSelected['firstname'] = this.state.firstname;
     // departingflightSelected['middlename'] = this.state.middlename;
     // departingflightSelected['lastname'] = this.state.lastname;
@@ -43,54 +48,46 @@ class TravelTicket extends React.Component {
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Date of birth
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
+                {/* <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
                 Gender
-                </Typography>
+                </Typography> */}
                 </Grid>
                 
                 
                 <Grid item xs={12} md={3}>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.firstname} {departingflightSelected.middlename} {departingflightSelected.lastname}
+                {userDetails.firstName} {userDetails.middleName} {userDetails.lastName}
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.passportNumber} .
+                {userDetails.passportNumber} 
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.dob} .
+                {userDetails.dob} 
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.gender} .
-                </Typography>
+              
                 </Grid>
                 
                 <Grid item xs={12} md={3} >
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
+                {/* <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
                 Seat Number
-                </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                Class
-                </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
+                </Typography> */}
+              
+                <Typography component="h5" variant="h5" sx={{ marginBlock:4,color:"gray" }}>
                 Fare Total
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
+                <Typography component="h5" variant="h5" sx={{ marginBlock:4,color:"gray" }}>
                 Date of booking
                 </Typography>
                 </Grid>
                 
                 <Grid item xs={12} md={3} >
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                {departingflightSelected.seatID} .
+                
+                
+                <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
+                {departingflightSelected.totalFare+returnPrice} 
                 </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                {departingflightSelected.seatClass} .
-                </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                Fare Total
-                </Typography>
-                <Typography component="h5" variant="h5" sx={{ marginBlock:4, color:"gray" }}>
-                {departingflightSelected.currentDate} .
+                <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
+                {departingflightSelected.currentDate} 
                 </Typography>
                 </Grid>
                 </Grid>

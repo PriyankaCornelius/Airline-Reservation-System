@@ -32,12 +32,11 @@ router.post('/postTravelTicket/', function (req, res) {
   var sqlquery;
   if (req.body.ticketNumber) {
      sqlquery = "REPLACE INTO Tickets(ticket_number, source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values(" 
-  + req.body.ticketNumber+ ",'" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + 1 + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
+  + req.body.ticketNumber+ ",'" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + req.body.personId + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
   }
   else {
-     sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" 
-   + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + 1 + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "')";   
-
+     sqlquery = "Insert into Tickets( source_airport_code, destination_airport_code, date_of_booking, date_of_travel, flight_num, person_id, seat_id, price, created_date) values('" + req.body.origin + "','" + req.body.destination + "','" + req.body.currentDate + "','" + req.body.travelDate + "'," + req.body.flight_num + "," + req.body.personId + "," + req.body.seatID + "," + req.body.totalFare + ",'" + req.body.currentDate + "');"+"UPDATE Customers SET mileage_reward =mileage_reward+ (SELECT route_distance from Routes where flight_num ="+req.body.flight_num+"), miles_travelled = miles_travelled+(SELECT route_distance from Routes where flight_num ="+req.body.flight_num+") where person_id = "+req.body.personId+";";   
+console.log(sqlquery);
   }
   
   dbconnection.query(sqlquery, (err, output, fields) => {

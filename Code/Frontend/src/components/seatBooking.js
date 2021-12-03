@@ -95,6 +95,7 @@ class SeatBooking extends React.Component {
         returningflightSelected['seatPrice'] = seat.flight_class_price;
         returningflightSelected['seatClass'] = seat.flight_class_name;
         returningflightSelected['travelDate'] = returningflightSelected.return_date;
+        returningflightSelected['seatNum'] = seat.seat_num+seat.seat_pos;
         sessionStorage.setItem('returningFlightSelected', JSON.stringify(returningflightSelected))
 
         var data = {
@@ -126,6 +127,7 @@ class SeatBooking extends React.Component {
       departingflightSelected['seatPrice'] = seat.flight_class_price;
       departingflightSelected['seatClass'] = seat.flight_class_name;
       departingflightSelected['travelDate'] = departingflightSelected.departure_date;
+      departingflightSelected['seatNum'] = seat.seat_num+seat.seat_pos;
       sessionStorage.setItem('departingflightSelected', JSON.stringify(departingflightSelected));
 
       var data = {

@@ -81,13 +81,14 @@ class Profilepage extends Component {
       .then((response) => {
         console.log('response.data');
         console.log(response.data);
+        console.log(response.data[0].address);
         this.setState({
           firstname: response.data[0].f_name,
           middlename: response.data[0].m_name,
           lastname: response.data[0].l_name,
           email: response.data[0].email,
           profilePicture: response.data[0].profilePicture,
-          address: response.data[0].address,
+          address: response.data[0].address===null?'':response.data[0].address,
           contact: response.data[0].contact,
           contact_country_code: response.data[0].contact_country_code,
           dob: response.data[0].dob,
@@ -283,22 +284,23 @@ class Profilepage extends Component {
           // console.log('Status Code : ', response.status);
           if (response.status === 200) {
             // console.log(response.data);
-            sessionStorage.setItem('personid', response.data[0].person_id);
-            sessionStorage.setItem('username', response.data[0].f_name);
-            sessionStorage.setItem('useremail', response.data[0].email);
-            sessionStorage.setItem(
-              'profilepic',
-              response.data[0].profilePicture
-            );
-            sessionStorage.setItem(
-              'customer_flyernum',
-              response.data[0].customer_flyer_num
-            );
-            sessionStorage.setItem(
-              'mileage_reward',
-              response.data[0].mileage_reward
-            );
-            this.getusercurrentdetails(personid);
+    //        sessionStorage.setItem('personid', response.data[0].person_id);
+            sessionStorage.setItem('username', data.firstname);
+            sessionStorage.setItem('useremail', data.email);
+            alert("Details updated Successfully")
+            // sessionStorage.setItem(
+            //   'profilepic',
+            //   response.data[0].profilePicture
+            // );
+            // sessionStorage.setItem(
+            //   'customer_flyernum',
+            //   response.data[0].customer_flyer_num
+            // );
+            // sessionStorage.setItem(
+            //   'mileage_reward',
+            //   response.data[0].mileage_reward
+            // );
+            this.getusercurrentdetails(data.personid);
             this.setState({
               updatedpic: false,
             });
@@ -311,11 +313,11 @@ class Profilepage extends Component {
           }
         })
         .catch((err) => {
-          console.log(err.response);
-          alert(err.response.data);
-          this.setState({
-            errorMessage: err.response.data,
-          });
+          console.log(err);
+          alert(err);
+          // this.setState({
+          //   errorMessage: err.response.data,
+          // });
           const { errorMessage } = this.state;
           console.log(errorMessage);
         });
@@ -392,7 +394,8 @@ class Profilepage extends Component {
               </label> */}
 
               <CardContent sx={{ flex: 1 }}>
-                <h3>Mileage Rewards Balance {this.state.mileage_reward}</h3>
+              <h3>Flyer Number: {this.state.customer_flyer_num}</h3>
+                <h3>Mileage Rewards Balance: {this.state.mileage_reward}</h3>
                 <Form
                   ref={this.profileform}
                   id='profileform'

@@ -26,10 +26,16 @@ class TravellerInfo extends React.Component {
   componentDidMount() {
     // sessionStorage.setItem('personid', 1);
     const personid1 = sessionStorage.getItem('personid');
+    let userDetails=JSON.parse(sessionStorage.getItem('userDetails'));
     this.setState({
       personid: personid1,
+      passportNumber:userDetails.passport_num
     });
-    this.getTravellerInfo(1);
+    
+    
+    
+    
+    this.getTravellerInfo(personid1);
   }
   getTravellerInfo = (personid) => {
     axios
@@ -46,7 +52,7 @@ class TravellerInfo extends React.Component {
           middlename: response.data[0].m_name,
           lastname: response.data[0].l_name,
           dob: response.data[0].dob,
-          papassportNumber: response.data[0].passport_num,
+          passportNumber: response.data[0].passport_num,
           mileage_reward: response.data[0].mileage_reward,
         });
         localStorage.setItem('mileageRewardBalance', this.state.mileage_reward);
@@ -77,11 +83,18 @@ class TravellerInfo extends React.Component {
     this.setState({
       passportNumber: e.target.value,
     });
+
+    let userDetails=JSON.parse(sessionStorage.getItem('userDetails'));
+    userDetails.passportNumber=e.target.value;
+    sessionStorage.setItem("userDetails",JSON.stringify(userDetails));
   };
   genderChangeHandler = (e) => {
     this.setState({
       gender: e.target.value,
     });
+    let userDetails=JSON.parse(sessionStorage.getItem('userDetails'));
+    userDetails.gender=e.target.value;
+    sessionStorage.setItem("userDetails",JSON.stringify(userDetails));
   };
   isformvalid = () => {
     let formisvalid = true;
@@ -109,6 +122,7 @@ class TravellerInfo extends React.Component {
   handleSubmit = (e) => {
     if (this.isformvalid()) {
       e.preventDefault();
+      console.log('inside form valid');
 
       const departingflightSelected = JSON.parse(
         sessionStorage.getItem('departingflightSelected')
@@ -143,6 +157,8 @@ class TravellerInfo extends React.Component {
         console.log('no return tkt');
       }
     }
+   
+
   };
   render() {
     const { passporterrrors } = this.state;
