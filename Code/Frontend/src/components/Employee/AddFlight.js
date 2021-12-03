@@ -3,7 +3,7 @@ import axios from 'axios';
 import { url } from '../Constants';
 import { Redirect } from 'react-router';
 import cookie from 'react-cookies';
-import Navheader from '../navbar/navbar';
+//import Navheader from '../navbar/navbar';
 import '../navbar/navbar.css';
 import './AddFlight.css';
 import DatePicker from 'react-datepicker';
@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
 import TimePicker from 'react-time-picker';
 import Grid from '@mui/material/Grid';
+import Navheader from '../navigation';
 
 
 class AddFlight extends Component {
@@ -293,7 +294,7 @@ class AddFlight extends Component {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                height: '100vh',
+                height: '100%',
               }}
           >
          <Navheader></Navheader>

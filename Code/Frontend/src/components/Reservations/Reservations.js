@@ -4,6 +4,7 @@ import axios from 'axios';
 import { url } from '../Constants';
 import NavBar from '../navigation';
 import moment from 'moment';
+import Grid from '@mui/material/Grid';
 class Reservations extends Component {
     constructor(props) {
       super(props);
@@ -145,11 +146,29 @@ axios
 return(
     
     <div className="reservation">
+       <Grid
+              item
+              xs={12}
+             
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+              }}
+          >
         <NavBar/>
     <div className="reservations">
-      <h2>Reservations</h2>
-      <div className="flex-container">{reservations}</div>
+      <div className="flex-container" style = {{background :"white", "margin-left": "27%", width: "50%", "border-radius": "15px"}}>
+        <div style = {{marginLeft: "2%", marginBottom: "15px"}}>
+          <h2>Reservations</h2>        
+          {reservations}
+        </div>
+      </div>
     </div>
+    </Grid>
     </div>
 );
     }

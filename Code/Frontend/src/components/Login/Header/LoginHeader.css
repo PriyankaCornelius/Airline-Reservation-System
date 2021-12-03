@@ -1,9 +1,10 @@
 .header {
-    background-color: #336ee5;
+    background-color: #1c3f60;
     margin: 0px auto;
     width: auto;
     /* border-bottom: 1px solid #48be9d; */
     box-shadow: 0 0 3px rgb(0 0 0 / 50%);
+    color:#afc1d0;
   }
   
   .login-header {
@@ -30,7 +31,7 @@
   .left-side-header{
     /* border-right: 1px solid black; */
     /*box-shadow: 0 0 3px rgb(0 0 0 / 50%);*/
-    height:100%;
+    height:100%;   
     /*box-shadow: 0 0 18px -2px black;*/
   }
   

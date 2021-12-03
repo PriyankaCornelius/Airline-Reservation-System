@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoginHeader from '../Login/Header/LoginHeader';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import './Login.css';
+import Grid from '@mui/material/Grid';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -155,9 +156,23 @@ class Login extends Component {
     }
     return (
       <div className='main-container'>
+         <Grid
+              item
+              xs={12}
+             
+              sx={{
+                backgroundImage:
+                  'url(https://as1.ftcdn.net/v2/jpg/02/43/57/78/1000_F_243577802_0G1xRWDLeKlAyMnJ1KlJN4GuhZPe2QFt.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh',
+              }}
+          >
         <LoginHeader />
-        <form onSubmit={this.checkAuthentication}>
-          <div className='login-container'>
+        <div style = {{background: "white", height: "250px", width:"30%", marginLeft: "34%", borderRadius: "15px"}}>
+        <form onSubmit={this.checkAuthentication} >
+          <div className='login-container' >
             <div className='login-content'>
               <div className='login-email-label'>Email address</div>
               <input
@@ -183,6 +198,7 @@ class Login extends Component {
             </div>
           </div>
         </form>
+        </div>
         {/* <GoogleLogin
               clientId="857063878187-8os7dud08rq5prsjvss674o1pnuafcse.apps.googleusercontent.com"
               buttonText="Sign In with Google"
@@ -191,6 +207,7 @@ class Login extends Component {
               isSignedIn={true}
              cookiePolicy={"single_host_origin"}
             /> */}
+            </Grid>
       </div>
     );
   }
