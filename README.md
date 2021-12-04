@@ -13,10 +13,10 @@ Team-project-spartans-1
 
 ## Team Members:
 
-<li> Bharat 
-<li> Varun 
+<li> Bharath Jagini ( SJSU ID: 015260232)
+<li> Varun Ejanthkar ( SJSU ID: 015210221)
 <li> Swetha Singi Reddy ( SJSU ID: 015354105)
-<li> Priyanka </li>
+<li> Priyanka Cornelius ( SJSU ID: 015217254)</li>
 <br/>
 
 # Scrum meetings schedule
@@ -94,20 +94,20 @@ Employee Features:
 
 # Tasks
 
-Frontend: Varun, Swetha Singi Reddy, Bharat, Priyanka <br/>
+Frontend: Varun Ejanthkar, Swetha Singi Reddy, Bharath Jagini, Priyanka Cornelius <br/>
 
-Backend: Varun, Swetha Singi Reddy, Bharat, Priyanka
-Architecture: Varun <br/>
+Backend: Varun Ejanthkar, Swetha Singi Reddy, Bharath Jagini, Priyanka Cornelius
+Architecture: Varun Ejanthkar <br/>
 
 Database design: Swetha Singi Reddy <br/>
 
-Rest API list: Bharat <br/>
+Rest API list: Bharath Jagini <br/>
 
-UI Wireframes: Priyanka <br/>
+UI Wireframes: Priyanka Cornelius <br/>
 
-Project documentation and Deployment diagrams: Swetha Singi Reddy <br/>
+Project documentation: Swetha Singi Reddy <br/>
 
-Deployment: Bharat <br/>
+Deployment: Bharath Jagini, Swetha Singi Reddy, Varun Ejanthkar <br/>
 
 <br/>
 <br/>
@@ -165,7 +165,7 @@ https://github.com/gopinathsjsu/team-project-spartans-1/tree/main/Project_Docume
 <br/>
 <br/>
 
-# Steps to test the application
+# Steps to run the application
 
 Root folder
 

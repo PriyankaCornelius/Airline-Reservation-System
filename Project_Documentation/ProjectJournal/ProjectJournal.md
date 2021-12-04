@@ -118,5 +118,13 @@
 #### Swetha
 
 <li> What tasks did I work on / complete? - Created frontend api for displaying flights.  </li>
-<li> What am I planning to work on next? - Documentation for the project </li>
+<li> What am I planning to work on next? - Integration and documentation for the project </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+## Week 9:
+
+#### Swetha
+
+<li> What tasks did I work on / complete? - Integration and documentation for the project  </li>
+<li> What am I planning to work on next? - Nothing </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
