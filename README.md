@@ -145,13 +145,8 @@ https://github.com/gopinathsjsu/team-project-spartans-1/blob/main/Project_Docume
 <br/>
 <br/>
 
-# TaskSheet
-
-<br/>
-<br/>
-
-# BurnDown Charts
-
+# TaskSheet and burndown Chart
+https://github.com/gopinathsjsu/team-project-spartans-1/blob/main/Project_Documentation/Screenshots/202SprintSheet.xlsx
 <br/>
 <br/>
 
@@ -163,7 +158,8 @@ https://github.com/gopinathsjsu/team-project-spartans-1/tree/main/Project_Docume
 <br/>
 
 # EC2 deployment with Load Balancer
-
+   
+https://github.com/gopinathsjsu/team-project-spartans-1/blob/main/Project_Documentation/Screenshots/EC2%20Deployment.pdf
 <br/>
 <br/>
 
