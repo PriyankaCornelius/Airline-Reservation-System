@@ -77,7 +77,8 @@
 #### Bharath
 
 <li> What tasks did I work on / complete? - Developed Backend APIs for Login and Signup with error handling edge cases </li>
-<li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the frotend screens for login, signup and integrate with the backend APIs- No Blockers </li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the frotend screens for login, signup and integrate with the backend APIs </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
 ## Week 5:
 
@@ -90,7 +91,8 @@
 #### Bharath
 
 <li> What tasks did I work on / complete? - Developed Frontend screens for Login, Signup and integrated backend APIs which was developed. </li>
-<li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on HomePage frontend navbar screen,cancelling the reservation and listing the reservation- No Blockers </li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on HomePage frontend navbar screen,cancelling the reservation and listing the reservation</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
 #### Varun
 
@@ -105,12 +107,35 @@
 <li> What am I planning to work on next? - I will be creating the frontend for searching the flights this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Varun
+
+<li> What tasks did I work on / complete? - Created the backend for employee update flight .  </li>
+<li> What am I planning to work on next? - I will be working on frontend of update flight. </li>
+
+#### Bharath
+
+<li> What tasks did I work on / complete? - Reservation Backend APIs for listing reservations and changing flight</li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on cancelling flight backend API and UI screens for reservations list and changing Flights</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 ## Week 7:
 
 #### Swetha
 
 <li> What tasks did I work on / complete? - Created frontend api for searching flights.  </li>
 <li> What am I planning to work on next? - I will be creating the frontend for displaying the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Varun
+
+<li> What tasks did I work on / complete? - Created frontend api for update flights.  </li>
+<li> What am I planning to work on next? - I will be working on backend, frontend apis for add/cancel flights</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Bharath
+
+<li> What tasks did I work on / complete? - Cancelling flight backend API and UI screens for reservations list and changing Flights</li>
+<li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on cancelling flight UI screens and integration of reservation module</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
 ## Week 8:
@@ -121,10 +146,34 @@
 <li> What am I planning to work on next? - Integration and documentation for the project </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Varun
+
+<li> What tasks did I work on / complete? - Worked on backend/frontend  for add/cancel flights.  </li>
+<li> What am I planning to work on next? - Integration, deployment and documentation.</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Bharath
+
+<li> What tasks did I work on / complete? - Created Cancelling flight UI screens and integration of reservation module </li>
+<li> What am I planning to work on next? - Integration and documentation for the project </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 ## Week 9:
 
 #### Swetha
 
 <li> What tasks did I work on / complete? - Integration and documentation for the project  </li>
-<li> What am I planning to work on next? - Nothing </li>
+<li> What am I planning to work on next? - End of sprint </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Varun
+
+<li> What tasks did I work on / complete? - Worked on Integration, deployment and documentation. </li>
+<li> What am I planning to work on next? - End of sprint</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Bharath
+
+<li> What tasks did I work on / complete? - Worked on Integration, deployment and documentation. </li>
+<li> What am I planning to work on next? - End of sprint</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>

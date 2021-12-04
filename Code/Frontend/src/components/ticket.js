@@ -87,7 +87,7 @@ class TravelTicket extends React.Component {
                 {departingflightSelected.totalFare+returnPrice} 
                 </Typography>
                 <Typography component="h5" variant="h5" sx={{ marginBlock:4 }}>
-                {departingflightSelected.currentDate} 
+                2021-12-04 
                 </Typography>
                 </Grid>
                 </Grid>

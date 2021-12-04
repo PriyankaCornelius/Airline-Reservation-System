@@ -62,6 +62,12 @@
 <li> Each review/suggestion from a team member is taken seriously and effectively.</li>
 <li> We are taking small measurable steps to complete the project in the given time.</li>
 
+#### Bharath - Communication, Feedback, Respect, Simplicity
+
+<li> Each team member took up tasks and estimates required to finish the application and user stories were updated accordingly. </li>
+<li> As a team we listen carefully to each other and provide feedback was given to the team members on the final DB design, architecture deiagn, UI wireframes </li>
+<li> Each member is treated with respect and we are taking small measurable steps to complete the project in the given time.</li>
+
 #### Varun - Communication, Feedback
 
 <li> Each team member took up tasks and estimates required to finish the application and user stories were updated accordingly. </li>
@@ -82,6 +88,12 @@
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
 
+#### Bharath - Communication, Feedback, Respect, Simplicity
+
+<li> Discussed backend APIs and clarified some doubts with the team. </li>
+<li> Feedback recieved and provided </li>
+<li> The project progressed with the individual tasks performed  </li>
+
 ## Week 5:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity
@@ -96,6 +108,13 @@
 <li> Feedback recieved and provided.</li>
 <li> The project progressed with the individual tasks performed.</li>
 
+
+#### Bharath - Communication, Feedback, Respect, Simplicity
+
+<li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
+<li> Feedback recieved and provided.</li>
+<li> The project is progressing with no roadblocks</li>
+
 ## Week 6:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity, Courage
@@ -104,12 +123,25 @@
 <li> Each team member showcased the tasks done and discussed about the next stesp along with in corporating the feedback from other team members.  </li>
 <li> the comunication is clear with meetings and weekly standups  </li>
 
+
+#### Bharath - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
 ## Week 7:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity, Courage
 
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members. Integration discussions done.   </li>
 <li> As a team we discussed next steps and integration plan to move towards completeion of the project. </li>
+
+#### Bharath - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
  
 ## Week 8:
 
@@ -118,3 +150,9 @@
 <li> Each team member showcased all teh values to bring the project to completion with the requirements provided  </li>
 <li> Every team member was involved in testing and fixing the bugs through discussions, feedback and support </li>
 <li> Team Members are aware of the features impelented in the project </li>
+
+#### Bharath - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
