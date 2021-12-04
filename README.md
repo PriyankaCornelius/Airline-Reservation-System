@@ -140,6 +140,8 @@ Deployment: Bharath Jagini, Swetha Singi Reddy, Varun Ejanthkar <br/>
 
 # ScrumBoard
 
+https://github.com/gopinathsjsu/team-project-spartans-1/blob/main/Project_Documentation/Screenshots/Scrum%20Board.pdf
+
 <br/>
 <br/>
 
