@@ -105,12 +105,23 @@
 <li> What am I planning to work on next? - I will be creating the frontend for searching the flights this week. </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Varun
+
+<li> What tasks did I work on / complete? - Created the backend for employee update flight .  </li>
+<li> What am I planning to work on next? - I will be working on frontend of update flight. </li>
+
 ## Week 7:
 
 #### Swetha
 
 <li> What tasks did I work on / complete? - Created frontend api for searching flights.  </li>
 <li> What am I planning to work on next? - I will be creating the frontend for displaying the flights this week. </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Varun
+
+<li> What tasks did I work on / complete? - Created frontend api for update flights.  </li>
+<li> What am I planning to work on next? - I will be working on backend, frontend apis for add/cancel flights</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
 ## Week 8:
@@ -121,10 +132,23 @@
 <li> What am I planning to work on next? - Integration and documentation for the project </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Varun
+
+<li> What tasks did I work on / complete? - Worked on backend/frontend  for add/cancel flights.  </li>
+<li> What am I planning to work on next? - Integration, deployment and documentation.</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+
 ## Week 9:
 
 #### Swetha
 
 <li> What tasks did I work on / complete? - Integration and documentation for the project  </li>
-<li> What am I planning to work on next? - Nothing </li>
+<li> What am I planning to work on next? - End of sprint </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Varun
+
+<li> What tasks did I work on / complete? - Worked on Integration, deployment and documentation. </li>
+<li> What am I planning to work on next? - End of sprint</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
