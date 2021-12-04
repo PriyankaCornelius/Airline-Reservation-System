@@ -134,6 +134,7 @@ Deployment: Bharath Jagini, Swetha Singi Reddy, Varun Ejanthkar <br/>
 <br/>
 
 # UI Wireframes
+https://github.com/gopinathsjsu/team-project-spartans-1/blob/main/Project_Documentation/Screenshots/UI%20Screenshots.pdf
 
 <br/>
 <br/>
