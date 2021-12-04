@@ -33,8 +33,10 @@ export default function ErrorRadios() {
       else if(seatClassName === 'First Class')
       {depPrice = departingflightSelected.first_class}
 
-      const returnClassName = returningflightSelected.seatClass;
       var returnPrice = '';
+      if(returningflightSelected !== null)
+      {
+      const returnClassName = returningflightSelected.seatClass;
       if(returnClassName === 'Business')
          {returnPrice = returningflightSelected.business;}
        else if(returnClassName === 'Economy')
@@ -43,18 +45,25 @@ export default function ErrorRadios() {
          {returnPrice = returningflightSelected.economy_plus} 
          else if(returnClassName === 'First Class')
          {returnPrice = returningflightSelected.first_class}
+      }
   // const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState();
   // const [seatPrice, setSeatPrice] = React.useState(departingflightSelected.seatPrice);
   const [flightFare, setFlightFare] = React.useState(departingflightSelected.business);
   // const [returnseatPrice, setReturnSeatPrice] = React.useState(returningflightSelected.seatPrice);
-  const [returnflightFare, setReturnFlightFare] = React.useState(returningflightSelected.business);
+  
+  //const [returnflightFare, setReturnFlightFare] = React.useState(returningflightSelected.business);
  
   const [totalFare, setTotalFare] = React.useState(parseInt(depPrice.slice(1)));
-  const [retTotalFare, setretTotalFare] = React.useState(parseInt(returnPrice.slice(1)));
 
+  if(returnPrice !== '')
+  { returnPrice = returnPrice.slice(1);}
+  var [retTotalFare, setretTotalFare] = React.useState(parseInt(returnPrice)); 
   const [mileageRewardsEarned, setMileageRewardsEarned] = React.useState('MileagePlus Earnings for this trip : 12$');
-  const [roundTripFare, setRoundTripFare] = React.useState( parseInt(depPrice.slice(1))+  parseInt(returnPrice.slice(1)));
+  var price = parseInt(depPrice.slice(1));
+  if(returningflightSelected !== null)
+    price+=  parseInt(returnPrice.slice(1));
+  const [roundTripFare, setRoundTripFare] = React.useState(price);
   const [insufficientBalance, setInsufficientBalance] = React.useState('');
   const [mileageRewards, setMileageRewards] = React.useState(localStorage.getItem('mileageRewardBalance'));
   // const [reducedMileageRewards, setReducedMileageRewards] = React.useState((totalFare>mileageRewards)? (mileageRewards - totalFare) : 0);
