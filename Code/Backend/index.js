@@ -9,7 +9,7 @@ const mysql = require('mysql');
 // const { dbconnection } = require('./store/config');
 const multer = require('multer');
 app.set('view engine', 'ejs');
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'http://team08-spartans-522395219.us-east-1.elb.amazonaws.com', credentials: true }));
 
 app.use(
   session({
@@ -24,7 +24,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'http://team08-spartans-522395219.us-east-1.elb.amazonaws.com');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader(
     'Access-Control-Allow-Methods',

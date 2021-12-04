@@ -213,10 +213,42 @@ class Signup extends React.Component {
               roleId: this.state.roleId,
               signUpDone: true,
             };
+
+            /*
+             sessionStorage.setItem('personid', response.data[0].person_id);
+              sessionStorage.setItem('username', response.data[0].f_name);
+              sessionStorage.setItem('useremail', response.data[0].email);
+              sessionStorage.setItem(
+                'profilepic',
+                response.data[0].profilePicture
+              );
+              //2->Passenger 1-> Employee
+              sessionStorage.setItem(
+                'person_role',
+                response.data[0].person_role_id
+              );
+              sessionStorage.setItem(
+                'customer_flyernum',
+                response.data[0].customer_flyer_num
+              );
+              sessionStorage.setItem(
+                'mileage_reward',
+                response.data[0].mileage_reward
+              );
+
+              sessionStorage.setItem(
+                'userDetails',
+                JSON.stringify(userDetails)
+              );
+            */
             sessionStorage.setItem('personid', response.data.personId);
             sessionStorage.setItem('username', response.data.firstName);
             sessionStorage.setItem('useremail', response.data.email);
             sessionStorage.setItem('profilepic', response.data.profilePicture);
+            sessionStorage.setItem(
+              'person_role',
+              signupDetails.roleId
+            );
             sessionStorage.setItem(
               'customer_flyernum',
               response.data.customerFlyerNum
