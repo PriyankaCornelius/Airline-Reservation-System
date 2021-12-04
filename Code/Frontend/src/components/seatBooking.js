@@ -12,6 +12,7 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import {url} from "./Constants";
 
 import axios from 'axios';
 const EconomySeat = styled(Button)({
@@ -68,7 +69,7 @@ class SeatBooking extends React.Component {
       }
     };
     console.log("data is ", data)
-    axios.get("http://localhost:3001/getSeatInfo/",data)
+    axios.get(url+"/getSeatInfo/",data)
       .then(response => {
         console.log("received seat info");
         console.log("length",response.data.length);
@@ -106,7 +107,7 @@ class SeatBooking extends React.Component {
           }
         };
         console.log("dataaaaaaaaaaaaa%%%%%%%%%%%%%", data);
-        axios.get("http://localhost:3001/checkIfSeatIsBooked/",data)
+        axios.get(url+"/checkIfSeatIsBooked/",data)
         .then(response => {
           console.log("received seat info : seat is booked or not");
           console.log("length",response.data);
@@ -138,7 +139,7 @@ class SeatBooking extends React.Component {
         }
       };
       console.log("dataaaaaaaaaaaaa%%%%%%%%%%%%%", data);
-      axios.get("http://localhost:3001/checkIfSeatIsBooked/",data)
+      axios.get(url+"/checkIfSeatIsBooked/",data)
       .then(response => {
         console.log("received seat info : seat is booked or not");
         console.log("length", response.data);

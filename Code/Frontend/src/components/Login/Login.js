@@ -101,6 +101,8 @@ class Login extends Component {
           if (response.status === 200) {
             console.log(response.data);
             // if (response.data[0].person_role_id === 2) {
+
+          
               const userDetails = {
                 personId: response.data[0].person_id,
                 firstName: response.data[0].f_name,
@@ -209,7 +211,8 @@ class Login extends Component {
   };
   render() {
     let redirectVar = null;
-    if (cookie.load('cookie')) {
+    const userDetails=sessionStorage.getItem("userDetails");
+    if (!userDetails===null||!userDetails===undefined) {
       redirectVar = <Redirect to='/searchFlights' />;
     }
     if (this.state.loginSuccessful) {

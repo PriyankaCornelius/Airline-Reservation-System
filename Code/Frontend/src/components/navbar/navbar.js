@@ -17,13 +17,15 @@ class Navheader extends Component {
   }
 
   handleLogout = () => {
-    cookie.remove('cookie', { path: '/' });
+   // cookie.remove('cookie', { path: '/' });
     sessionStorage.clear();
   };
 
   render() {
     let isloggedin = null;
-    if (cookie.load('cookie')) {
+    const userDetails=sessionStorage.getItem("userDetails");
+    if (!userDetails===null||!userDetails===undefined)
+    {
       console.log('Able to read cookie');
       const profilepic = sessionStorage.getItem('profilepic');
       isloggedin = (

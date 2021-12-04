@@ -42,7 +42,7 @@ const NavBar = (props) => {
       href: "/profile",
     },
       {
-          label: <span className="navBarText" onClick={()=>{sessionStorage.clear();cookie.remove('cookie')}}>Logout</span>,
+          label: <span className="navBarText" onClick={()=>{sessionStorage.clear();}}>Logout</span>,
           to: "/login",
           value: "logout",
           href: "/login"

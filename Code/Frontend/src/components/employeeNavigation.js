@@ -60,7 +60,7 @@ const EmployeeNavBar = (props) => {
         href: "/employee-updateFlightPrice",
       },
       {
-          label: <span className="navBarText" onClick={()=>{sessionStorage.clear();cookie.remove('cookie')}}>Logout</span>,
+          label: <span className="navBarText" onClick={()=>{sessionStorage.clear();}}>Logout</span>,
           to: "/login",
           value: "logout",
           href: "/login"
