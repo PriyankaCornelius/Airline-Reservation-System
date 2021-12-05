@@ -94,6 +94,12 @@
 <li> Feedback recieved and provided </li>
 <li> The project progressed with the individual tasks performed  </li>
 
+#### Priyanka - Communication, Feedback, Respect, Simplicity
+
+<li> Discussed APIs and reviewed component design with team. </li>
+<li> Feedback recieved and provided </li>
+<li> The project progressed with the individual tasks performed  </li>
+
 ## Week 5:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity
@@ -112,6 +118,12 @@
 #### Bharath - Communication, Feedback, Respect, Simplicity
 
 <li> Discussion and review of the completed and pending frontend api tasks with the team.</li>
+<li> Feedback recieved and provided.</li>
+<li> The project is progressing with no roadblocks</li>
+
+#### Priyanka - Communication, Feedback, Respect, Simplicity
+
+<li> Discussed design details for frontend components and APIs.</li>
 <li> Feedback recieved and provided.</li>
 <li> The project is progressing with no roadblocks</li>
 
@@ -137,6 +149,12 @@
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
 <li> Comunication is clear with meetings and weekly standups  </li>
 
+#### Priyanka - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
 ## Week 7:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity, Courage
@@ -155,6 +173,11 @@
 <li> We are progressing towards the term project. </li>
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
 <li> Comunication is clear with meetings and weekly standups  </li>
+
+#### Priyanka - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
  
 ## Week 8:
 
@@ -174,4 +197,10 @@
 
 <li> We are progressing towards the term project. </li>
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
+#### Priyanka - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> Each team member discussed and reviewed their components with the team. </li>
+<li> Each team member worked towards bug fixes and improvements for the project.  </li>
 <li> Comunication is clear with meetings and weekly standups  </li>
