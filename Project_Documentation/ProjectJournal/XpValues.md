@@ -130,6 +130,13 @@
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
 <li> Comunication is clear with meetings and weekly standups  </li>
 
+
+#### Varun - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
 ## Week 7:
 
 #### Swetha - Communication, Feedback, Respect, Simplicity, Courage
@@ -138,6 +145,12 @@
 <li> As a team we discussed next steps and integration plan to move towards completeion of the project. </li>
 
 #### Bharath - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
+#### Varun - Communication, Feedback, Respect, Simplicity, Courage
 
 <li> We are progressing towards the term project. </li>
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
@@ -152,6 +165,12 @@
 <li> Team Members are aware of the features impelented in the project </li>
 
 #### Bharath - Communication, Feedback, Respect, Simplicity, Courage
+
+<li> We are progressing towards the term project. </li>
+<li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
+<li> Comunication is clear with meetings and weekly standups  </li>
+
+#### Varun - Communication, Feedback, Respect, Simplicity, Courage
 
 <li> We are progressing towards the term project. </li>
 <li> Each team member showcased the tasks done and discussed about the next steps along with in corporating the feedback from other team members.  </li>
