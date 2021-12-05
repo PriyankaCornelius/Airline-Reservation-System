@@ -7,7 +7,8 @@
 
 ## Team Name:
 
-Team-project-spartans-1
+Team 08 Spartans
+
 
 <br/>
 
