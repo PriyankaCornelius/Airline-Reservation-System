@@ -20,6 +20,13 @@
 <li>What am I planning to work on next? - Deciding on the technologies to be implemented and exploring the possible components that we would use  in our application architecture</li>
 <li>What tasks are blocked waiting on another team member? - No Blockers</li>
 
+#### Priyanka
+
+<li>What tasks did I work on / complete? - Understanding the Project Scope and requirements. Setting up google task sheet.</li>
+<li>What am I planning to work on next? – Exploring tech stack, project architecture and components best suited for the application</li>
+<li>What tasks are blocked waiting on another team member? - No Blockers</li>
+
+
 ## Week 2:
 
 #### Swetha
@@ -40,6 +47,13 @@
 <li>What am I planning to work on next? - Design the architecture diagram of our application</li>
 <li>What tasks are blocked waiting on another team member? - No Blockers</li>
 
+#### Priyanka
+
+<li>What tasks did I work on / complete? - Working on the first draft of UI wireframes, setting up sprintsheet.</li>
+<li>What am I planning to work on next? - Explore UI libraries best suited for our app and design UI wireframes</li>
+<li>What tasks are blocked waiting on another team member? - No Blockers</li>
+
+
 ## Week 3:
 
 #### Swetha
@@ -58,6 +72,12 @@
 
 <li> What tasks did I work on / complete? - Setting up AWS RDS instance and creating tables for the application </li>
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the backend for login and signup backend APIs </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Priyanka
+
+<li> What tasks did I work on / complete? - UI wireframe design and component division</li>
+<li> What am I planning to work on next? - Backend project setup and to start working on my component - Flight Booking Feature </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
 ## Week 4:
@@ -80,6 +100,12 @@
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be creating the frotend screens for login, signup and integrate with the backend APIs </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Priyanka
+
+<li> What tasks did I work on / complete? - Backend Project and Flight Booking Component with steppers to navigate to the next page sequentially, and API for getting traveller information </li>
+<li> What am I planning to work on next? - Start with UI components and APIs to receive traveller information and payment from a customer trying to book the flight </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 ## Week 5:
 
 #### Swetha
@@ -99,6 +125,12 @@
 <li> What tasks did I work on / complete? - Created the frontend componnent to display and update the employee profile.  </li>
 <li> What am I planning to work on next? - I will be creating the backend for employee edit flight the flights this week. </li>
 
+#### Priyanka
+
+<li> What tasks did I work on / complete? - Form component to receive and display Traveller Information , and Payments Page completed</li>
+<li> What am I planning to work on next? - Start with APIs to fetch and display Seat Map Component and flight booking APIs </li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 ## Week 6:
 
 #### Swetha
@@ -117,6 +149,13 @@
 <li> What tasks did I work on / complete? - Reservation Backend APIs for listing reservations and changing flight</li>
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on cancelling flight backend API and UI screens for reservations list and changing Flights</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Priyanka
+
+<li> What tasks did I work on / complete? - Seat Map related APIs completed and started flight booking confirmation APIs</li>
+<li> What am I planning to work on next? - Complete flight booking and Seat Map APIs and start with component to display selected flights for review</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
 
 ## Week 7:
 
@@ -138,6 +177,13 @@
 <li> What am I planning to work on next? - Start working on my assigned tasks - I will be working on cancelling flight UI screens and integration of reservation module</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Priyanka
+
+<li> What tasks did I work on / complete? -  Completed flight booking APIs and component to display selected flights for review</li>
+<li> What am I planning to work on next? - Start Seat Map Display Component and Ticket Display Component</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+
 ## Week 8:
 
 #### Swetha
@@ -158,6 +204,13 @@
 <li> What am I planning to work on next? - Integration and documentation for the project </li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
 
+#### Priyanka
+
+<li> What tasks did I work on / complete? - Display Seat Map Component and Confirmed Travel Ticket Display Component</li>
+<li> What am I planning to work on next? - Work on Navbar and User component's look and feel, and feature to allow a seat to be booked only once for a particular travel date and flight number, also incorporate flight review and seat booking components for returning flights</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+
 ## Week 9:
 
 #### Swetha
@@ -175,5 +228,11 @@
 #### Bharath
 
 <li> What tasks did I work on / complete? - Worked on Integration, deployment and documentation. </li>
+<li> What am I planning to work on next? - End of sprint</li>
+<li> What tasks are blocked waiting on another team member? - No Blockers </li>
+
+#### Priyanka
+
+<li> What tasks did I work on / complete? - Worked on Component's look and feel, and feature validations such as to allow a seat to be booked only once for a particular travel date and flight number, also incorporated flight review and seat booking components for returning flights </li>
 <li> What am I planning to work on next? - End of sprint</li>
 <li> What tasks are blocked waiting on another team member? - No Blockers </li>
